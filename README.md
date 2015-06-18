@@ -1,5 +1,7 @@
 =======
 # nic
-transport authority
-officer form
->>>>>>> 831f741bb095618f33cd2a33cff2cf75ae286daf
+transport authority.
+
+you need to make database of name nic having tables officers, work_infos, personal_datas 
+
+In config databse.php the password is set to null and user is root in config file..
