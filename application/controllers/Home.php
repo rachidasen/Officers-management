@@ -11,14 +11,12 @@ class Home extends CI_Controller{
     //echo "hello this is index function"
     $data=array(
       'title' => "HOME", 
-      'page'=>"login_view.php"
+      'page'=>"home_view.php"
       );
-    //$this->load->model('blog_model');
-    //$profile=$this->blog_model->getProfile('kabadi');
-    //$arr['profile'] = $profile;
-    //print_r($profile);
-    //echo base_url();
-    $this->load->view('template',$data);
+    echo "you have successfully logged-in <br>";
+    print_r($this->input->post());
+    //$this->load->view('template',$data);
+
   }
 
   public function one($p1,$p2){

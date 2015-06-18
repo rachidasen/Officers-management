@@ -2,8 +2,10 @@
   <div class="row">
     <div class="Absolute-Center is-Responsive">
       <div id="logo-container"></div>
+      <?=validation_errors();?>
       <div class="col-sm-12 col-md-10 col-md-offset-1">
-        <form action="Login.php" id="loginForm">
+
+        <?=form_open("Login/checklogin");?>
           <div class="form-group input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
             <input class="form-control" type="text" name='username' placeholder="username"/>          
@@ -23,7 +25,7 @@
                 
           </div>
           <div class="form-group">
-            <button type="button" class="btn btn-primary btn-block">Login</button>
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
           </div>
           <div class="form-group text-center">
             <a href="#">Forgot Password</a>&nbsp;|&nbsp;<a href="#">Support</a>
