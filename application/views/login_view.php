@@ -2,17 +2,28 @@
   <div class="row">
     <div class="Absolute-Center is-Responsive">
       <div id="logo-container"></div>
-      <?=validation_errors();?>
+      
       <div class="col-sm-12 col-md-10 col-md-offset-1">
 
         <?=form_open("Login/checklogin");?>
+          
+          <div class="form-group ">
+            <?=form_error('username'); ?>
+          </div>
           <div class="form-group input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input class="form-control" type="text" name='username' placeholder="username"/>          
+            <input class="form-control" type="text" name='username' placeholder="Officer_id" value="<?=set_value("username");?>"/>          
+          </div>
+          <div class="form-group">
+          <?=form_error('password'); ?>
           </div>
           <div class="form-group input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            <input class="form-control" type="password" name='password' placeholder="password"/>     
+            <input class="form-control" type="password" name='password' placeholder="password"value="<?=set_value("password");?>"/>     
+          </div>
+          
+          <div class="form-group ">
+          <?=form_error('optionlist'); ?>
           </div>
           <div class="form-group">
               

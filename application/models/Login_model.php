@@ -9,10 +9,17 @@ class Login_model extends CI_Model
      }
 
      //get the username & password from tbl_usrs
-     public function login($name,$pass,$option){
+     public function verifyUser($name){
+        $query=$this->db->get_where('officers', array("officer_id"=> $name));
+        if($query->num_rows()>=1)
+          return true;
+        else
+          return false;
+     }
+     public function login($name,$pass){
           //check the database
-        $query = $this->db->get_where('officers', array('officer_id' => $name,'password'=>$pass,));
-        if($query->num_rows()==1 and $option >=1){
+        $query = $this->db->get_where('officers', array('officer_id' => $name,'password'=>$pass));
+        if($query->num_rows()==1 ){
           return true;
         }
         else
@@ -20,9 +27,20 @@ class Login_model extends CI_Model
      }
      public function insert_personaldatas($data){
       $this->db->insert('personal_datas',$data);
+      return $this->db->insert_id();
      }
      public function insert_workdatas($data){
       $this->db->insert('work_infos ',$data);
+       return $this->db->insert_id();
+     }
+     public function edit_personaldatas($data){
+      //$this->db->where( ) 
+      $this->db->where('id',$id);
+      $this->db->update('personal_datas',$data);
+     }
+     public function edit_workdates($data){
+      $this->db->where('id',$id);
+      $this->db->update('work_infos',$data);
      }
 }
 

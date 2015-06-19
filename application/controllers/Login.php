@@ -20,8 +20,9 @@ class Login extends CI_Controller {
      public function checklogin(){
      	//form validation
      		$data=$this->data;
-     		$this->form_validation->set_rules('username','Username','required');
-     		$this->form_validation->set_rules('password' ,'Password','required|callback_verifyUser');
+     		$this->form_validation->set_rules('username','Officer_id','required|callback_verifyUser');
+     		$this->form_validation->set_rules('password' ,'Password','required|callback_verifyPass');
+               //$this->form_validation->set_rules('optionlist','')
               	if($this->form_validation->run()==false){
      			$this->load->view('template',$data);
      		}
@@ -29,18 +30,27 @@ class Login extends CI_Controller {
                     
      		}
      }
-     public function verifyUser(){
+     public function verifyUser($name){
+
+               if($this->Login_model->verifyUser($name)){
+                    return TRUE;
+               }
+               else{
+                    $this->form_validation->set_message('verifyUser', '{field} not found');
+                    return false;
+               }
+     }
+     public function verifyPass(){
      	$name=$this->input->post('username');
      	$pass=$this->input->post('password');
-          $option=$this->input->post('optionlist');
-     	
-     	if($this->Login_model->login($name,$pass,$option)){
+ 	
+     	if($this->Login_model->login($name,$pass)){
      		return true;
 
      	}else{
      		     		//user doesn't exist
                //echo "Wrong username and password";
-     		 $this->form_validation->set_message('verifyUser','Incorrect officer_id or password. Please try again');
+     		 $this->form_validation->set_message('verifyPass','Incorrect officer_id or password. Please try again');
      		return false;
 
      	}

@@ -6,7 +6,7 @@ body{
   background: -ms-linear-gradient(to bottom, #00589F 50%, #0073CF) !important;
   background: -o-linear-gradient(to bottom, #00589F 50%, #0073CF) !important;
   background: linear-gradient(to bottom, #00589F 50%, #0073CF) !important;
-  color: white;
+  color: #d31c1c;
 }
 
 div.well{
@@ -60,7 +60,7 @@ div.well{
   -webkit-backface-visibility: hidden;
 }
 .dk_toggle:hover, .dk_toggle:focus, .dk_toggle .dk_focus .dk_toggle {
-  background-color: #2fe2bf;
+  background-color: #0f3c34;
   color: white;
   outline: none;
 }
