@@ -14,14 +14,32 @@ class Home extends CI_Controller{
       'page'=>"home_view.php"
       );
     echo "you have successfully logged-in <br>";
-    print_r($this->input->post());
+    //print_r($this->input->post());
     //$this->load->view('template',$data);
 
   }
 
-  public function one($p1,$p2){
+  public function one(){
+        $data=array(
+            'title' => "HOME", 
+            'page'=>"home_view.php"
+            );
     echo "hello this is one <br>";
-    echo "helo these are the parameters : $p1, $p2";
+   // echo "helo these are the parameters : $p1, $p2";
+  }
+  public function two(){
+        $data=array(
+              'title' => "HOME", 
+              'page'=>"home_report.php"
+            );
+        echo "success reporting officer";
+  }
+  public function three(){
+              $data=array(
+            'title' => "HOME", 
+            'page'=>"home_review.php"
+            );
+        echo "success revewing officer";
   }
 }
 

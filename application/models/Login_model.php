@@ -23,6 +23,7 @@ class Login_model extends CI_Model
           return true;
         }
         else
+          redirect("Home");
           return false;
      }
      public function insert_personaldatas($data){

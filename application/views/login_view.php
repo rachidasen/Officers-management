@@ -28,10 +28,10 @@
           <div class="form-group">
               
               <select class='span-9' name='optionlist'>
-                <option selected='selected' value='0'>Select Type of Officer</option>
-                <option value='1'>Officer</option>
-                <option value='2'>Reporting Officer</option>
-                <option value='3'>Reviewing Officer</option>
+                <option value=0 <?=set_value('optionlist',0);?>>Select Type of Officer</option>
+                <option value=1 <?=set_select('optionlist',1);?>>Officer</option>
+                <option value=2 <?=set_select('optionlist',2);?>>Reporting Officer</option>
+                <option value=3 <?=set_select('optionlist',3);?>>Reviewing Officer</option>
               </select>
                 
           </div>
