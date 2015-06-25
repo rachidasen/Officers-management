@@ -24,7 +24,8 @@ class Home extends CI_Controller{
             'title' => "HOME", 
             'page'=>"home_view.php"
             );
-    echo "hello this is one <br>";
+        $this->load->view('template',$data);
+      //echo "hello this is one <br>";
    // echo "helo these are the parameters : $p1, $p2";
   }
   public function two(){

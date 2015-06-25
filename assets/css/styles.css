@@ -1,17 +1,22 @@
 body{
-  background: #00589F;
+   /* background: #00589F;*/
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00589F', endColorstr='#0073CF', GradientType=0);
-  background: -webkit-linear-gradient(to bottom, #00589F 50%, #0073CF) !important;
-  background: -moz-linear-gradient(to bottom, #00589F 50%, #0073CF) !important;
-  background: -ms-linear-gradient(to bottom, #00589F 50%, #0073CF) !important;
-  background: -o-linear-gradient(to bottom, #00589F 50%, #0073CF) !important;
-  background: linear-gradient(to bottom, #00589F 50%, #0073CF) !important;
+  background: -webkit-linear-gradient(to bottom, rgba(119, 89, 131, 0.89) 50%, rgba(100, 33, 33, 0.97)) !important;
+  background: -moz-linear-gradient(to bottom, rgba(119, 89, 131, 0.89) 50%, rgba(100, 33, 33, 0.97)) !important;
+  background: -ms-linear-gradient(to bottom, rgba(119, 89, 131, 0.89) 50%, rgba(100, 33, 33, 0.97)) !important;
+  background: -o-linear-gradient(to bottom, rgba(119, 89, 131, 0.89) 50%, rgba(100, 33, 33, 0.97)) !important;
+  background: linear-gradient(to bottom, rgba(119, 89, 131, 0.89) 50%, rgba(100, 33, 33, 0.97)) !important;
   color: #d31c1c;
+  height: 100%;
+}
+html, body {
+    margin: 0;
+    min-height: 100%;
 }
 
-div.well{
+/*div.well{
   height: 250px;
-} 
+} */
 
 .Absolute-Center {
   margin: auto;
@@ -222,4 +227,25 @@ div.well{
   position: relative;
   top: -99999em;
   visibility: hidden;
+}
+
+
+.colorgraph {
+  height: 5px;
+  border-top: 0;
+  background: #c4e17f;
+  border-radius: 5px;
+  background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+}
+.radio-inline{
+    color:burlywood;
+}
+
+#training {
+    color:chartreuse;
+    font-family:sans-serif;
+    font-weight:bolder
 }
