@@ -13,7 +13,7 @@ class Home extends CI_Controller{
       'title' => "HOME", 
       'page'=>"home_view.php"
       );
-    echo "you have successfully logged-in <br>";
+//    echo "you have successfully logged-in <br>";
     //print_r($this->input->post());
     //$this->load->view('template',$data);
 
