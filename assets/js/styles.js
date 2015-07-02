@@ -8,7 +8,7 @@ $(document).ready(function() {
     //e.preventDefault();
     if (x < max_fields) { //max input box allowed
       x++; //text box increment
-      $(table).append(' <tr class="form-group">     <td><input class="form-control" type="text" name="target[]"></td><td><input class="form-control" type="text" name="achievement[]"></td><td class="remove_field"><a href="#">Remove</a></td></tr>'); //add input box
+      $(table).append(' <tr class="form-group">     <td><input class="form-control" type="text" name="target[]"></td><td><input class="form-control" type="text" name="achievement[]"></td><td class="remove_field "><i class="fa fa-minus-square fa-2x"></i></td></tr>'); //add input box
     }
     else{
       //working
@@ -43,6 +43,8 @@ function yesorno(elt){
     document.getElementsByClassName('hidden-msg').style.display="none";
     
 }
+
+
 */
 
 //Apply properties to all class
@@ -61,16 +63,28 @@ for(i=0;i<s.length;i++){
 function yesorno(elt,i){
   change=elt.parentNode.parentNode.childNodes;
   console.log(i);
-  if(elt.value==1)
-      console.debug(change[i].style.display="block");
+  if(elt.value==1){
+    if(change[i].style.display=="none"){
+        console.log("heelo");
+        console.debug(change[i].style.display="block");
+    }
+    else{
+        console.log(change[i].child)
+    }
+      console.log(change[i].childNodes[1].childNodes[3].setAttribute('required','true'));
+  }
   else
       console.debug(change[i].style.display="none");
   
 }
-
 function next(){					
   document.getElementById("one").className='';
   document.getElementById("two").className="active";
 	document.getElementsByClassName("btn")[0]. setAttribute("data-toggle",'tab');
+}
+function back(){
+    document.getElementById("two").className='';
+  document.getElementById("one").className="active";
+    
 }
 

@@ -1,5 +1,7 @@
 
   <div class="row">
+    <script src="<?=base_url("assets/js/angular.js")?>"></script> 
+
     <div class="Absolute-Center is-Responsive">
       <div id="logo-container"></div>
       

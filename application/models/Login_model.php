@@ -20,10 +20,11 @@ class Login_model extends CI_Model
           //check the database
         $query = $this->db->get_where('officers', array('officer_id' => $name,'password'=>$pass));
         if($query->num_rows()==1 ){
+            
           return true;
         }
         else
-          redirect("Home");
+          //redirect("He");
           return false;
      }
      public function insert_personaldatas($data){

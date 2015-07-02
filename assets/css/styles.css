@@ -1,3 +1,31 @@
+/** %[Object] Switch */
+/*------------------------------------*/
+.switch {
+  color: #6f839a;
+  cursor: pointer;
+  font-weight: 800;
+  border-radius: 50%;
+  padding: 10px 15px;
+  display: inline-block;
+  background-color: #3e4956;
+  transition: 0.5s ease;
+  //  transition: 
+}
+
+input[type="radio"]:checked + .switch {
+  color: #fff;
+  padding-left: 6%;
+  padding-right:6%
+}
+
+input[type="radio"]:checked + .switch--on {
+  background-color: #7eab55;
+}
+
+input[type="radio"]:checked + .switch--off {
+  background-color: #dd4a38;
+}
+
 body{
    /* background: #00589F;*/
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00589F', endColorstr='#0073CF', GradientType=0);
@@ -6,7 +34,7 @@ body{
   background: -ms-linear-gradient(to bottom, rgba(119, 89, 131, 0.89) 50%, rgba(100, 33, 33, 0.97)) !important;
   background: -o-linear-gradient(to bottom, rgba(119, 89, 131, 0.89) 50%, rgba(100, 33, 33, 0.97)) !important;
   background: linear-gradient(to bottom, rgba(119, 89, 131, 0.89) 50%, rgba(100, 33, 33, 0.97)) !important;
-  color: #d31c1c;
+  color: #50442a;
   height: 100%;
 }
 html, body {
@@ -248,4 +276,8 @@ html, body {
     color:chartreuse;
     font-family:sans-serif;
     font-weight:bolder
+}
+.panel-heading{
+    text-align: center;
+    /*display: block;*/
 }

@@ -10,7 +10,9 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <script type="text/javascript" src="<?=base_url("assets/js/jquery-1.11.3.js")?>"></script>
      <script src="<?=base_url("assets/js/bootstrap.min.js")?>"></script>
-      <script src="<?=base_url("assets/js/angular.js")?>"></script>
+
+      <!--  <script src="<?=base_url("assets/js/angular.js")?>"></script> -->
+      
       <script src="<?=base_url("assets/js/styles.js")?>"></script>
   </head>
 <body>

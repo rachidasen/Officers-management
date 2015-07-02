@@ -4860,10 +4860,11 @@ a.badge:focus {
   margin-left: 3px;
 }
 .jumbotron {
-  padding: 30px 15px;
+  padding: 30px 10px;
   margin-bottom: 30px;
   color: inherit;
-  background-color: #eee;
+  background-color: #efecf0;
+  
 }
 .jumbotron h1,
 .jumbotron .h1 {
