@@ -7,7 +7,7 @@
       
       <div class="col-sm-12 col-md-10 col-md-offset-1">
 
-        <?=form_open("Login/checklogin");?>
+        <?=form_open("Login/login");?>
           
           <div class="form-group ">
             <?=form_error('username'); ?>

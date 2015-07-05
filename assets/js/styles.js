@@ -19,7 +19,8 @@ $(document).ready(function() {
     e.preventDefault();
     $(this).parent('tr').remove();
     x--;
-  })
+  });
+ 
 });
 
 /*function yesorno(elt){
@@ -88,3 +89,12 @@ function back(){
     
 }
 
+$(document).ready(function(){
+  var f = $("#first_name").val();
+  if(f == undefined)
+     return;
+  if(f.length > 0)
+  {
+    $("#hidden-display").css("display",'block');  
+  }
+});

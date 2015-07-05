@@ -17,13 +17,15 @@ class Login extends CI_Controller {
      	$this->load->view('template',$data);
                	
      }
-     public function checklogin(){
+     public function login(){
      	//form validation
-     		$data=$this->data;
+          $data=$this->data;
+         if($_POST){
+     		
      		$this->form_validation->set_rules('username','Officer_id','required|callback_verifyUser');
      		$this->form_validation->set_rules('password' ,'Password','required|callback_verifyPass');
                //$this->form_validation->set_rules('optionlist','')
-               $this->form_validation->set_rules('optionlist', 'Type', 'required|callback_greaterthan');
+            $this->form_validation->set_rules('optionlist', 'OFFICER SELECTED', 'required|callback_greaterthan');
 
                    //                          );
                //$this->form_validation->set_rules('optionlist','Select Options','required|greater_than[0]');
@@ -31,6 +33,9 @@ class Login extends CI_Controller {
      			$this->load->view('template',$data);
      		}
      		else{
+                     $data['id']=$this->Login_model->get_id('officer_id');
+                     $this->session->set_userdata('officer_id',$_POST['username']);
+                     $this->session->set_userdata('officer_type',$_POST['optionlist']);
                     echo "success";
                     $choice=$this->input->post('optionlist');
                     switch($choice){
@@ -43,14 +48,40 @@ class Login extends CI_Controller {
                     }
                     redirect("Home/$choice");
      		}
+         }else
+           $this->load->view('template',$data);
      }
+    
      public function greaterthan(){
           $v=$this->input->post('optionlist');
-          if($v>0)
-               return TRUE;
-          else
+          if($v>0){ 
+               switch($v){
+                         case 1: $v='general_officer';
+                                   break;
+                         case 2: $v='reporting_officer';
+                                   break;
+                         case 3: $v='reviewing_officer';
+                                   break;
+                    }
+
+                $name=$this->input->post('username');
+                $pass=$this->input->post('password');
+               
+               
+              if($this->Login_model->login($name,$pass,$v))
+                     return true;
+
+               else{
+                       $this->form_validation->set_message('greaterthan','Incorrect {field} ');
+               return false;
+             }
+              //return true;
+
+         }
+          else{
                $this->form_validation->set_message('greaterthan','Please select ');
                return false;
+          }
      }
      public function verifyUser($name){
 
@@ -66,7 +97,7 @@ class Login extends CI_Controller {
      	$name=$this->input->post('username');
      	$pass=$this->input->post('password');
  	
-     	if($this->Login_model->login($name,$pass)){
+     	if($this->Login_model->verifyPass($name,$pass)){
      		return true;
 
      	}else{
@@ -77,6 +108,10 @@ class Login extends CI_Controller {
 
      	}
 
+     }
+     public function logout(){
+          $this->session->sess_destroy();
+          redirect(base_url().'Login/login' );
      }
 }
 

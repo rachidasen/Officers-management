@@ -5,7 +5,7 @@
         <div>
             <form>
                 <label>SELECT THE OFFICER</label>
-            <select>
+            <select id="officer-id">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -14,25 +14,25 @@
             </form>
         </div>
     </header>
-    <div class="modal modal-fade" id="officer_info">
-        <div class="modal-dialog">
+    <div class="modal modal-wide fade" id="officer_info" >
+        <div class="modal-dialog" style="width:70%">
             <!-- Modal content -->
-            <div class="modal-content">
+            <div class="modal-content" >
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title"></h4>
                 </div>
                 <div class="modal-body">
                     <?php
-                        $this->load->view('home_view.php');
+                       $this->load->view('home_view.php');
                     ?>
                </div>
         </div>
-</div>
+        </div>
     </div>
 </div>
     <!--header tag -->
-
+<div class="container">
 <div class="panel panel-info">
    <div class="panel-heading" data-target="#part-3" data-toggle="collapse">
       <h3 class="panel-title">
@@ -631,3 +631,24 @@
         
     </form>
 </div>
+</div>
+
+<script>
+$(document).ready(function(){
+	$('#officer-id').change(function(){
+		var officer_id = $('#officer-id').val();
+		$.ajax({
+				url:<?=base_url?>/Home/get_officer/officer_id		,
+				type:'post',
+				contentType:'application/json',
+				success:function(data){
+					for (var i = 0; i< data["officer"].length ;i++){
+						data["officer"][i]
+					}
+					alert(data.officer);
+				}
+
+		});
+	});
+})
+</script>
