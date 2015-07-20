@@ -40,17 +40,40 @@ class Login_model extends CI_Model
           //redirect("He");
           return false;
      }
+
      public function insert_personaldatas($data){
       //$query="INSERT INTO personal_datas "
       $this->db->insert('personal_datas',$data);
       return $this->db->insert_id();
      }
      public function insert_workdatas($data){
-      $this->db->insert('work_infos ',$data);
-       return $this->db->insert_id();
+      
+
+        $data2=array(
+                'id' =>$data['id'],
+                'description' =>$data['description'],
+                'shortfalls'=>$data['shortfalls'],
+                'higher_achievement'=>$data['higher_achievement'],
+                'date_of_filling'=>$data['date_of_filling'],
+                  'set2' => 1
+          );
+       $no=count($data['target']);
+      //echo "target$no";
+      for($i=0;$i<$no;$i++){
+          $data2["target$i"]=$data['target'][$i];
+          $data2["achievement$i"]=$data['achievement'][$i];
+      }
+      $this->db->insert('work_infos',$data2);
+      //echo"<hr><pre>";print_r($data2);echo"</pre>";
+       //print_r($query);
+      //return $this->db->insert_id();
      }
-     public function edit_personaldatas($data){
+     public function edit_workdatas($data){
       //$this->db->where( ) 
+
+      $data2=array(
+
+        );
       $this->db->where('id',$id);
       $this->db->update('personal_datas',$data);
      }
@@ -71,11 +94,28 @@ class Login_model extends CI_Model
       if ($query->num_rows()==1)
         return $query->result_array();
      }
-     public function checkset($id){
+     public function checkset($id,$table){
       //echo $id."<br>";
       $this->db->select('set');
       $this->db->where('id',$id);
-      $query=$this->db->get('personal_datas');
+      $query=$this->db->get($table);
+      //$this->db->affected_rows();
+      if($query->num_rows()==1 ){
+            
+          return true;
+        }
+        else
+          //redirect("He");
+          return false;
+      //     //return true;
+      // echo "<br>";
+     }
+
+     public function checkset2($id){
+      //echo $id."<br>";
+      $this->db->select('set2');
+      $this->db->where('id',$id);
+      $query=$this->db->get('work_infos');
       //$this->db->affected_rows();
       // echo "hihi";
        return $query->result_array();
@@ -87,6 +127,48 @@ class Login_model extends CI_Model
       $this->db->where('id',$id);
       $query=$this->db->get('personal_datas');
       return $query->result_array();
+     }
+     public function get_workdatas($id){
+      $this->db->where('id',$id);
+      $query=$this->db->get('work_infos');
+      return $query->result_array();
+     }
+     public function get_officer_id(){
+     // $this->db->select('officer_id','id');
+      $this->db->where(array('officer_type' =>1 ));
+      $query=$this->db->get('officers');
+      $data = array( );
+      foreach ($query->result_array() as $row) {
+            //print_r($row);
+            if($this->checkset($row['id'],'personal_datas')&&$this->checkset2($row['id']))
+              if($this->checkset($row['id'],'reportingofficers_part3')){
+                $d=array('officer_id' =>$row['officer_id'],'set'=>1);
+                $data[]=$d;
+              }
+              else{
+                 $d=array('officer_id' =>$row['officer_id'],'set'=>0);
+                $data[]=$d;
+              }
+
+      }
+
+      return ($data);
+     }
+
+     public function get_reporting_officers(){}
+     // public function get_officer_review(){
+     //   $data=$this->get_officer_id();
+     //      if($this->checkset($row['id'],''))
+     // }
+     public function report1( $data){
+      $this->db->insert('reportingofficers_part3',$data);
+       return $this->db->insert_id();
+
+     }
+     public function report2( $data){
+      $this->db->insert('reportingofficers_part4',$data);
+       return $this->db->insert_id();
+
      }
 }
 

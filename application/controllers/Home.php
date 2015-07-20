@@ -27,29 +27,42 @@ class Home extends CI_Controller{
             'page'=>"home_view.php"
             //'page'=>"admin.php"
             );
-        if(isset($_SESSION['officer_id'])){
+        if(isset($_SESSION['officer_id'])&&($_SESSION['officer_type']==1)){
            $id=$this->get_officers($_SESSION["officer_id"]);
           // print_r($id);
+        
+         
+
            $_SESSION['id']=$id[0][0]['id'];
-        if(!empty($id[1])){
+          if(!empty($id[1])){
             //this imply form has been submitted
               echo "variable set is set";
               $data['set']=$id[1];
               $data['value']=$id[2][0];
+             
             //retrieving the data
               //$this->
           }
-         }
+          if(!empty($id[4])){
+            $data['set2']=$id[4];
+             $data['value2']=$id[3][0];
+          }
+          
         //$this->load->helper('form');
-        $data['page']=$this->display($data['page']);
-        //echo "hello";
-       $this->load->view('template',$data);
+            $data['page']=$this->display($data['page']);
+            echo "hello";
+            $this->load->view('template',$data);
+          } else
+            redirect(base_url()."Login");
+          
+      
+      
 
-
+}
 
       //echo "hello this is one <br>";
    // echo "helo these are the parameters : $p1, $p2";
-  }
+
   public function display($page){
     /* uncomment to restrict  visting officers link directly
     */
@@ -58,7 +71,7 @@ class Home extends CI_Controller{
     else{
        $page="login_view.php"; 
         return $page;
-    }
+    } 
 
   }
 
@@ -67,21 +80,48 @@ class Home extends CI_Controller{
               'title' => "HOME", 
               'page'=>"home_report.php"
             );
-        //echo "success reporting officer";
+       //  $id=$this->Login_model->get_id($_SESSION['officer_id']);
+        if(isset($_SESSION['id'])){
+          $flag=$this->Login_model->checkset($_SESSION['id'],"reportingofficers_part3");
+       //echo $flag;
+      if($flag){
+        $data['select']=1;
+        //print_r($flag); 
+      }
+      else
+        $data['select']=0;
+    }
+      $data['id']=$this->get_officers_id();
+      //echo "success reporting officer";
+      if($_SESSION['officer_type']==2){
         $data['page']=$this->display($data['page']);
         $this->load->view('template',$data);
-  }
+       //print_r($data);//($data['id'][0]['id']);
+      // echo "<br>";
+      // echo count($id);
+    }
+      else
+          redirect(base_url()."Login");
+}
   public function three(){
               $data=array(
             'title' => "HOME", 
             'page'=>"home_review.php"
             );
         //echo "success revewing officer";
-        $data['page']=$this->display($data['page']);
-      $this->load->view('template',$data);
+        //$data['id']=$this->get_reporting_officers();
+        if($_SESSION['officer_type']==3){
+          $data['page']=$this->display($data['page']);
+          $this->load->view('template',$data);
+           //print_r($data);//($data['id'][0]['id']);
+          // echo "<br>";
+          // echo count($id);
+        }
+        else
+          redirect(base_url()."Login");
   }
 
-public function new_insert(){
+public function insert_personal(){
   // validation of some input fields
       
       $_POST['id']=$this->session->userdata('id');
@@ -100,36 +140,11 @@ public function new_insert(){
                'field' => 'lname',
                'label' => 'Name',
                'rules' => 'alpha',
-            ),
-             array(
-                'field' => 'description',
-                'label' =>  'Description',
-                'rules' =>  'alpha_dash|alpha_numeric_spaces'
-              ),
-             array(
-              'field' => 'target[]',
-              'label' =>  'TARGET',
-              'rules' =>  'alpha_dash|alpha_numeric_spaces'
-             ),
-             array(
-              'field' => 'achievement[]',
-              'label' => 'ACHIEVEMENTS',
-              'rules' => 'alpha_dash|alpha_numeric_spaces'
-             ),
-             array(
-              'field' => 'shortfalls',
-              'label' =>  'shortfalls',
-              'rules' => 'alpha_dash|alpha_numeric_spaces'
-             ),
-             array(
-              'field' => 'higher_achievement',
-              'label' =>  'HIGHER ACHIEVEMENTS',
-              'rules' => 'alpha_dash|alpha_numeric_spaces'
-             )
+            )
       );
 
       $this->form_validation->set_rules($config);
-      $this->form_validation->set_rules('description','Description','alpha_dash|alpha_numeric_spaces');
+      //$this->form_validation->set_rules('description','Description','alpha_dash|alpha_numeric_spaces');
       if($this->form_validation->run() == FALSE){
           $data['errors']= validation_errors();
           print_r($data['errors']);
@@ -139,26 +154,158 @@ public function new_insert(){
         echo "your form has been sent";
          $this->Login_model->insert_personaldatas($_POST);
         echo "your response has been recorded";
-          $_SESSION['personal_datas']=1;
-          redirect('home/one');
+         redirect('home/one');
       }
+}
+  
+
+
+public function insert_work_infos(){
+  $_POST['id']=$this->session->userdata('id');
+  $_POST['set']=1;
+  $config=array(
+            array(
+                'field' => 'description',
+                'label' =>  'Description',
+                'rules' =>  'trim|alpha_numeric_spaces'
+              ),
+             array(
+              'field' => 'target[]',
+              'label' =>  'TARGET',
+              'rules' =>  'trim|alpha_numeric_spaces'
+             ),
+             array(
+              'field' => 'achievement[]',
+              'label' => 'ACHIEVEMENTS',
+               'rules' =>  'trim|alpha_numeric_spaces'
+             ),
+             array(
+              'field' => 'shortfalls',
+              'label' =>  'SHORTFALL',
+              'rules' =>  'trim|alpha_numeric_spaces'
+             ),
+             array(
+              'field' => 'higher_achievement',
+              'label' =>  'HIGHER ACHIEVEMENTS',
+               'rules' =>  'trim|alpha_numeric_spaces'  
+             )
+      );
+  $this->form_validation->set_rules($config);
+  if($this->form_validation->run() == FALSE){
+         $data['errors']= validation_errors();
+    print_r($data['errors']);
+  }
+  else{
+    // echo "<pre>";
+    // print_r($_POST);
+    // echo "</pre>";
+    // echo count($_POST['target']);
+    $this->Login_model->insert_workdatas($_POST);
+    echo "Success inserted";
+    //$this->Login_model->edit_workdatas($_POST);
+    //redirect('home/one');
+  }
 }
 public function get_officers($officer_id){
     $id[0]=$this->Login_model->get_id($officer_id);
     // print_r($id[0]);
     // echo "<br>";
-    $id[1]=$this->Login_model->checkset($id[0][0]['id']);
+    $id[1]=$this->Login_model->checkset($id[0][0]['id'],"personal_datas");
     // print_r($id[1]);
     // echo "<br>";
     $id[2]=$this->Login_model->get_personaldatas($id[0][0]['id']);
-    // print_r($id[2]);
-    // echo "<br>";
-     // print_r($id[2]);
+    $id[3]=$this->Login_model->get_workdatas($id[0][0]['id']);
+    $id[4]=$this->Login_model->checkset2($id[0][0]['id']);
     return $id;
 }
     public function admin(){
         $q=$this->db->get();
     }
+
+    public function get_officers_id(){
+      return $this->Login_model->get_officer_id();
+    }
+
+
+    public function ajax_view(){
+       $data=array(
+            'title' => "HOME", 
+            'page'=>"home_view.php"
+            //'page'=>"admin.php"
+            );
+          $id=$this->get_officers($_POST['id']);
+          $_SESSION['id']=$id[0][0]['id'];
+
+          if(!empty($id[1])){
+            //this imply form has been submitted
+              echo "variable set is  is set";
+              $data['set']=1;
+              $data['value']=$id[2][0];
+             
+            //retrieving the data
+              //$this->
+          }
+          if(!empty($id[4])){
+            $data['set2']=1;
+             $data['value2']=$id[3][0];
+          }
+          
+        //$this->load->helper('form');
+            //$data['page']=$this->display($data['page']);
+            //print_r($data);
+           $this->load->view('home_view',$data);
+    }
+    public function reporting_officer1(){
+       // print_r($_POST);
+        //redirect(base_url()."Home/two");
+        // echo $flag;
+         $id=$this->Login_model->get_id($_SESSION['officer_id']);
+         $_POST['reporting_id']=$id[0]['id'];
+         $_POST['id']=$_SESSION['id'];
+         $_POST['set']=1;
+         $this->Login_model->report1($_POST);
+        
+      
+
+    }
+    public function reporting_officer2(){
+       // print_r($_POST);
+        //redirect(base_url()."Home/two");
+        // echo $flag;
+         $id=$this->Login_model->get_id($_SESSION['officer_id']);
+         $_POST['reporting_id']=$id[0]['id'];
+         $_POST['id']=$_SESSION['id'];
+         $_POST['set']=1;
+         $this->Login_model->report2($_POST);
+        
+      
+
+    }
+    public function reporting(){
+      //officer jiske reporting ki jaa rahi hai
+     
+     
+      if(isset($_POST['id'])){
+        $id=$this->Login_model->get_id($_POST['id']);
+         $_SESSION['id']=$id[0]['id'];
+      }
+       $flag=$this->Login_model->checkset($_SESSION['id'],"reportingofficers_part3");
+       // echo $id[0]['id'];
+      if($flag){
+         //echo "<div>YOU HAVE CHECKED IT</div>";
+         //($flag);
+       echo 1;
+      }
+      else{
+        echo 0;
+      }
+      
+      //print_r($_POST);
+      
+
+    }
 }
+
+
 
 ?>

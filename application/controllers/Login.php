@@ -46,7 +46,7 @@ class Login extends CI_Controller {
                          case 3: $choice='three';
                                    break;
                     }
-                    redirect("Home/$choice");
+                    redirect(base_url()."Home/$choice");
      		}
          }else
            $this->load->view('template',$data);

@@ -1,64 +1,4 @@
-$(document).ready(function() {
-  var max_fields = 10; //maximum input boxes allowed
-  var table = $("#objectives"); //Fields wrapper
-  var add_button = $(".add_field"); //Add button ID
 
-  var x = 1; //initlal text box count
-  $(add_button).click(function() { //on add input button click
-    //e.preventDefault();
-    if (x < max_fields) { //max input box allowed
-      x++; //text box increment
-      $(table).append(' <tr class="form-group">     <td><input class="form-control" type="text" name="target[]"></td><td><input class="form-control" type="text" name="achievement[]"></td><td class="remove_field "><i class="fa fa-minus-square fa-2x"></i></td></tr>'); //add input box
-    }
-    else{
-      //working
-    }
-  });
-  
-  $(table).on("click", ".remove_field", function(e) { //user click on remove text
-    e.preventDefault();
-    $(this).parent('tr').remove();
-    x--;
-  });
- 
-});
-
-/*function yesorno(elt){
-    alert(elt.value);  
-    if(document.getElementById(elt.id).value==1){
-        document.getElementById('trainings').style.display="block";
-     }
-  else                                                                  
-    document.getElementById('trainings').style.display="none";
-    
-}
-function yesorno(elt){
-    //alert(elt.value);  
-  //alert(document.getElementById(elt.id).value);
-  if(elt.value==1){
-    //if(document.getElementById(elt.id).value==1){
-        //alert("hello");
-        document.getElementsByClassName('hidden-msg').style.display="block";
-     }
-  else                                                                  
-    document.getElementsByClassName('hidden-msg').style.display="none";
-    
-}
-
-
-*/
-
-//Apply properties to all class
-
-/*
-var s=document.getElementsByClassName('hidden_msg');
-//changing the style to 
-for(i=0;i<s.length;i++){
-    console.log(s[i].style.display="inline");
-}
-
-
-*/
 //The working version
 
 function yesorno(elt,i){
@@ -90,11 +30,52 @@ function back(){
 }
 
 $(document).ready(function(){
-  var f = $("#first_name").val();
-  if(f == undefined)
-     return;
-  if(f.length > 0)
-  {
-    $("#hidden-display").css("display",'block');  
+   if($('#yestrain').is(':checked')) { 
+      $("#hidden-display").css("display",'block');  
   }
 });
+
+
+$(document).ready(function() {
+  var max_fields = 10; //maximum input boxes allowed
+  var table = $("#objectives"); //Fields wrapper
+  var add_button = $(".add_field"); //Add button ID
+
+  var x = 1; //initlal text box count
+   if($('#b2').prop("disabled")){
+          console.log("inside");
+         $(".add_field").css("pointer-events", "none");
+          $(".add_field").remove();
+          if($("#date_of_filling").val().length != 0){
+            console.log("date filled");
+            $("#n").prop("checked",true);
+            $("#y").prop("disabled",true);
+            $("#date_of_filling").parent().css("display","block");
+          }
+    }
+  $(add_button).click(function() { //on add input button click
+    //e.preventDefault();
+   
+    //else{
+      console.log("outside");
+      if (x < max_fields) { //max input box allowed
+        x++; //text box increment
+        $(table).append(' <tr class="form-group">     <td><input class="form-control" type="text" name="target[]"></td><td><input class="form-control" type="text" name="achievement[]"></td><td class="remove_field "><i class="fa fa-minus-square fa-2x"></i></td></tr>'); //add input box
+    //}
+    }
+      
+  });
+  
+  $(table).on("click", ".remove_field", function(e) { //user click on remove text
+    e.preventDefault();
+    $(this).parent('tr').remove();
+    x--;
+  });
+
+ 
+});
+
+// <----------------missed the doc ready function
+
+
+
