@@ -1,7 +1,7 @@
 <div class="container" style="border-color:green;">
     <header class="row">
-        <h1><strong><center><i class=" fa fa-file-text-o fa-3x"></i>REPORTING OFFICER </center></strong></h1>
-        <a href="<?=base_url()?>Login/logout" style="float:right; color:black">Logout</a></li>
+        <h1><strong><center><i class=" fa fa-file-text-o fa-3x"></i> REPORTING OFFICER<small><a href="<?=base_url()?>Login/logout" style=" margin-left:10px; color:#71081E; font-size:small">Logout</a></small></center></strong></h1>
+        
         <hr class="colorgraph">
         <div>
       
@@ -9,11 +9,11 @@
                 <label>SELECT THE OFFICER</label>
                 <select id="officer-id" placeholder="Choose an officer">
                   <optgroup id="opt1" label="To be checked">
-                    <option selected="selected">----</option>";
+                    <option selected="selected">----</option>
                    <?php
                         for($i=0;$i<count($id);$i++){
                           if($id[$i]['set']!=1)
-                            echo "<option id=o".$i."value=".$id[$i]['officer_id'].">".$id[$i]['officer_id']."</option>";
+                            echo "<option id='o".$i."' value=".$id[$i]['officer_id'].">".$id[$i]['officer_id']."</option>";
                         // print_r($id);
                         }
 
@@ -32,7 +32,7 @@
 
                 </select>
                
-            <a href="#officer_info" style="color:green;" data-toggle="modal" id="clickprofile" title="officer-profile"><div style="position:fixed;left:0;top:30%;color:rgb(1, 85, 100);"> <i class="fa fa-user fa-4x"></i> <br><small style="color: rgb(54, 81, 1);font-weight:bold;">OFFICER<br>PROFILE</small></div></a>
+            <a href="#officer_info" style="color:green;" data-toggle="modal" id="clickprofile" title="officer-profile"><div style="position:fixed;left:0;top:30%;color:black;"> <small style="color: rgb(254, 242, 2);font-weight:bold; margin-left:10px;"></small><br><i class="fa fa-user fa-4x"></i> <br><small style="color: rgb(254, 242, 2);font-weight:bold;">OFFICER<br>PROFILE</small></div></a>
             </form>
         </div>
         
@@ -50,6 +50,19 @@
         </div>
         </div>
     </div>
+    <div class="modal modal-wide fade" id="part-3" >
+        <div class="modal-dialog" style="min-width:60%">
+            <!-- Modal content -->
+            <div class="modal-content" >
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body" id="show">
+                </div>
+        </div>
+        </div>
+    </div>
 </div>
     <!--header tag -->
 
@@ -62,12 +75,12 @@
    <?php $attributes = array('id' => 'myform'); ?>
    <?=form_open(base_url()."Home/reporting_officer/", $attributes);?>
       <div class="panel panel-info">
-         <div class="panel-heading" data-target="#part-3"id="part-3head" data-toggle="collapse">
+         <div class="panel-heading" data-target="#part3"id="part-3head" data-toggle="collapse">
             <h3 class="panel-title">
                PART-3 
             </h3>
          </div>
-         <div class="panel-body" id="part-3">
+         <div class="panel-body" id="part3">
            
             <p><b>Numerical grading is to be awarded by reporting and reviewing authority which should be on a scale of 1-10,where 1 refers to the lowest grade and 10 refers to the highest grade</b></p>
             <p><b>(Please read carefully the instructions before filling the entries)</b></center></p>
@@ -574,6 +587,35 @@
          </div>
       </div>
 
+      <div class="panel panel-info" >
+        <div class="panel-heading "data-toggle="collapse" data-target="#part-4">
+            GENERAL
+        </div>
+   
+        <div class="panel-body" id="part-4">
+          <li>
+              <label>Relations with public (wherever applicable)</label>
+              <textarea class="form-control" name="public_relation"></textarea>
+          </li>
+          <li><label>Training</label>
+              <textarea class="form-control" name="training"></textarea>
+          </li>
+          <li>
+              <label>State of health</label>
+              <textarea class="form-control" name="health"></textarea>
+          </li>
+          <li><label>Integrity</label>
+              <textarea rows=6 required class="form-control"></textarea>
+          </li>
+          <li>
+              <label>Pen Picture by Reporting Officer (in about 100 words ) on the overall qualities of the officer including areas of strength and lesser strength, extraordinary achievements, significant failures (ref 3(A) &amp; 3 (B) of part-2) and attitude towards waeker sections</label><textarea required rows=6 class="form-control" name="reporting_officer-pen-picture"></textarea>
+          </li>
+          <li><label>Overall numerical grading on the basis of weightage given in sectionA, B and C in part-3 of the Report</label>
+          <input type="number" readonly id="overall_numerical-grading" name="overall_numerical-grading">
+          </li>
+         </div>
+      </div>
+
       
        <button type="submit" value="Submit" class="btn btn-primary btn-inline center-block" tabindex="7">SUBMIT</button>
 
@@ -586,7 +628,7 @@
 <script>
   $(document).ready(function(){
      if($("#officer-id").val()==="----"){ 
-          $("#detail").hide();
+          $("#myform").hide();
           $("header").append("<div id='msg-inf'>Currently no option selected</div>")
       }
 
@@ -627,25 +669,41 @@
          url: '<?php echo base_url(); ?>Home/reporting', //We are going to make the request to the method "list_dropdown" in the match controller
           data: {'id':officer_id}, //POST parameter to be sent with the tournament id
          success: function(resp) { //When the request is successfully completed, this function will be executed
-      
+           $("#msg-inf").remove();
           //alert(officer_id);
           if(resp==0){
                // $("#part-3").show();
-               $("#msg-inf").remove();
+              
                 $('#msg').hide();
                  $("#detail").show();
-                 if($(".success").length){
-                    alert("dsfd");
-                    $("#part-3").show();
-                    $("#part-3head").css("pointer-events", "none");
-                    $(".success").hide();
+                 //adding after changing else adding grren pannel
+                 if($("#myform").css('display')=='none'){
+                    $("#conf-msg").remove();
+                    $("#myform").show();
+
+
                  }
+                 // if($(".success").length){
+                 //    alert("dsfd");
+                 //    $("#part-3").show();
+                 //    $("#part-3head").css("pointer-events", "none");
+                 //    $(".success").hide();
+                 // }
           }
           else{
-          $('select option[value="'+ officer_id + '" ]').prop('disabled',true);
-          $("#detail").hide();
+          // $('select option[value="'+ officer_id + '" ]').prop('disabled',true);
+          //$("#detail").hide();
           $('#msg').show();
-            }          //$('html').html(resp);
+          if($("#myform").css('display')=='none') 
+            $("#conf-msg").remove();
+
+          $("#myform").hide();
+          var $newdiv1 = $( "<div id='conf-msg' class='container-fluid success' style='background-color:green;color:white; padding-right:50px;'> <center>YOUR FORM HAS BEEN SUBMITTED<a href='#part-3' class='success'style='float:right; color:black;' >view</a></center></div>" );
+              
+          $( "div" ).find("#detail").append( $newdiv1);
+
+
+          }          //$('html').html(resp);
         
         // alert(resp);
 
@@ -662,19 +720,23 @@
       $("#overall_personalattributes").val(sum2/9);
       sum3=parseInt($("#Knowledgeofrules").val())+parseInt($("#strategic").val())+parseInt($("#decision").val())+ parseInt($("#coordination").val())+parseInt($("#subordinates").val())+parseInt($("#handlingproblems").val())+parseInt($("#inspection").val())+parseInt($("#financialpropriety").val())
       $("#overall_functionalcompetency").val(sum3/8);
+      overall_grading=sum1/10 + sum2/30 + 3*sum3/80;
+      $("#overall_numerical-grading").val(overall_grading);
+      $('button[type="submit"]').prop("disabled",true);
       $.ajax({
         type: 'POST',
         url: "<?php echo base_url(); ?>Home/reporting_officer1",
         data: $(this).serialize(), // $(this).serialize(); you can use this too
         success: function(msg) {
             // console.log(msg); 
-             $("#detail").show();
-            $("#part-3").hide();
-              var $newdiv1 = $( "<div class='container success' style='background-color:green;color:white;'> <center>YOUR FORM HAS BEEN SUBMITTED</center></div>" );
-              var $newdiv2 = $( "<a href='#part-3' class='success'style='float:right; color:black;' >view</a>" );
-              $( "div" ).find("#part-3head").append( $newdiv2,$newdiv1);
+           //  $("").show(); 
+          $("#myform").hide();
+          var $newdiv1 = $( "<div class='container-fluid success' style='background-color:green;color:white; padding-right:50px;'> <center>YOUR FORM HAS BEEN SUBMITTED<a href='#part-3' class='success'style='float:right; color:black;' >view</a></center></div>" );
+              
+          $( "div" ).find("#detail").append( $newdiv1);
+              
               //alert(msg);
-              $("#opt2").append($("#officer-id :selected"));
+          $("#opt2").append($("#officer-id :selected"));
         }
 
       });

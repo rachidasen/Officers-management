@@ -34,7 +34,7 @@
                         else
                             $response_no='checked';
                     ?>
-                  <div class="well" style="background-color:green;color:white;margin-top:12px">
+                  <div class="well submit-msg" style="background-color:green;color:white;margin-top:12px">
                       YOU HAVE SUCCESSFULLY SUBMITTED THE FORM
                   </div>
                 <?php else:?>
@@ -147,7 +147,7 @@
                         else
                             $response_no='checked';
                     ?>
-                  <div class="well" style="background-color:green;color:white;margin-top:12px">
+                  <div class="well submit-msg" style="background-color:green;color:white;margin-top:12px">
                       YOU HAVE SUCCESSFULLY SUBMITTED THE FORM
                       <!--pre><?//=print_r($value2);?></pre>
                       -->

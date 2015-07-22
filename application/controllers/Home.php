@@ -81,7 +81,7 @@ class Home extends CI_Controller{
               'page'=>"home_report.php"
             );
        //  $id=$this->Login_model->get_id($_SESSION['officer_id']);
-        if(isset($_SESSION['id'])){
+    if(isset($_SESSION['id'])){
           $flag=$this->Login_model->checkset($_SESSION['id'],"reportingofficers_part3");
        //echo $flag;
       if($flag){
@@ -99,11 +99,12 @@ class Home extends CI_Controller{
        //print_r($data);//($data['id'][0]['id']);
       // echo "<br>";
       // echo count($id);
-    }
+      }
       else
           redirect(base_url()."Login");
 }
-  public function three(){
+
+public function three(){
               $data=array(
             'title' => "HOME", 
             'page'=>"home_review.php"
@@ -111,6 +112,7 @@ class Home extends CI_Controller{
         //echo "success revewing officer";
         //$data['id']=$this->get_reporting_officers();
         if($_SESSION['officer_type']==3){
+          $data['repoting_offcr']=$this->Login_model->get_report($_SESSION['officer_id']);
           $data['page']=$this->display($data['page']);
           $this->load->view('template',$data);
            //print_r($data);//($data['id'][0]['id']);
@@ -301,6 +303,12 @@ public function get_officers($officer_id){
       }
       
       //print_r($_POST);
+      
+
+    }
+
+    public function get_officer_reporting(){
+      $d=($this->Login_model->get_officers($_POST['id']));
       
 
     }

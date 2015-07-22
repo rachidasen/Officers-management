@@ -155,7 +155,12 @@ class Login_model extends CI_Model
       return ($data);
      }
 
-     public function get_reporting_officers(){}
+     public function get_report($review){
+          $this->db->where('review_officer-id',$review);
+          $query=$this->db->get('reviewing_officer');
+          return $query->result_array();
+
+     }
      // public function get_officer_review(){
      //   $data=$this->get_officer_id();
      //      if($this->checkset($row['id'],''))
@@ -169,6 +174,28 @@ class Login_model extends CI_Model
       $this->db->insert('reportingofficers_part4',$data);
        return $this->db->insert_id();
 
+     }
+     public function get_officers($reporting_id){
+      $data=array();
+     $this->db->select('officer-id');
+     $query = $this->db->get_where('reporting_officer', array('reporting-officer-id' => $reporting_id,'set'=> 0));
+      if($query->num_rows()>=1){
+          $d=$query->result_array();
+          for($i=0;$i<count($d);$i++)
+           $d1[$i]=$d[$i]['officer-id'];
+         //echo json_encode($data);
+      }
+      $query = $this->db->get_where('reporting_officer', array('reporting-officer-id' => $reporting_id,'set !='=> 0));
+      if($query->num_rows()>=1){
+          $d=$query->result_array();
+          for($i=0;$i<count($d);$i++)
+           $d2[$i]=$d[$i]['officer-id'];
+         //echo json_encode($d);
+      }
+      $data['unchecked']=$d1;
+      $data['checkded']=$d2;
+      echo json_encode($data);
+     
      }
 }
 
