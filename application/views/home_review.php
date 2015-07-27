@@ -1,44 +1,44 @@
 <style>
-.report {
-  display: block;
-  position:absolute;
+  .report {
+    display: block;
+    position:absolute;
 
-  top:2px; right: 3px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  margin: 1px 1px 1px 31px;
-  padding: 0 0 12px 22px;
-  border: none;
-  font: bold 8px/normal "Zeyada", Helvetica, sans-serif;
-  color: rgba(255,255,255,1);
-  text-decoration: normal;
-  text-align: center;
-  text-indent: -6px;
-  -o-text-overflow: clip;
-  text-overflow: clip;
-  white-space: pre-wrap;
-  text-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 20px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 40px #ff00de , 0 0 70px #ff00de , 0 0 80px #ff00de , 0 0 100px #ff00de ;
-  -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
-  -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
-  -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
-  transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
-}
+    top:2px; right: 3px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 1px 1px 1px 31px;
+    padding: 0 0 12px 22px;
+    border: none;
+    font: bold 8px/normal "Zeyada", Helvetica, sans-serif;
+    color: rgba(255,255,255,1);
+    text-decoration: normal;
+    text-align: center;
+    text-indent: -6px;
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    white-space: pre-wrap;
+    text-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 20px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 40px #ff00de , 0 0 70px #ff00de , 0 0 80px #ff00de , 0 0 100px #ff00de ;
+    -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+  }
 
-.report:hover {
-  margin: 0;
-  padding: 10px;
-  font: normal 8px/normal "Warnes", Helvetica, sans-serif;
-  white-space: pre;
-  text-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 20px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 40px #00ffff , 0 0 70px #00ffff , 0 0 80px #00ffff , 0 0 100px #00ffff ;
-}
+  .report:hover {
+    margin: 0;
+    padding: 10px;
+    font: normal 8px/normal "Warnes", Helvetica, sans-serif;
+    white-space: pre;
+    text-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 20px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 40px #00ffff , 0 0 70px #00ffff , 0 0 80px #00ffff , 0 0 100px #00ffff ;
+  }
 
-.button:active {
-  font: normal 48px/normal "Zeyada", Helvetica, sans-serif;
-  text-indent: -6px;
-  white-space: pre-wrap;
-  text-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 20px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 40px #ff00de , 0 0 70px #ff00de , 0 0 80px #ff00de , 0 0 100px #ff00de ;
-}
+  .button:active {
+    font: normal 48px/normal "Zeyada", Helvetica, sans-serif;
+    text-indent: -6px;
+    white-space: pre-wrap;
+    text-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 20px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 40px #ff00de , 0 0 70px #ff00de , 0 0 80px #ff00de , 0 0 100px #ff00de ;
+  }
 </style>
 <div class="container">
     <div class="container" style="border-color:green;">
@@ -128,7 +128,7 @@
         
         <div class="jumbotron">
             <ol>
-           <?=form_open(base_url()."Home/reviewing-officer");?>
+              <?=form_open(base_url()."Home/reviewing-officer");?>
                 <li>
                     <div class="form-group">REMARKS OF THE REVIEWING OFFICER</div>
                     <label> Length of service under the Reviewing Officer</label>
@@ -167,7 +167,8 @@
                     Pen Picture by Reviewing Officer. Please comment(in about 100 words) on the overall qualities of the officer including areas of strength and lesser strength and his attitude towards weaker sections. <textarea rows=5 class="form-control"></textarea>
                 </li>
                    
-            </form></ol>
+              </form>
+            </ol>
         </div>
 
          <hr class="colorgraph">

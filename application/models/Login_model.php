@@ -95,7 +95,7 @@ class Login_model extends CI_Model
         return $query->result_array();
      }
      public function checkset($id,$table){
-      //echo $id."<br>";
+      //echo $id."<br>".$table;
       $this->db->select('set');
       $this->db->where('id',$id);
       $query=$this->db->get($table);
@@ -110,7 +110,22 @@ class Login_model extends CI_Model
       //     //return true;
       // echo "<br>";
      }
-
+     public function check($id,$table){
+      //echo $id."<br>".$table;
+      //\$this->db->select('set');
+      $this->db->where(array('id' => $id,'set '=>1 ));
+      $query=$this->db->get($table);
+      //$this->db->affected_rows();
+      if($query->num_rows()==1 ){
+            
+          return true;
+        }
+        else
+          //redirect("He");
+          return false;
+      //     //return true;
+      // echo "<br>";
+     }
      public function checkset2($id){
       //echo $id."<br>";
       $this->db->select('set2');
@@ -134,24 +149,30 @@ class Login_model extends CI_Model
       return $query->result_array();
      }
      public function get_officer_id(){
-     // $this->db->select('officer_id','id');
-      $this->db->where(array('officer_type' =>1 ));
-      $query=$this->db->get('officers');
+      $this->db->select('id');
+      //$this->db->where(array('officer_type' =>1 ));
+      $query=$this->db->get_where('reporting_officer',array('reporting-officer-id' => $_SESSION['officer_id']));
       $data = array( );
-      foreach ($query->result_array() as $row) {
-            //print_r($row);
-            if($this->checkset($row['id'],'personal_datas')&&$this->checkset2($row['id']))
-              if($this->checkset($row['id'],'reportingofficers_part3')){
-                $d=array('officer_id' =>$row['officer_id'],'set'=>1);
-                $data[]=$d;
+      foreach ($query->result_array() as $rows) {
+            //  print_r($rows);
+            $this->db->where(array('officer_id' =>$rows['id'] ));
+            $q=$this->db->get('officers');
+            foreach ($q->result_array() as $row) {
+              //var_dump($row);
+              if($this->checkset($row['id'],'personal_datas')&&$this->checkset2($row['id'])){
+                if($this->check($row['officer_id'],'reporting_officer')){
+                  $d=array('officer_id' =>$row['officer_id'],'set'=>1);
+                  $data[]=$d;
+                }
+                else{
+                   $d=array('officer_id' =>$row['officer_id'],'set'=>0);
+                  $data[]=$d;
+                }
               }
-              else{
-                 $d=array('officer_id' =>$row['officer_id'],'set'=>0);
-                $data[]=$d;
-              }
+            }
 
       }
-
+      //var_dump($data);
       return ($data);
      }
 
@@ -166,8 +187,17 @@ class Login_model extends CI_Model
      //      if($this->checkset($row['id'],''))
      // }
      public function report1( $data){
+      $d['id']=$data['id'];
+      $data['id']=$_SESSION['id'];
       $this->db->insert('reportingofficers_part3',$data);
-       return $this->db->insert_id();
+      //$d['id']=$data['id'];
+      $d['reporting-officer-id']=$_SESSION['officer_id'];
+      $d['set']=1;
+      var_dump($d);
+      $this->db->where('id',$d['id']);
+      $this->db->update('reporting_officer',$d); 
+       
+      // return $this->db->insert_id();
 
      }
      public function report2( $data){
@@ -177,25 +207,32 @@ class Login_model extends CI_Model
      }
      public function get_officers($reporting_id){
       $data=array();
-     $this->db->select('officer-id');
-     $query = $this->db->get_where('reporting_officer', array('reporting-officer-id' => $reporting_id,'set'=> 0));
+     $this->db->select('id');
+     $query = $this->db->get_where('reporting_officer', array('reporting-officer-id' => $reporting_id,'set'=> 1));
       if($query->num_rows()>=1){
           $d=$query->result_array();
           for($i=0;$i<count($d);$i++)
-           $d1[$i]=$d[$i]['officer-id'];
+           $d1[$i]=$d[$i]['id'];
          //echo json_encode($data);
       }
-      $query = $this->db->get_where('reporting_officer', array('reporting-officer-id' => $reporting_id,'set !='=> 0));
+      $query = $this->db->get_where('reporting_officer', array('reporting-officer-id' => $reporting_id,'set'=> 2));
       if($query->num_rows()>=1){
           $d=$query->result_array();
           for($i=0;$i<count($d);$i++)
-           $d2[$i]=$d[$i]['officer-id'];
+           $d2[$i]=$d[$i]['id'];
          //echo json_encode($d);
       }
       $data['unchecked']=$d1;
-      $data['checkded']=$d2;
+      if(isset($d2))
+        $data['checked']=$d2; 
+      else 
+        $data['checked']="none";
       echo json_encode($data);
      
+     }
+
+     public function get_reporting_officer_table(){
+
      }
 }
 

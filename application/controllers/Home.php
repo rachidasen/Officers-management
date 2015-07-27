@@ -96,7 +96,7 @@ class Home extends CI_Controller{
       if($_SESSION['officer_type']==2){
         $data['page']=$this->display($data['page']);
         $this->load->view('template',$data);
-       //print_r($data);//($data['id'][0]['id']);
+       //print//_r($data);//($data['id'][0]['id']);
       // echo "<br>";
       // echo count($id);
       }
@@ -262,8 +262,8 @@ public function get_officers($officer_id){
         //redirect(base_url()."Home/two");
         // echo $flag;
          $id=$this->Login_model->get_id($_SESSION['officer_id']);
-         $_POST['reporting_id']=$id[0]['id'];
-         $_POST['id']=$_SESSION['id'];
+         $_POST['reporting-officer-id']=$id[0]['id'];
+         //$_POST['id']=$_SESSION['id'];
          $_POST['set']=1;
          $this->Login_model->report1($_POST);
         
@@ -275,7 +275,7 @@ public function get_officers($officer_id){
         //redirect(base_url()."Home/two");
         // echo $flag;
          $id=$this->Login_model->get_id($_SESSION['officer_id']);
-         $_POST['reporting_id']=$id[0]['id'];
+         $_POST['reporting_officer2-officer-id']=$id[0]['id'];
          $_POST['id']=$_SESSION['id'];
          $_POST['set']=1;
          $this->Login_model->report2($_POST);

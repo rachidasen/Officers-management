@@ -672,6 +672,7 @@
            $("#msg-inf").remove();
           //alert(officer_id);
           if(resp==0){
+            //form hasn't been submitted
                // $("#part-3").show();
               
                 $('#msg').hide();
@@ -680,6 +681,7 @@
                  if($("#myform").css('display')=='none'){
                     $("#conf-msg").remove();
                     $("#myform").show();
+                    $('button[type="submit"]').prop("disabled",false);
 
 
                  }
@@ -723,15 +725,17 @@
       overall_grading=sum1/10 + sum2/30 + 3*sum3/80;
       $("#overall_numerical-grading").val(overall_grading);
       $('button[type="submit"]').prop("disabled",true);
+      var id=$("#officer-id :selected").val();
       $.ajax({
         type: 'POST',
         url: "<?php echo base_url(); ?>Home/reporting_officer1",
-        data: $(this).serialize(), // $(this).serialize(); you can use this too
+        data: $(this).serialize() + '&id=' + id, // $(this).serialize(); you can use this too
         success: function(msg) {
             // console.log(msg); 
            //  $("").show(); 
+           alert(msg);
           $("#myform").hide();
-          var $newdiv1 = $( "<div class='container-fluid success' style='background-color:green;color:white; padding-right:50px;'> <center>YOUR FORM HAS BEEN SUBMITTED<a href='#part-3' class='success'style='float:right; color:black;' >view</a></center></div>" );
+          var $newdiv1 = $( "<div id='conf-msg'class='container-fluid success' style='background-color:green;color:white; padding-right:50px;'> <center>YOUR FORM HAS BEEN SUBMITTED<a href='#part-3' class='success'style='float:right; color:black;' >view</a></center></div>" );
               
           $( "div" ).find("#detail").append( $newdiv1);
               
