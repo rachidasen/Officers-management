@@ -136,10 +136,10 @@
                 </li>
                 <br>
                 <li>
-                    <div style="position:relative; padding-right:50px;">Do you agree with the assessment made by the <em><strong><a href="#part-3   " data-toggle="modal" style="color:black;">reporting officer</a></strong></em> with respect to the work output and the various attributes in <a href="#part-3" data-toggle="modal">Part-3 </a>&amp; <a href="#">Part-4</a> <b>?</b> Do you agree with the assessment of reporting officer in respect to extraordinary achievements/ significant failures of the officer reported upon? (Ref. <a href="#">Part-3(A) (iv) </a>and <a>Part-4(5)</a> 
-                        <div class="report" data-toggle="modal" data-target="#part-3">         VIEW
+                    <div style="position:relative; padding-right:50px;">Do you agree with the assessment made by the <em><strong><a href="#part-3   " data-toggle="modal" style="color:black;">reporting officer</a></strong></em> with respect to the work output and the various attributes in  <a href="#part-3" style="color:green;" data-toggle="modal" class="rep" title="Reporting_officer-report">PART-3</a>&amp; <a href="#" class="rep">Part-4</a> <b>?</b> Do you agree with the assessment of reporting officer in respect to extraordinary achievements/ significant failures of the officer reported upon? (Ref. <a href="#" class="rep">Part-3(A) (iv) </a>and <a href="#" class="rep">Part-4(5)</a> 
+                        <div class="report" data-toggle="modal" data-target="#part-3" class="reporting-officer rep">         VIEW
                         REPORTING-OFFICER
-                        REPORT
+                        REPORTT
                         </div>
                    
                     </div>
@@ -194,7 +194,7 @@
 
 
 <script type="text/javascript">
-    
+    $(document).ready(function(){
     $('#reporting-id').on('change',function(){
         $("#pt1").empty();
          $("#pt2").empty();
@@ -203,6 +203,8 @@
         $.ajax({
          type: 'POST',
          url: '<?php echo base_url(); ?>Home/get_officer_reporting', //We are going to make the request to the method "list_dropdown" in the match controller
+          dataType:'html',
+          //dataType:'json',
           data: {'id':reporting_id}, //POST parameter to be sent with the tournament id
         success: function(resp) { //When the request is successfully completed, this function will be executed
             var obj = jQuery.parseJSON(resp);
@@ -214,7 +216,7 @@
                 $.each(value , function(key,value) {
                      $('<option />', {value: value, text: value}).appendTo($("#pt1"));
                 });
-                else
+                if(key=='checked')
                  $.each(value , function(key,value) {
                      $('<option />', {value: value, text: value}).appendTo($("#pt2"));
                 });
@@ -223,15 +225,59 @@
            }
         });
     });
+    });
+    // $(".rep").click(function(e){
+    //     e.preventDefault();
+    //     var id=$("#reporting-id").val();
+    //      $.ajax({
+    //       type:'POST',
+    //       url:'<?php echo base_url(); ?>Home/get_reporting_officer?>',
+    //        data:{'reporting-id':id},
+    //        success: function(){
+    //         alert("hello");
+    //         console.log('success');
+    //        },
+    //        error:function(msg){
+    //         alert('console');
+    //        }
+    //      });
+    // });
+    $(".rep").click(function(){
+      var id = $('#reporting-id').val();
+      $.ajax({
+         type: 'POST',
+         url: '<?php echo base_url();?>Home/get_reporting_officer', //We are going to make the request to the method "list_dropdown" in the match controller
+         data:{'id':id}, //POST parameter to be sent with the tournament id
+         success: function(resp) { //When the request is successfully completed, this function will be executed
+         //Activate and fill in the matches list
+          if(id==="----")
+            $("#show-profile").html("<div id='no-officer'> No officer Selected </div>");
+          else{
+             $("#show").html(resp);
+             $(".rem").remove();
+            alert('success');
+            console.log('success');  
+            console.log(resp);
+          }
+          //$("#show").html(resp);
+         },
+         error: function(resp) { //When the request is successfully completed, this function will be executed
+         //Activate and fill in the matches list
+         //With the ".html()" method we include the html code returned by AJAX into the matches list
+          console.log('error');
+          console.log(arguments);
+         }
+      });
+    });
+    
     $('#clickprofile').click(function(){
       var officer_id = $('#officer-id').val();
       $.ajax({
          type: 'POST',
-         url: '<?php echo base_url(); ?>Home/ajax_view', //We are going to make the request to the method "list_dropdown" in the match controller
-          data: {'id':officer_id}, //POST parameter to be sent with the tournament id
-         success: function(resp) { //When the request is successfully completed, this function will be executed
-         //Activate and fill in the matches list
-         //With the ".html()" method we include the html code returned by AJAX into the matches list
+       url: '<?php echo base_url(); ?>Home/ajax_view', //We are going to make the request to the method "list_dropdown" in the match controller
+        data: {'id':officer_id}, //POST parameter to be sent with the tournament id
+        //With the ".html()" method we include the html code returned by AJAX into the matches list
+         success: function(resp) { 
           if(officer_id==="----"){
             $("#show-profile").html("<div id='no-officer'> No officer Selected </div>");
             //alert($("#officer-id").length);
@@ -243,15 +289,20 @@
             $("#b2,#b1").hide();
             }
         // alert(resp);
+           alert('success');
+          console.log('success');  
+          console.log(resp);
 
-         },
-         error: function(resp) { //When the request is successfully completed, this function will be executed
-         //Activate and fill in the matches list
-         //With the ".html()" method we include the html code returned by AJAX into the matches list
-         console.log('error');
-         console.log(arguments);
-         }
-      });
-      
-    });
+          //$("#show").html(resp);
+          },
+           error: function(resp) {
+             console.log('error');
+           console.log(arguments);
+          }
+          });
+        });
+
+
+
+ 
 </script>

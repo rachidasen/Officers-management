@@ -1,13 +1,13 @@
-<div class="container" style="border-color:green;">
+<div class="container-fluid" style="border-color:green;">
     <header class="row">
-        <h1><strong><center><i class=" fa fa-file-text-o fa-3x"></i> REPORTING OFFICER<small><a href="<?=base_url()?>Login/logout" style=" margin-left:10px; color:#71081E; font-size:small">Logout</a></small></center></strong></h1>
+        <h1><strong><center><i class=" fa fa-file-text-o fa-3x"></i> REPORTING OFFICER<small><a href="<?=base_url()?>Login/logout" style=" margin-left:10px; color:#71081E; font-size:small" class="rem">Logout</a></small></center></strong></h1>
         
         <hr class="colorgraph">
         <div>
       
             <form>
-                <label>SELECT THE OFFICER</label>
-                <select id="officer-id" placeholder="Choose an officer">
+                <label class="rem">SELECT THE OFFICER</label>
+                <select class="rem" id="officer-id" placeholder="Choose an officer">
                   <optgroup id="opt1" label="To be checked">
                     <option selected="selected">----</option>
                    <?php
@@ -32,7 +32,7 @@
 
                 </select>
                
-            <a href="#officer_info" style="color:green;" data-toggle="modal" id="clickprofile" title="officer-profile"><div style="position:fixed;left:0;top:30%;color:black;"> <small style="color: rgb(254, 242, 2);font-weight:bold; margin-left:10px;"></small><br><i class="fa fa-user fa-4x"></i> <br><small style="color: rgb(254, 242, 2);font-weight:bold;">OFFICER<br>PROFILE</small></div></a>
+            <a href="#officer_info" style="color:green;" class="rem" data-toggle="modal" id="clickprofile" title="officer-profile"><div style="position:fixed;left:0;top:30%;color:black;"> <small style="color: rgb(254, 242, 2);font-weight:bold; margin-left:10px;"></small><br><i class="fa fa-user fa-4x"></i> <br><small style="color: rgb(254, 242, 2);font-weight:bold;">OFFICER<br>PROFILE</small></div></a>
             </form>
         </div>
         
@@ -71,7 +71,7 @@
   </div>
 
 
-  <div class="container" id= "detail">
+  <div class="container-fluid" id= "detail">
    <?php $attributes = array('id' => 'myform'); ?>
    <?=form_open(base_url()."Home/reporting_officer/", $attributes);?>
       <div class="panel panel-info">
@@ -103,8 +103,9 @@
                       <tr>
                         <td><b>Accomplishment of planned work/work alotted as per subjects alotted</td>
                         <td>
-                           <select  class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="plannedwork" id="plannedwork">
-                              <option value="" disabled selected>select grade</option> <option value="1" >1</option>
+                           <select  class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="plannedwork" id="plannedwork"  <?php if(isset($set)) echo "disabled"; ?> >
+                              <option disabled selected> <?php if(isset($set)) echo $plannedwork; else echo "select grade";?></option> 
+                              <option value="1" >1</option>
                               <option value="2">2</option>
                               <option value="3">3</option>
                               <option value="4" >4</option>
@@ -122,8 +123,9 @@
                         <td><b>Quality of output</td>
                         <td>
 
-                          <select  class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="qualityoutput" id="qualityoutput">
-                               <option value="" disabled selected>select grade</option> <option value="1" >1</option>
+                          <select  class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="qualityoutput" id="qualityoutput"<?php if(isset($set)) echo "disabled"; ?> >
+                              <option disabled selected> <?php if(isset($set)) echo $qualityoutput; else echo "select grade";?></option> 
+                                <option value="1" >1</option>
                               <option value="2">2</option>
                               <option value="3">3</option>
                               <option value="4" >4</option>
@@ -142,8 +144,9 @@
                         <td>
 
 
-                          <select  class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="analytical" id="analytical">
-                               <option value="" disabled selected>select grade</option> <option value="1" >1</option>
+                          <select  class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="analytical" id="analytical"<?php if(isset($set)) echo "disabled"; ?> >
+                              <option disabled selected> <?php if(isset($set)) echo $analytical; else echo "select grade";?></option> 
+                              <option value="1" >1</option>
                               <option value="2">2</option>
                               <option value="3">3</option>
                               <option value="4" >4</option>
@@ -162,8 +165,9 @@
                                        <td>
 
 
-                        <select  class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="exceptionalwork" id="exceptionalwork">
-                             <option value="" disabled selected>select grade</option> <option value="1" >1</option>
+                        <select  class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="exceptionalwork" id="exceptionalwork"<?php if(isset($set)) echo "disabled"; ?> >
+                              <option disabled selected> <?php if(isset($set)) echo $plannedwork; else echo "exceptionalwork";?></option> 
+                             <option value="1" >1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4" >4</option>
@@ -183,7 +187,7 @@
                         <td><b>Overall grading on work output</td>
                                        <td>
 
-                        <input  type="number" readonly class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="overall_workoutput" id="overall_workoutput">
+                        <input  type="number" readonly class="form-control" required <?php if(isset($set)): ?> value=<?=(int)$overall_workoutput;?> <?php endif;?>style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="overall_workoutput" id="overall_workoutput" >
                              
 
 
@@ -209,8 +213,9 @@
                         <tr>
                           <td><b>Attitude to work</b></td>
                           <td>
-                              <select name="attitudetowork" id="attitudetowork" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;">
-                                  <option value="" disabled selected>select grade</option> <option value="1" >1</option>
+                              <select name="attitudetowork" id="attitudetowork" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"<?php if(isset($set)) echo "disabled"; ?> >
+                              <option disabled selected> <?php if(isset($set)) echo $attitudetowork; else echo "select grade";?></option> 
+                               <option value="1" >1</option>
                                   <option value="2">2</option>
                                   <option value="3">3</option>
                                   <option value="4" >4</option>
@@ -227,8 +232,9 @@
                           <td><b>Sense of responsibility</td>
                           <td>
 
-                            <select  name="responsibility" id="responsibility" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;">
-                                 <option value="" disabled selected>select grade</option> <option value="1" >1</option>
+                            <select  name="responsibility" id="responsibility" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"<?php if(isset($set)) echo "disabled"; ?> >
+                              <option disabled selected> <?php if(isset($set)) echo $responsibility; else echo "select grade";?></option> 
+                                  <option value="1" >1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4" >4</option>
@@ -244,8 +250,9 @@
                         <tr>
                           <td><b>Maintenance of discipline</td>
                           <td>
-                            <select  name="discipline" id="discipline" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;">
-                                 <option value="" disabled selected>select grade</option> <option value="1" >1</option>
+                            <select  name="discipline" id="discipline" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"<?php if(isset($set)) echo "disabled"; ?> >
+                              <option disabled selected> <?php if(isset($set)) echo $discipline; else echo "select grade";?></option> 
+                                  <option value="1" >1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4" >4</option>
@@ -262,8 +269,9 @@
                           <td><b>Communication Skills</td>
                           <td>
 
-                            <select name="communication" id="communication" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;">
-                                 <option value="" disabled selected>select grade</option> <option value="1" >1</option>
+                            <select name="communication" id="communication" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"<?php if(isset($set)) echo "disabled"; ?> >
+                              <option disabled selected> <?php if(isset($set)) echo $communication; else echo "select grade";?></option> 
+                                 <option value="1" >1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4" >4</option>
@@ -281,8 +289,9 @@
                           <td>
 
 
-                            <select  name="leadership" id="leadership" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;">
-                                 <option value="" disabled selected>select grade</option> <option value="1" >1</option>
+                            <select  name="leadership" id="leadership" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"<?php if(isset($set)) echo "disabled"; ?> >
+                              <option disabled selected> <?php if(isset($set)) echo $leadership; else echo "select grade";?></option> 
+                                  <option value="1" >1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4" >4</option>
@@ -303,8 +312,9 @@
                           <td>
 
 
-                            <select name="teamspirit" id="teamspirit" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;">
-                                 <option value="" disabled selected>select grade</option> <option value="1" >1</option>
+                            <select name="teamspirit" id="teamspirit" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"<?php if(isset($set)) echo "disabled"; ?> >
+                              <option disabled selected> <?php if(isset($set)) echo $teamspirit; else echo "select grade";?></option> 
+                                  <option value="1" >1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4" >4</option>
@@ -323,8 +333,9 @@
                           <td>
 
 
-                            <select name="timeschedule" id="timeschedule" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;">
-                                 <option value="" disabled selected>select grade</option> <option value="1" >1</option>
+                            <select name="timeschedule" id="timeschedule" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"<?php if(isset($set)) echo "disabled"; ?> >
+                              <option disabled selected> <?php if(isset($set)) echo $timeschedule; else echo "select grade";?></option> 
+                              <option value="1" >1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4" >4</option>
@@ -345,8 +356,9 @@
                           <td>
 
 
-                            <select  name="inter-personal" id="inter-personal" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;">
-                                 <option value="" disabled selected>select grade</option> <option value="1" >1</option>
+                            <select  name="inter_personal" id="inter_personal" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"<?php if(isset($set)) echo "disabled"; ?> >
+                              <option disabled selected> <?php if(isset($set)) echo "$inter_personal"; else echo "select grade";?></option> 
+                                 <option value="1" >1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4" >4</option>
@@ -365,8 +377,9 @@
                           <td><b>Overall bearing and personality</td>
                           <td>
 
-                            <select name="personality" id="personality" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;">
-                                 <option value="" disabled selected>select grade</option> <option value="1" >1</option>
+                            <select name="personality" id="personality" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"<?php if(isset($set)) echo "disabled"; ?> >
+                              <option disabled selected> <?php if(isset($set)) echo $personality; else echo "select grade";?></option> 
+                               <option value="1" >1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4" >4</option>
@@ -386,7 +399,7 @@
                           <td><b>Overall Grading on 'Personal Attributes'</td>
                           <td>
 
-                            <input  type="number" id="overall_personalattributes"  readonly name="overall_personalattributes" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;">
+                            <input  type="number" id="overall_personalattributes"  readonly name="overall_personalattributes" <?php if(isset($set)): ?> value=<?=$overall_personalattributes;?> <?php endif;?> class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;">
                                  
                           </td>
                         </tr>
@@ -413,8 +426,9 @@
                         <td>
 
 
-                          <select  class="form-control" required style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="Knowledgeofrules" id="Knowledgeofrules">
-                               <option value="" disabled selected>select grade</option> <option value="1" >1</option>
+                          <select  class="form-control" required style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="Knowledgeofrules" id="Knowledgeofrules"<?php if(isset($set)) echo "disabled"; ?> >
+                              <option disabled selected> <?php if(isset($set)) echo $Knowledgeofrules; else echo "select grade";?></option> 
+                                <option value="1" >1</option>
                               <option value="2">2</option>
                               <option value="3">3</option>
                               <option value="4" >4</option>
@@ -432,8 +446,9 @@
                         <td><b>Strategic planning ability</td>
                         <td>
 
-                          <select  class="form-control" required style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="strategic" id="strategic">
-                             <option value="" disabled selected>select grade</option> <option value="1" >1</option>
+                          <select  class="form-control" required style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="strategic" id="strategic"<?php if(isset($set)) echo "disabled"; ?> >
+                              <option disabled selected> <?php if(isset($set)) echo $strategic; else echo "select grade";?></option> 
+                              <option value="1" >1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4" >4</option>
@@ -451,8 +466,8 @@
                         <td><b>Decision making ability</td>
                                      <td>
 
-                         <select  class="form-control" required style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="decision" id="decision">
-                           <option value="" disabled selected>select grade</option> <option value="1" >1</option>
+                         <select  class="form-control" required style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="decision" id="decision"<?php if(isset($set)) echo "disabled"; ?> >
+                              <option disabled selected> <?php if(isset($set)) echo $decision; else echo "select grade";?></option> <option value="1" >1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
                           <option value="4" >4</option>
@@ -471,8 +486,8 @@
                         <td><b>Coordination ability</td>
                                      <td>
 
-                         <select  class="form-control" required style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="coordination" id="coordination">
-                           <option value="" disabled selected>select grade</option> <option value="1" >1</option>
+                         <select  class="form-control" required style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="coordination" id="coordination"<?php if(isset($set)) echo "disabled"; ?> >
+                              <option disabled selected> <?php if(isset($set)) echo $coordination; else echo "select grade";?></option>  <option value="1" >1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
                           <option value="4" >4</option>
@@ -491,8 +506,8 @@
                         <td><b>Ability to motivate,develop and appraise subordinates</td>
                                      <td>
 
-                          <select  class="form-control" required style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="subordinates" id="subordinates">
-                             <option value="" disabled selected>select grade</option> <option value="1" >1</option>
+                          <select  class="form-control" required style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="subordinates" id="subordinates"<?php if(isset($set)) echo "disabled"; ?> >
+                              <option disabled selected> <?php if(isset($set)) echo $subordinates; else echo "select grade";?></option>  <option value="1" >1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4" >4</option>
@@ -511,8 +526,9 @@
                         <td><b>Initiative and resourcefulness in handling/anticipating problems and unforeseen situations</td>
                         <td>
 
-                          <select  class="form-control" required style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="handlingproblems" id="handlingproblems">
-                             <option value="" disabled selected>select grade</option> <option value="1" >1</option>
+                          <select  class="form-control" required style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="handlingproblems" id="handlingproblems"<?php if(isset($set)) echo "disabled"; ?> >
+                              <option disabled selected> <?php if(isset($set)) echo $handlingproblems; else echo "select grade";?></option> 
+                               <option value="1" >1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4" >4</option>
@@ -531,8 +547,9 @@
                         <td><b>Quality of inspection</td>
                                      <td>
 
-                         <select  class="form-control" required style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="inspection" id="inspection">
-                           <option value="" disabled selected>select grade</option> <option value="1" >1</option>
+                         <select  class="form-control" required style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="inspection" id="inspection"<?php if(isset($set)) echo "disabled"; ?> >
+                              <option disabled selected> <?php if(isset($set)) echo $inspection; else echo "select grade";?></option> 
+                              <option value="1" >1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
                           <option value="4" >4</option>
@@ -552,8 +569,9 @@
                         <td><b>Financial propriety</td>
                                      <td>
 
-                         <select  class="form-control" required style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="financialpropriety" id="financialpropriety">
-                           <option value="" disabled selected>select grade</option> <option value="1" >1</option>
+                         <select  class="form-control" required style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="financialpropriety" id="financialpropriety"<?php if(isset($set)) echo "disabled"; ?> >
+                              <option disabled selected> <?php if(isset($set)) echo $financialpropriety; else echo "select grade";?></option> 
+                               <option value="1" >1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
                           <option value="4" >4</option>
@@ -572,7 +590,7 @@
                         <td><b>Overall Grading on 'Functional Competency'</td>
                                      <td>
 
-                         <input type="number"  readonly class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="overall_functionalcompetency" id="overall_functionalcompetency">
+                         <input type="number"  readonly  class="form-control" required  <?php if(isset($set)): ?> value=<?=(int)$overall_functionalcompetency;?> <?php endif;?> style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="overall_functionalcompetency" id="overall_functionalcompetency">
                           
                         </td>
 
@@ -587,7 +605,7 @@
          </div>
       </div>
 
-      <div class="panel panel-info" >
+      <div class="panel panel-info rem">
         <div class="panel-heading "data-toggle="collapse" data-target="#part-4">
             GENERAL
         </div>
@@ -617,7 +635,7 @@
       </div>
 
       
-       <button type="submit" value="Submit" class="btn btn-primary btn-inline center-block" tabindex="7">SUBMIT</button>
+       <button type="submit" value="Submit" class="btn btn-primary btn-inline center-block rem" tabindex="7">SUBMIT</button>
 
    <?=form_close();?>
   </div>
@@ -718,7 +736,7 @@
       e.preventDefault(); // <------this will restrict the page refresh
       sum1=parseInt($("#plannedwork").val())+parseInt($("#qualityoutput").val()) +parseInt($("#analytical").val()) + parseInt($("#exceptionalwork").val());
       $("#overall_workoutput").val(sum1/4);
-      sum2=parseInt($("#attitudetowork").val())+parseInt($("#responsibility").val())+parseInt($("#discipline").val())+parseInt($("#communication").val())+parseInt($("#leadership").val())+parseInt($("#teamspirit").val())+parseInt($("#timeschedule").val())+parseInt($("#inter-personal").val())+parseInt($("#personality").val());
+      sum2=parseInt($("#attitudetowork").val())+parseInt($("#responsibility").val())+parseInt($("#discipline").val())+parseInt($("#communication").val())+parseInt($("#leadership").val())+parseInt($("#teamspirit").val())+parseInt($("#timeschedule").val())+parseInt($("#inter_personal").val())+parseInt($("#personality").val());
       $("#overall_personalattributes").val(sum2/9);
       sum3=parseInt($("#Knowledgeofrules").val())+parseInt($("#strategic").val())+parseInt($("#decision").val())+ parseInt($("#coordination").val())+parseInt($("#subordinates").val())+parseInt($("#handlingproblems").val())+parseInt($("#inspection").val())+parseInt($("#financialpropriety").val())
       $("#overall_functionalcompetency").val(sum3/8);
