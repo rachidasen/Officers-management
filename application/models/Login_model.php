@@ -231,9 +231,22 @@ class Login_model extends CI_Model
      
      }
 
-     public function get_reporting_officer_table(){
+    public function get_reporting_officer($officer){
+      $data=array();
+      $this->db->select('id');
+      $query = $this->db->get_where('officers', array('officer_id' => $officer));
+      $id=$query->result_array();
+     // print_r($id);
 
-     }
+       $query = $this->db->get_where('reportingofficers_part3', array('id' => $id[0]['id']));
+       $d=$query->result_array();
+        $data=($d[0]);
+
+        return $data;;
+      
+
+     // }
+   }
 }
 
 ?>

@@ -252,8 +252,8 @@ public function get_officers($officer_id){
              $data['value2']=$id[3][0];
           }
           
-        //$this->load->helper('form');
-            //$data['page']=$this->display($data['page']);
+        $this->load->helper('form');
+            $data['page']=$this->display($data['page']);
             //print_r($data);
            $this->load->view('home_view',$data);
     }
@@ -311,6 +311,19 @@ public function get_officers($officer_id){
       $d=($this->Login_model->get_officers($_POST['id']));
       
 
+    }
+
+    public function get_reporting_officer(){
+      
+      $data=$this->Login_model->get_reporting_officer($_POST['id']);
+      $data['title'] = "HOME";
+      $data['page']="home_view.php";
+      $data['set']=1;
+      //   //     //'page'=>"admin.php"
+      //   //     );
+
+      //print_r($data);
+      $this->load->view('home_report',$data);
     }
 }
 

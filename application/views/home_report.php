@@ -50,7 +50,7 @@
         </div>
         </div>
     </div>
-    <div class="modal modal-wide fade" id="part-3" >
+     <div class="modal modal-wide fade" id="part-3" >
         <div class="modal-dialog" style="min-width:60%">
             <!-- Modal content -->
             <div class="modal-content" >
@@ -60,7 +60,7 @@
                 </div>
                 <div class="modal-body" id="show">
                 </div>
-        </div>
+            </div>
         </div>
     </div>
 </div>
@@ -94,8 +94,9 @@
                   <table class="table table-responsive " id="A">
                     <thead>
                       <tr>
-                        <th class="col-sm-9 col-lg-9">        </th>
-                        <th class="col-sm-3 col-lg-3">Reporting Authority</th>		
+                        <th class="col-sm-6 col-lg-6">        </th>
+                        <th class="col-sm-3 col-lg-3">Reporting Authority</th>	
+                        <th class="col-sm-3 col-lg-3">Initials of Reviewing Authority</th>	
                       </tr>
                     </thead>
                     <tbody>
@@ -644,6 +645,8 @@
 
 
 <script>
+  
+
   $(document).ready(function(){
      if($("#officer-id").val()==="----"){ 
           $("#myform").hide();
@@ -718,7 +721,7 @@
             $("#conf-msg").remove();
 
           $("#myform").hide();
-          var $newdiv1 = $( "<div id='conf-msg' class='container-fluid success' style='background-color:green;color:white; padding-right:50px;'> <center>YOUR FORM HAS BEEN SUBMITTED<a href='#part-3' class='success'style='float:right; color:black;' >view</a></center></div>" );
+          var $newdiv1 = $( "<div id='conf-msg' class='container-fluid success' style='background-color:green;color:white; padding-right:50px;'> <center>YOUR FORM HAS BEEN SUBMITTED<a href='#part-3' data-toggle='modal' class='sss' style='float:right; color:black;'>view</a></center></div>" );
               
           $( "div" ).find("#detail").append( $newdiv1);
 
@@ -753,7 +756,7 @@
            //  $("").show(); 
            alert(msg);
           $("#myform").hide();
-          var $newdiv1 = $( "<div id='conf-msg'class='container-fluid success' style='background-color:green;color:white; padding-right:50px;'> <center>YOUR FORM HAS BEEN SUBMITTED<a href='#part-3' class='success'style='float:right; color:black;' >view</a></center></div>" );
+          var $newdiv1 = $( "<div id='conf-msg'class='container-fluid success' style='background-color:green;color:white; padding-right:50px;'> <center>YOUR FORM HAS BEEN SUBMITTED<a href='#part-3' data-toggle='modal' class='sss' style='float:right; color:black;' >view</a></center></div>" );
               
           $( "div" ).find("#detail").append( $newdiv1);
               
@@ -764,6 +767,35 @@
       });
 
     });
+
+    $(".sss").click(function(){
+      var id = 'rep1';//$('#reporting-id').val();
+      $.ajax({
+         type: 'POST',
+         url: '<?php echo base_url();?>Home/get_reporting_officer', //We are going to make the request to the method "list_dropdown" in the match controller
+         data:{'id':id}, //POST parameter to be sent with the tournament id
+         success: function(resp) { //When the request is successfully completed, this function will be executed
+         //Activate and fill in the matches list
+          if(id==="----")
+            $("#show-profile").html("<div id='no-officer'> No officer Selected </div>");
+          else{
+             $("#show").html(resp);
+             $(".rem").remove();
+            alert('success');
+            console.log('success');  
+            console.log(resp);
+          }
+          //$("#show").html(resp);
+         },
+         error: function(resp) { //When the request is successfully completed, this function will be executed
+         //Activate and fill in the matches list
+         //With the ".html()" method we include the html code returned by AJAX into the matches list
+          console.log('error');
+          console.log(arguments);
+         }
+      });
+    });
+
 });
 
 </script>

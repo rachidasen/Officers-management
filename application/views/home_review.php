@@ -149,8 +149,8 @@
                     <input type="radio" name="agree" id="yes" value="0" hidden onclick="yesorno(this,7)">
                     <label for="yes" class="switch switch--on">Yes</label>
 
-                    <input type="radio" name="agree" id="no" value="1" hidden onclick="yesorno(this,7)">
-                    <label for="no" class="switch switch--off">No</label>
+                    <input type="radio" name="agree" id="no" value="1" hidden onclick="yesorno(this,7)" required>
+                    <label for="no" class="switch switch--off" data-target="#part-3" data-toggle="modal">No</label>
                     
                        
                 </li>
@@ -243,7 +243,7 @@
     //      });
     // });
     $(".rep").click(function(){
-      var id = $('#reporting-id').val();
+     var id = $('#officer-id').val();
       $.ajax({
          type: 'POST',
          url: '<?php echo base_url();?>Home/get_reporting_officer', //We are going to make the request to the method "list_dropdown" in the match controller
@@ -255,7 +255,7 @@
           else{
              $("#show").html(resp);
              $(".rem").remove();
-            alert('success');
+            //alert('success');
             console.log('success');  
             console.log(resp);
           }
@@ -269,7 +269,34 @@
          }
       });
     });
-    
+    $("#no").click(function(){
+     var id = $('#officer-id').val();
+      $.ajax({
+         type: 'POST',
+         url: '<?php echo base_url();?>Home/get_reporting_officer', //We are going to make the request to the method "list_dropdown" in the match controller
+         data:{'id':id}, //POST parameter to be sent with the tournament id
+         success: function(resp) { //When the request is successfully completed, this function will be executed
+         //Activate and fill in the matches list
+          if(id==="----")
+            $("#show-profile").html("<div id='no-officer'> No officer Selected </div>");
+          else{
+             $("#show").html(resp);
+             $(".rem").remove();
+            //alert('success');
+            console.log('success');  
+            console.log(resp);
+          }
+          //$("#show").html(resp);
+         },
+         error: function(resp) { //When the request is successfully completed, this function will be executed
+         //Activate and fill in the matches list
+         //With the ".html()" method we include the html code returned by AJAX into the matches list
+          console.log('error');
+          console.log(arguments);
+         }
+      });
+    });
+   
     $('#clickprofile').click(function(){
       var officer_id = $('#officer-id').val();
       $.ajax({
@@ -289,7 +316,7 @@
             $("#b2,#b1").hide();
             }
         // alert(resp);
-           alert('success');
+           //alert('success');
           console.log('success');  
           console.log(resp);
 
