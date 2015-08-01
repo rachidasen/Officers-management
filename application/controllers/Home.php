@@ -27,8 +27,8 @@ class Home extends CI_Controller{
             'page'=>"home_view.php"
             //'page'=>"admin.php"
             );
-        if(isset($_SESSION['officer_id'])&&($_SESSION['officer_type']==1)){
-           $id=$this->get_officers($_SESSION["officer_id"]);
+        if(isset($_SESSION['officer_id'])&&($_SESSION['officer_type']==1)){ 
+          $id=$this->get_officers($_SESSION["officer_id"]);
           // print_r($id);
         
          
@@ -308,8 +308,12 @@ public function get_officers($officer_id){
     }
 
     public function get_officer_reporting(){
+      //$_POST=json_decode($_POST);
+      //print_r($_POST);
       $d=($this->Login_model->get_officers($_POST['id']));
-      
+      //print_r($d);
+      echo json_encode($d);
+
 
     }
 
@@ -317,13 +321,23 @@ public function get_officers($officer_id){
       
       $data=$this->Login_model->get_reporting_officer($_POST['id']);
       $data['title'] = "HOME";
-      $data['page']="home_view.php";
+    // $data['page']="rep.php";
       $data['set']=1;
       //   //     //'page'=>"admin.php"
       //   //     );
 
       //print_r($data);
-      $this->load->view('home_report',$data);
+      $this->load->view($_POST['page'],$data);
+    }
+
+    public function insert_reviewofficer(){
+      $_POST['LOS']=(int)$_POST['LOS'];
+      $_POST['agree']=(int)$_POST['agree'];
+      $_POST['review_id']=$_SESSION['officer_id'];
+      $this->Login_model->insert_report($_POST);
+      
+      //echo $d;
+      echo 'hello';
     }
 }
 

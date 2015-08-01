@@ -213,6 +213,7 @@ class Login_model extends CI_Model
           $d=$query->result_array();
           for($i=0;$i<count($d);$i++)
            $d1[$i]=$d[$i]['id'];
+             $data['unchecked']=$d1;
          //echo json_encode($data);
       }
       $query = $this->db->get_where('reporting_officer', array('reporting-officer-id' => $reporting_id,'set'=> 2));
@@ -222,12 +223,13 @@ class Login_model extends CI_Model
            $d2[$i]=$d[$i]['id'];
          //echo json_encode($d);
       }
-      $data['unchecked']=$d1;
+     
       if(isset($d2))
         $data['checked']=$d2; 
-      else 
-        $data['checked']="none";
-      echo json_encode($data);
+      // else 
+      //   $data['checked']=array("none");
+      //echo json_encode($data);
+      return $data;
      
      }
 
@@ -246,6 +248,13 @@ class Login_model extends CI_Model
       
 
      // }
+   }
+
+   public function insert_report($data){
+    $this->db->insert('reviewingofficers',$data);
+    $this->db->where('id',$data['officer_id']);
+    $this->db->update('reporting_officer',array('set' => 2 ));
+
    }
 }
 

@@ -128,11 +128,11 @@
         
         <div class="jumbotron">
             <ol>
-              <?=form_open(base_url()."Home/reviewing-officer");?>
+              <?=form_open(base_url()."Home/reviewing-officer",array('id' => 'myform'));?>
                 <li>
                     <div class="form-group">REMARKS OF THE REVIEWING OFFICER</div>
                     <label> Length of service under the Reviewing Officer</label>
-                    <input type="number">
+                    <input type="number" name="LOS" required>
                 </li>
                 <br>
                 <li>
@@ -146,33 +146,39 @@
                     <small>(In case you do not agree with any of the numerical assessments of attributes please record your assessments on the column provided for you in that section and initial your entries)
                     </small>
                     <br>
-                    <input type="radio" name="agree" id="yes" value="0" hidden onclick="yesorno(this,7)">
+                    <input type="radio" name="agree" id="yes" required value=0 hidden onclick="yesorno(this,7)">
                     <label for="yes" class="switch switch--on">Yes</label>
 
-                    <input type="radio" name="agree" id="no" value="1" hidden onclick="yesorno(this,7)" required>
-                    <label for="no" class="switch switch--off" data-target="#part-3" data-toggle="modal">No</label>
+                    <input type="radio" name="agree" id="no" value=1 hidden required onclick="yesorno(this,7)">
+                    <label for="no" class="switch switch--off">No</label>
                     
                        
                 </li>
                 <li style="display:none;">
                     <div class="form-group" >
                             <label for="disagree">In case of disagreement,please specify the reasons,Is there anything you wish to modify or add</label>
-                          <textarea rows=5 class="form-control" id="disagree" >  </textarea>
+                          <textarea rows=5 class="form-control disagree" required name="rdisagreement_detail" >  </textarea>
                       </div>
+                 </li>
+
+                 <li class="rev-officer" style="display:block;">
+                    <div class="form-group"  id="put-report">
+                         
+                    </div>
                  </li>
                 
                 <!-- In case of disagreement -->
                 
                 <li>
-                    Pen Picture by Reviewing Officer. Please comment(in about 100 words) on the overall qualities of the officer including areas of strength and lesser strength and his attitude towards weaker sections. <textarea rows=5 class="form-control"></textarea>
+                    Pen Picture by Reviewing Officer. Please comment(in about 100 words) on the overall qualities of the officer including areas of strength and lesser strength and his attitude towards weaker sections. <textarea rows=5 class="form-control" name="rpen_pic" required></textarea>
                 </li>
-                   
-              </form>
+               <hr class="colorgraph">
+               <button type='submit'class="btn btn-info" style="float:right" >SUBMIT</button>
+              <?=form_close();?>
             </ol>
         </div>
 
-         <hr class="colorgraph">
-        <button type='submit' class="btn btn-info" style="float:right" data-toggle="modal" data-target="review_officer">SUBMIT</button>
+        
         <div class="modal collapse">
             <form>
                 <div class="form-group">
@@ -195,6 +201,35 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
+        
+      $("#myform").submit(function(e){
+        var officer_id = $('#officer-id').val();
+        e.preventDefault();
+        alert('your form is ready to be sent');
+       // $(this).serialize();
+        //alert(d);
+        $.ajax({
+          type:'POST',
+          url: '<?php echo base_url();?>Home/insert_reviewofficer',
+          //dataType:'json',
+          data:$(this).serialize() + '&officer_id=' + officer_id,
+          success:function(resp){
+            // alert('success');
+            // console.log(resp);
+            $("#myform").hide();
+            $('#pt2').append($("#officer-id").find(":selected"));
+          },
+          error:function(xhr,thrownError){
+            console.log(arguments);
+            alert(xhr.status);
+            alert(xhr.responseText);
+            alert(thrownError);
+            alert('error');
+            
+          }
+        })
+      });
+
     $('#reporting-id').on('change',function(){
         $("#pt1").empty();
          $("#pt2").empty();
@@ -203,51 +238,38 @@
         $.ajax({
          type: 'POST',
          url: '<?php echo base_url(); ?>Home/get_officer_reporting', //We are going to make the request to the method "list_dropdown" in the match controller
-          dataType:'html',
-          //dataType:'json',
+         // dataType:'json',
+          dataType:'json',
           data: {'id':reporting_id}, //POST parameter to be sent with the tournament id
-        success: function(resp) { //When the request is successfully completed, this function will be executed
-            var obj = jQuery.parseJSON(resp);
-            //alert(obj);
-            //displaying the officer-list
-           // alert(resp.join(" "));
-           $.each(obj, function(key,value) {
-                if(key=="unchecked")
-                $.each(value , function(key,value) {
-                     $('<option />', {value: value, text: value}).appendTo($("#pt1"));
-                });
-                if(key=='checked')
-                 $.each(value , function(key,value) {
-                     $('<option />', {value: value, text: value}).appendTo($("#pt2"));
-                });
-                //$("#pt1").append(value);
-            });
-           }
-        });
+         success: function(resp) { //When the request is successfully completed, this function will be executed
+            alert(resp.checked);
+            console.log(resp['checked']);
+            for(var i=0;i<(resp['unchecked'].length);i++){
+              $('<option />', {value:resp['unchecked'][i], text:resp['unchecked'][i]}).appendTo($("#pt1"));
+            }
+            for(i=0;i<(resp['checked'].length);i++)
+              $('<option />', {value:resp['checked'][i], text: resp['checked'][i]}).appendTo($("#pt2"));
+              alert(resp);
+           
+           },
+           error:function(error){
+            alert(error.responseText);
+            alert('error');
+            console.log(arguments);
+          }
+
+         });
+      });
+    
     });
-    });
-    // $(".rep").click(function(e){
-    //     e.preventDefault();
-    //     var id=$("#reporting-id").val();
-    //      $.ajax({
-    //       type:'POST',
-    //       url:'<?php echo base_url(); ?>Home/get_reporting_officer?>',
-    //        data:{'reporting-id':id},
-    //        success: function(){
-    //         alert("hello");
-    //         console.log('success');
-    //        },
-    //        error:function(msg){
-    //         alert('console');
-    //        }
-    //      });
-    // });
+
     $(".rep").click(function(){
      var id = $('#officer-id').val();
+     var page='home_report.php';
       $.ajax({
          type: 'POST',
          url: '<?php echo base_url();?>Home/get_reporting_officer', //We are going to make the request to the method "list_dropdown" in the match controller
-         data:{'id':id}, //POST parameter to be sent with the tournament id
+         data:{'id':id,'page':page}, //POST parameter to be sent with the tournament id
          success: function(resp) { //When the request is successfully completed, this function will be executed
          //Activate and fill in the matches list
           if(id==="----")
@@ -271,16 +293,24 @@
     });
     $("#no").click(function(){
      var id = $('#officer-id').val();
+     var page='rep.php';
+      console.log('no');
+      //$(".rev-officer").css('display',"block");
       $.ajax({
          type: 'POST',
          url: '<?php echo base_url();?>Home/get_reporting_officer', //We are going to make the request to the method "list_dropdown" in the match controller
-         data:{'id':id}, //POST parameter to be sent with the tournament id
+         data:{'id':id,'page':page}, //POST parameter to be sent with the tournament id
          success: function(resp) { //When the request is successfully completed, this function will be executed
          //Activate and fill in the matches list
           if(id==="----")
-            $("#show-profile").html("<div id='no-officer'> No officer Selected </div>");
+             $("#show-profile").html("<div id='no-officer'> No officer Selected </div>");
           else{
-             $("#show").html(resp);
+              $(".rev-officer").show();
+              
+             $("#put-report").html(resp);
+             $(".hid").hide();
+             $(".rev-officer").show();
+             //$(".rev-officer").css('display',"inline");
              $(".rem").remove();
             //alert('success');
             console.log('success');  
@@ -295,6 +325,7 @@
           console.log(arguments);
          }
       });
+      // $(".rev-officer").hide();
     });
    
     $('#clickprofile').click(function(){

@@ -7,35 +7,15 @@ function yesorno(elt,i){
   if(elt.value==1){
     if(change[i].style.display=="none"){
         console.log("heelo");
-        console.debug(change[i].style.display="block");
-        //same time trigger ajax form
+         console.debug(change[i].style.display="block");
+        // //document.getElementsByClassName('rev-officer').style.display="block";
+        // var myElements = document.querySelectorAll(".rev-officer");
+ 
+        // for (var i = 0; i < myElements.length; i++) {
+        //     myElements[i].style.display='block';
+        // }
 
-      var id = $('#reporting-id').val();
-      $.ajax({
-         type: 'POST',
-         url: '<?php echo base_url();?>Home/get_reporting_officer', //We are going to make the request to the method "list_dropdown" in the match controller
-         data:{'id':id}, //POST parameter to be sent with the tournament id
-         success: function(resp) { //When the request is successfully completed, this function will be executed
-         //Activate and fill in the matches list
-          if(id==="----")
-            $("#show-profile").html("<div id='no-officer'> No officer Selected </div>");
-          else{
-             $("#show").html(resp);
-             $(".rem").remove();
-            alert('success');
-            console.log('success');  
-            console.log(resp);
-          }
-          //$("#show").html(resp);
-         },
-         error: function(resp) { //When the request is successfully completed, this function will be executed
-         //Activate and fill in the matches list
-         //With the ".html()" method we include the html code returned by AJAX into the matches list
-          console.log('error');
-          console.log(arguments);
-         }
-      });
-    
+        //same time trigger ajax form 
 
     }
     else{
@@ -43,10 +23,20 @@ function yesorno(elt,i){
     }
       console.log(change[i].childNodes[1].childNodes[3].setAttribute('required','true'));
   }
-  else
+  else{
       console.debug(change[i].style.display="none");
+      //document.getElementsByClassName('rev-officer').style.display="none";
+      var myElements = document.querySelectorAll(".rev-officer");
+ 
+        for (var i = 0; i < myElements.length; i++) {
+            myElements[i].style.display='none';
+        }
+  }
   
 }
+
+
+
 function next(){					
   document.getElementById("one").className='';
   document.getElementById("two").className="active";
