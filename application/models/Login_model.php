@@ -216,6 +216,8 @@ class Login_model extends CI_Model
              $data['unchecked']=$d1;
          //echo json_encode($data);
       }
+      else 
+        $data['unchecked']=array('none');
       $query = $this->db->get_where('reporting_officer', array('reporting-officer-id' => $reporting_id,'set'=> 2));
       if($query->num_rows()>=1){
           $d=$query->result_array();
@@ -226,8 +228,8 @@ class Login_model extends CI_Model
      
       if(isset($d2))
         $data['checked']=$d2; 
-      // else 
-      //   $data['checked']=array("none");
+      else 
+        $data['checked']=array("none");
       //echo json_encode($data);
       return $data;
      
