@@ -242,19 +242,19 @@
           dataType:'json',
           data: {'id':reporting_id}, //POST parameter to be sent with the tournament id
          success: function(resp) { //When the request is successfully completed, this function will be executed
-            alert(resp.checked);
+           // alert(resp.checked);
             console.log(resp['checked']);
             for(var i=0;i<(resp['unchecked'].length);i++){
               $('<option />', {value:resp['unchecked'][i], text:resp['unchecked'][i]}).appendTo($("#pt1"));
             }
             for(i=0;i<(resp['checked'].length);i++)
               $('<option />', {value:resp['checked'][i], text: resp['checked'][i]}).appendTo($("#pt2"));
-              alert(resp);
+              //alert(resp);
            
            },
            error:function(error){
-            alert(error.responseText);
-            alert('error');
+            //alert(error.responseText);
+            //alert('error');
             console.log(arguments);
           }
 

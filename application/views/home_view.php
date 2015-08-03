@@ -13,6 +13,7 @@
       <ul class="nav nav-tabs">
         <li role="presentation" id="one"class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-user fa-fw"></i>Home</a></li>
         <li role="presentation"id="two"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-user-plus"></i> Profile</a></li>
+        <li role="presentation" id='three'><a href="#status" role="tab" data-toggle="tab">Status</a></li>
         <li role="presentation" id="exit" style="float:right;"> <a href="<?=base_url()?>Login/logout" >Logout</a></li>
       </ul>
       <div class="tab-content">
@@ -233,6 +234,14 @@
 
           <?=form_close()?>
         </div>
+         <div role="tabpanel" class="tab-pane fade in active" id="status">
+              <form id="status" style="margin-top:5%; margin-left:50%;">
+                                  
+                      <button type="submit" class='btn btn-large btn-warning '> STATUS</button>
+                      <div id='stat' style="color:black; font-weight:bold; margin-left:-5%; margin-top:-10%"> </div>
+               
+              </form>
+         </div>
       </div>
     </div>
   </div>
@@ -240,23 +249,40 @@
 
 
 <script>
-// $(function(){
-//   $('#personal').on('submit',function(e){
-//       e.preventDefault(); // <------this will restrict the page refresh
-//       $.ajax({
-//         type: 'POST',
-//         url: "<?php echo base_url(); ?>Home/insert_personal",
-//         data: $(this).serialize(), // $(this).serialize(); you can use this too
-//         success: function(msg) {
-//             $("#home").hide();
-//               var $newdiv1 = $( "<div class='oontainer' style='background-color:green;color:white;margin-top=-30px;'> <center>YOUR FORM HAS BEEN SUBMITTED</center></div>" );
-//               var $newdiv2 = $( "<a href='#part-3' style='float:right; color:black;' >view</a>" );
-//               $( "#home" ).parent().append( $newdiv2,$newdiv1);
-//               alert(msg);
-//         }
+$("#status").on('submit',function(e){
+  e.preventDefault();
+  $.ajax({
 
-//       });
-//     });
-// });
+         type: 'POST',
+         url: '<?php echo base_url();?>Home/status', //We are going to make the request to the method "list_dropdown" in the match controller
+        // data:{'id':id}, //POST parameter to be sent with the tournament id
+         success: function(resp) { //When the request is successfully completed, this function will be executed
+         //Activate and fill in the matches list
+         alert(resp);
+         resp=parseInt(resp);
+         //alert(resp);
+         switch(resp){
+          case -1: alert('You haven\'t submitted your form');
+                    $("#stat").html('You haven\'t submitted your form');
+                    break;
+          case 0: alert("Under processing by reporting Officer");
+                    $("#stat").html("Under processing by reporting Officer");
+                    break;
+          case 1: alert('Under processing by reviewing Officer');
+                    ("#stat").html("Under processing by reviewing Officer");
+                    break;
+          case 2: alert('YOUR report has been processed ');
+                  $("#stat").html('YOUR report has been processed ');
+                    
+                  break;
+          case 5: alert('YOU haven\'t been assigned reporting officer yet ');
+                  $("#stat").html('Reporting officer not assigned ');
+                    
+                  break;
+         }
+          //$("#show").html(resp);
+         }
 
+});
+});
 </script>

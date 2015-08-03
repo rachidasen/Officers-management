@@ -29,6 +29,17 @@ class Login_model extends CI_Model
           return false;
      }
 
+     public function status($id){
+      $b=$this->db->get_where('reporting_officer',array('id' => $id ));
+      if($b->num_rows()>=1)
+        return $b->result_array();
+      else
+        return false;
+
+
+
+     }
+
 
      public function login($name,$pass,$type){
           //check the database
@@ -134,6 +145,13 @@ class Login_model extends CI_Model
       //$this->db->affected_rows();
       // echo "hihi";
        return $query->result_array();
+       if($query->num_rows()==1 ){
+            
+          return true;
+        }
+        else
+          //redirect("He");
+          return false;
       //     //return true;
       // echo "<br>";
      }

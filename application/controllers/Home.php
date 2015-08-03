@@ -203,9 +203,9 @@ public function insert_work_infos(){
     // echo "</pre>";
     // echo count($_POST['target']);
     $this->Login_model->insert_workdatas($_POST);
-    echo "Success inserted";
+    //echo "Success inserted";
     //$this->Login_model->edit_workdatas($_POST);
-    //redirect('home/one');
+    redirect('home/one');
   }
 }
 public function get_officers($officer_id){
@@ -322,7 +322,7 @@ public function get_officers($officer_id){
       $data=$this->Login_model->get_reporting_officer($_POST['id']);
       $data['title'] = "HOME";
     // $data['page']="rep.php";
-      $data['set']=1;
+      $data['set']=5;
       //   //     //'page'=>"admin.php"
       //   //     );
 
@@ -339,6 +339,20 @@ public function get_officers($officer_id){
       //echo $d;
       echo 'hello';
     }
+
+    public function status(){
+      $a=$this->Login_model->checkset($_SESSION['id'],'personal_datas');
+      $b=$this->Login_model->checkset2($_SESSION['id']);
+      if($a==true && $b=true){
+        $a=$this->Login_model->status($_SESSION['officer_id']);   
+        if($a!=false)
+          echo($a[0]['set']);
+        else
+          echo "5";
+      }
+      else
+        echo '-1';
+      }
 }
 
 
