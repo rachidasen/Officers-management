@@ -128,7 +128,7 @@
         
         <div class="jumbotron">
             <ol>
-              <?=form_open(base_url()."Home/reviewing-officer",array('id' => 'myform'));?>
+              <?=form_open(base_url()."Home/reviewing-officer",array('id' => 'myform','style'=>'display:none;'));?>
                 <li>
                     <div class="form-group">REMARKS OF THE REVIEWING OFFICER</div>
                     <label> Length of service under the Reviewing Officer</label>
@@ -290,6 +290,12 @@
           console.log(arguments);
          }
       });
+    });
+    $("#officer-id").change(function(){
+        if($("#officer-id option:selected").val()!='none')
+            $("#myform").show();
+        else
+          $("#myform").hide();
     });
     $("#no").click(function(){
      var id = $('#officer-id').val();
