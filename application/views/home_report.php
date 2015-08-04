@@ -1,3 +1,4 @@
+<?php if(!isset($set)) :?>
 <div class="container-fluid hid" style="border-color:green;">
     <header class="row">
         <h1><strong><center><i class=" fa fa-file-text-o fa-3x"></i> REPORTING OFFICER<small><a href="<?=base_url()?>Login/logout" style=" margin-left:10px; color:#71081E; font-size:small" class="rem">Logout</a></small></center></strong></h1>
@@ -69,6 +70,7 @@
   <div class="container"  id="msg" style="display:none" >
       You have submitted the details for this id.
   </div>
+<?php endif; ?>
 
 
   <div class="container-fluid" id= "detail">
@@ -980,13 +982,14 @@
               <label>Pen Picture by Reporting Officer (in about 100 words ) on the overall qualities of the officer including areas of strength and lesser strength, extraordinary achievements, significant failures (ref 3(A) &amp; 3 (B) of part-2) and attitude towards waeker sections</label><textarea  rows=6 class="form-control" name="reporting_officer_pen_picture"></textarea>
           </li>
           <li><label>Overall numerical grading on the basis of weightage given in sectionA, B and C in part-3 of the Report</label>
-          <input type="number" readonly id="overall_numerical_grading" name="overall_numerical_grading">
+          <input type="number" readonly id="overall_numerical_grading" name="overall_numerical_grading"<?php if(isset($set)): ?> value=<?=(int)$overall_numerical_grading;?> <?php endif;?>>
           </li>
          </div>
       </div>
 
-      
+      <?php if(!isset($set)): ?>
        <button type="submit" value="Submit" class="btn btn-primary btn-inline center-block rem" tabindex="7">SUBMIT</button>
+       <?php endif;?> 
 
    <?=form_close();?>
   </div>
@@ -1075,10 +1078,59 @@
           var $newdiv1 = $( "<div id='conf-msg' class='container-fluid success' style='background-color:green;color:white; padding-right:50px;'> <center>YOUR FORM HAS BEEN SUBMITTED<a href='#part-3' data-toggle='modal' class='sss' style='float:right; color:black;'>view</a></center></div>" );
               
           $( "div" ).find("#detail").append( $newdiv1);
+             $(".sss").click(function(){
+                var id = $('#officer-id').val();
+                var page='home_report.php';
+                console.log('hello');
+                // $.ajax({
+                //    type: 'POST',
+                //    url: '<?php echo base_url();?>Home/get_reporting_officer', //We are going to make the request to the method "list_dropdown" in the match controller
+                //    data:{'id':id}, //POST parameter to be sent with the tournament id
+                //    success: function(resp) { //When the request is successfully completed, this function will be executed
+                //    //Activate and fill in the matches list
+                //     if(id==="----")
+                //       $("#show-profile").html("<div id='no-officer'> No officer Selected </div>");
+                //     else{
+                //        $("#show").html(resp);
+                //        $(".rem").remove();
+                //       alert('success');
+                //       console.log('success');  
+                //       console.log(resp);
+                //     }
+                //     //$("#show").html(resp);
+                //    },
+                //    error: function(resp) { //When the request is successfully completed, this function will be executed
+                //    //Activate and fill in the matches list
+                //    //With the ".html()" method we include the html code returned by AJAX into the matches list
+                //     console.log('error');
+                //     console.log(arguments);
+                //    }
+                // });
+                $.ajax({
+                   type: 'POST',
+                   url: '<?php echo base_url();?>Home/get_reporting_officer', //We are going to make the request to the method "list_dropdown" in the match controller
+                   data:{'id':id,'page':page}, //POST parameter to be sent with the tournament id
+                   success: function(resp) { //When the request is successfully completed, this function will be executed
+                   //Activate and fill in the matches list
+                    // if(id==="----")
+                    //   $("#show-profile").html("<div id='no-officer'> No officer Selected </div>");
+                    // else{
+                       $("#show").html(resp);
+                       
+                    //}
+                    //$("#show").html(resp);
+                   },
+                   error: function(resp) { //When the request is successfully completed, this function will be executed
+                   //Activate and fill in the matches list
+                   // //With the ".html()" method we include the html code returned by AJAX into the matches list
+                   //  console.log('error');
+                   //  console.log(arguments);
+                   }
+                });
+              });
 
-
-          }          //$('html').html(resp);
-        
+                    }          //$('html').html(resp);
+                  
         // alert(resp);
 
          }
@@ -1119,33 +1171,8 @@
 
     }); 
 
-    $(".sss").click(function(){
-      var id = 'rep1';//$('#reporting-id').val();
-      $.ajax({
-         type: 'POST',
-         url: '<?php echo base_url();?>Home/get_reporting_officer', //We are going to make the request to the method "list_dropdown" in the match controller
-         data:{'id':id}, //POST parameter to be sent with the tournament id
-         success: function(resp) { //When the request is successfully completed, this function will be executed
-         //Activate and fill in the matches list
-          if(id==="----")
-            $("#show-profile").html("<div id='no-officer'> No officer Selected </div>");
-          else{
-             $("#show").html(resp);
-             $(".rem").remove();
-            alert('success');
-            console.log('success');  
-            console.log(resp);
-          }
-          //$("#show").html(resp);
-         },
-         error: function(resp) { //When the request is successfully completed, this function will be executed
-         //Activate and fill in the matches list
-         //With the ".html()" method we include the html code returned by AJAX into the matches list
-          console.log('error');
-          console.log(arguments);
-         }
-      });
-    });
+
+
 
 });
 
