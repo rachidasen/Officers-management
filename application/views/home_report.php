@@ -96,7 +96,7 @@
                       <tr>
                         <th class="col-sm-6 col-lg-6">        </th>
                         <th class="col-sm-3 col-lg-3">Reporting Authority</th>	
-                        <th class="col-sm-3 col-lg-3 rev-officer" required style="display:none;" >Initials of Reviewing Authority</th>	
+                        <th class="col-sm-3 col-lg-3 rev-officer"  style="display:none;" >Initials of Reviewing Authority</th>	
                       </tr> 
                     </thead>
                     <tbody>
@@ -104,7 +104,7 @@
                       <tr>
                         <td><b>Accomplishment of planned work/work alotted as per subjects alotted</td>
                         <td>
-                           <select  class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="plannedwork" id="plannedwork"    >
+                           <select  class="form-control"   style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="plannedwork" id="plannedwork"    >
                               <option disabled selected> <?php if(isset($set)) echo $plannedwork; else echo "select grade";?></option> 
                               <option value="1" >1</option>
                               <option value="2">2</option>
@@ -119,7 +119,7 @@
                           </select>
                         </td>	
                         <td>
-                           <select  class="form-control rev-officer" required style="display:none;  width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="rplannedwork" id="rplannedwork"  >
+                           <select  class="form-control rev-officer"  style="display:none;  width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="rplannedwork" id="rplannedwork"  >
                               <option disabled selected>select grade</option> 
                               <option value="1" >1</option>
                               <option value="2">2</option>
@@ -139,7 +139,7 @@
                         <td><b>Quality of output</td>
                         <td>
 
-                          <select  class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="qualityoutput" id="qualityoutput"  >
+                          <select  class="form-control"   style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="qualityoutput" id="qualityoutput"  >
                               <option disabled selected> <?php if(isset($set)) echo $qualityoutput; else echo "select grade";?></option> 
                                 <option value="1" >1</option>
                               <option value="2">2</option>
@@ -155,7 +155,7 @@
                          </td>
                          <td>
 
-                          <select  class="form-control rev-officer" required style="display:none;  width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="rqualityoutput" id="rqualityoutput"  >
+                          <select  class="form-control rev-officer"  style="display:none;  width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="rqualityoutput" id="rqualityoutput"  >
                               <option disabled selected> select grade</option> 
                                 <option value="1" >1</option>
                               <option value="2">2</option>
@@ -176,7 +176,7 @@
                         <td>
 
 
-                          <select  class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="analytical" id="analytical"  >
+                          <select  class="form-control"   style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="analytical" id="analytical"  >
                               <option disabled selected> <?php if(isset($set)) echo $analytical; else echo "select grade";?></option> 
                               <option value="1" >1</option>
                               <option value="2">2</option>
@@ -193,7 +193,7 @@
                         <td>
 
 
-                          <select  class="form-control rev-officer" required style="display:none;  width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="ranalytical" id="ranalytical">
+                          <select  class="form-control rev-officer"  style="display:none;  width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="ranalytical" id="ranalytical">
                               <option disabled selected>select grade</option> 
                               <option value="1" >1</option>
                               <option value="2">2</option>
@@ -212,7 +212,7 @@
                       <tr>
                         <td><b>Accomplishment of exceptional work/unforeseen tasks performed</td>
                         <td>
-                          <select  class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="exceptionalwork" id="exceptionalwork"  >
+                          <select  class="form-control"   style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="exceptionalwork" id="exceptionalwork"  >
                               <option disabled selected> <?php if(isset($set)) echo $exceptionalwork; else echo "select grade";?></option> 
                                <option value="1" >1</option>
                               <option value="2">2</option>
@@ -227,7 +227,7 @@
                          </select>
                         </td>
                          <td>
-                          <select  class="form-control rev-officer" required style="display:none;  width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="rxceptionalwork" id="rexceptionalwork"  >
+                          <select  class="form-control rev-officer"  style="display:none;  width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="rxceptionalwork" id="rexceptionalwork"  >
                               <option disabled selected> select grade</option> 
                                <option value="1" >1</option>
                               <option value="2">2</option>
@@ -248,7 +248,7 @@
                         <td><b>Overall grading on work output</td>
                                        <td>
 
-                        <input  type="number" readonly class="form-control" required <?php if(isset($set)): ?> value=<?=(int)$overall_workoutput;?> <?php endif;?>style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="overall_workoutput" id="overall_workoutput" >
+                        <input  type="number" readonly class="form-control"  <?php if(isset($set)): ?> value=<?=(int)$overall_workoutput;?> <?php endif;?>style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="overall_workoutput" id="overall_workoutput" >
                              
 
 
@@ -275,7 +275,7 @@
                         <tr>
                           <td><b>Attitude to work</b></td>
                           <td>
-                              <select name="attitudetowork" id="attitudetowork" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
+                              <select name="attitudetowork" id="attitudetowork" class="form-control"   style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
                               <option disabled selected> <?php if(isset($set)) echo $attitudetowork; else echo "select grade";?></option> 
                                <option value="1" >1</option>
                                   <option value="2">2</option>
@@ -290,7 +290,7 @@
                               </select>
                            </td>  
                              <td>
-                              <select name="rattitudetowork" id="rattitudetowork" class="form-control rev-officer" required style="display:none;  width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
+                              <select name="rattitudetowork" id="rattitudetowork" class="form-control rev-officer"  style="display:none;  width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
                               <option disabled selected> select grade</option> 
                                <option value="1" >1</option>
                                   <option value="2">2</option>
@@ -309,7 +309,7 @@
                           <td><b>Sense of responsibility</td>
                           <td>
 
-                            <select  name="responsibility" id="responsibility" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
+                            <select  name="responsibility" id="responsibility" class="form-control"   style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
                               <option disabled selected> <?php if(isset($set)) echo $responsibility; else echo "select grade";?></option> 
                                   <option value="1" >1</option>
                                 <option value="2">2</option>
@@ -325,7 +325,7 @@
                           </td>
                           <td>
 
-                            <select  name="rresponsibility " id="rresponsibility" class="form-control rev-officer" required style="display:none;  width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
+                            <select  name="rresponsibility " id="rresponsibility" class="form-control rev-officer"  style="display:none;  width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
                               <option disabled selected> select grade</option> 
                                   <option value="1" >1</option>
                                 <option value="2">2</option>
@@ -343,7 +343,7 @@
                         <tr>
                           <td><b>Maintenance of discipline</td>
                           <td>
-                            <select  name="discipline" id="discipline" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
+                            <select  name="discipline" id="discipline" class="form-control"   style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
                               <option disabled selected> <?php if(isset($set)) echo $discipline; else echo "select grade";?></option> 
                                   <option value="1" >1</option>
                                 <option value="2">2</option>
@@ -359,7 +359,7 @@
                           </td>
                           <td>
 
-                            <select  name="rdiscipline" id="rdiscipline" class="form-control rev-officer" required style="display:none;  width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
+                            <select  name="rdiscipline" id="rdiscipline" class="form-control rev-officer"  style="display:none;  width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
                               <option disabled selected> select grade </option> 
                                   <option value="1" >1</option>
                                 <option value="2">2</option>
@@ -378,7 +378,7 @@
                           <td><b>Communication Skills</td>
                           <td>
 
-                            <select name="communication" id="communication" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
+                            <select name="communication" id="communication" class="form-control"   style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
                               <option disabled selected> <?php if(isset($set)) echo $communication; else echo "select grade";?></option> 
                                  <option value="1" >1</option>
                                 <option value="2">2</option>
@@ -394,7 +394,7 @@
                           </td>
                           <td>
 
-                            <select name="rcommunication" id="rcommunication" class="form-control rev-officer" required style="display:none;  width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
+                            <select name="rcommunication" id="rcommunication" class="form-control rev-officer"  style="display:none;  width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
                               <option disabled selected> select grade </option> 
                                  <option value="1" >1</option>
                                 <option value="2">2</option>
@@ -414,7 +414,7 @@
                           <td>
 
 
-                            <select  name="leadership" id="leadership" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
+                            <select  name="leadership" id="leadership" class="form-control"   style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
                               <option disabled selected> <?php if(isset($set)) echo $leadership; else echo "select grade";?></option> 
                                   <option value="1" >1</option>
                                 <option value="2">2</option>
@@ -432,7 +432,7 @@
                           <td>
 
 
-                            <select  name="rleadership" id="rleadership" class="form-control rev-officer" required style="display:none;  width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
+                            <select  name="rleadership" id="rleadership" class="form-control rev-officer"  style="display:none;  width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
                               <option disabled selected> select grade </option> 
                                   <option value="1" >1</option>
                                 <option value="2">2</option>
@@ -454,7 +454,7 @@
                           <td>
 
 
-                            <select name="teamspirit" id="teamspirit" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
+                            <select name="teamspirit" id="teamspirit" class="form-control"   style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
                               <option disabled selected> <?php if(isset($set)) echo $teamspirit; else echo "select grade";?></option> 
                                   <option value="1" >1</option>
                                 <option value="2">2</option>
@@ -471,7 +471,7 @@
                           <td>
 
 
-                            <select name="rteamspirit" id="rteamspirit" class="form-control rev-officer" required style="display:none;  width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
+                            <select name="rteamspirit" id="rteamspirit" class="form-control rev-officer"  style="display:none;  width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
                               <option disabled selected> select grade</option> 
                                   <option value="1" >1</option>
                                 <option value="2">2</option>
@@ -491,7 +491,7 @@
                           <td>
 
 
-                            <select name="timeschedule" id="timeschedule" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
+                            <select name="timeschedule" id="timeschedule" class="form-control"   style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
                               <option disabled selected> <?php if(isset($set)) echo $timeschedule; else echo "select grade";?></option> 
                               <option value="1" >1</option>
                                 <option value="2">2</option>
@@ -509,7 +509,7 @@
                            <td>
 
 
-                            <select name="rtimeschedule" id="rtimeschedule" class="form-control rev-officer" required style="display:none;  width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;">
+                            <select name="rtimeschedule" id="rtimeschedule" class="form-control rev-officer"  style="display:none;  width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;">
                               <option disabled selected>select grade </option> 
                               <option value="1" >1</option>
                                 <option value="2">2</option>
@@ -532,7 +532,7 @@
                           <td>
 
 
-                            <select  name="inter_personal" id="inter_personal" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
+                            <select  name="inter_personal" id="inter_personal" class="form-control"   style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
                               <option disabled selected> <?php if(isset($set)) echo "$inter_personal"; else echo "select grade";?></option> 
                                  <option value="1" >1</option>
                                 <option value="2">2</option>
@@ -550,7 +550,7 @@
                            <td>
 
 
-                            <select  name="rinter_personal" id="rinter_personal" class="form-control rev-officer" required style="display:none;  width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
+                            <select  name="rinter_personal" id="rinter_personal" class="form-control rev-officer"  style="display:none;  width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
                               <option disabled selected> select grade </option> 
                                  <option value="1" >1</option>
                                 <option value="2">2</option>
@@ -571,7 +571,7 @@
                           <td><b>Overall bearing and personality</td>
                           <td>
 
-                            <select name="personality" id="personality" class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
+                            <select name="personality" id="personality" class="form-control"   style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
                               <option disabled selected> <?php if(isset($set)) echo $personality; else echo "select grade";?></option> 
                                <option value="1" >1</option>
                                 <option value="2">2</option>
@@ -588,7 +588,7 @@
                           </td>
                            <td>
 
-                            <select name="rpersonality" id="rpersonality" class="form-control rev-officer" required style="display:none;  width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
+                            <select name="rpersonality" id="rpersonality" class="form-control rev-officer"  style="display:none;  width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;"  >
                               <option disabled selected> select grade</option> 
                                <option value="1" >1</option>
                                 <option value="2">2</option>
@@ -610,7 +610,7 @@
                           <td><b>Overall Grading on 'Personal Attributes'</td>
                           <td>
 
-                            <input  type="number" id="overall_personalattributes"  readonly name="overall_personalattributes" <?php if(isset($set)): ?> value=<?=$overall_personalattributes;?> <?php endif;?> class="form-control" required  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;">
+                            <input  type="number" id="overall_personalattributes"  readonly name="overall_personalattributes" <?php if(isset($set)): ?> value=<?=$overall_personalattributes;?> <?php endif;?> class="form-control"   style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;">
                                  
                           </td>
                         </tr>
@@ -628,7 +628,7 @@
                     <thead>
                           <tr><th class="col-sm-6 col-lg-6">        </th>
                               <th class="col-sm-3 col-lg-3">Reporting Authority</th>   
-                               <th class="col-sm-3 col-lg-3 rev-officer" required style="display:none">Initials of Reviewing Authority</th> 
+                               <th class="col-sm-3 col-lg-3 rev-officer"  style="display:none">Initials of Reviewing Authority</th> 
                           </tr> 
                       </thead>
                     <tbody>
@@ -637,7 +637,7 @@
                         <td>
 
 
-                          <select  class="form-control" required style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="Knowledgeofrules" id="Knowledgeofrules"  >
+                          <select  class="form-control"  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="Knowledgeofrules" id="Knowledgeofrules"  >
                               <option disabled selected> <?php if(isset($set)) echo $Knowledgeofrules; else echo "select grade";?></option> 
                                 <option value="1" >1</option>
                               <option value="2">2</option>
@@ -654,7 +654,7 @@
                          <td>
 
 
-                          <select  class="form-control rev-officer" required style="display:none; width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="rKnowledgeofrules" id="rKnowledgeofrules"  >
+                          <select  class="form-control rev-officer"  style="display:none; width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="rKnowledgeofrules" id="rKnowledgeofrules"  >
                               <option disabled selected> select grade</option> 
                                 <option value="1" >1</option>
                               <option value="2">2</option>
@@ -674,7 +674,7 @@
                         <td><b>Strategic planning ability</td>
                         <td>
 
-                          <select  class="form-control" required style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="strategic" id="strategic"  >
+                          <select  class="form-control"  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="strategic" id="strategic"  >
                               <option disabled selected> <?php if(isset($set)) echo $strategic; else echo "select grade";?></option> 
                               <option value="1" >1</option>
                             <option value="2">2</option>
@@ -691,7 +691,7 @@
 
                          <td>
 
-                          <select  class="form-control rev-officer" required style="display:none; width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="rstrategic" id="rstrategic"  >
+                          <select  class="form-control rev-officer"  style="display:none; width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="rstrategic" id="rstrategic"  >
                               <option disabled selected> select grade</option> 
                               <option value="1" >1</option>
                             <option value="2">2</option>
@@ -711,7 +711,7 @@
                         <td><b>Decision making ability</td>
                         <td>
 
-                         <select  class="form-control" required style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="decision" id="decision"  >
+                         <select  class="form-control"  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="decision" id="decision"  >
                               <option disabled selected> <?php if(isset($set)) echo $decision; else echo "select grade";?></option> <option value="1" >1</option>
                               <option value="2">2</option>
                               <option value="3">3</option>
@@ -727,7 +727,7 @@
                        </td>
                         <td>
 
-                         <select  class="form-control rev-officer" required style="display:none; width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="rdecision" id="rdecision"  >
+                         <select  class="form-control rev-officer"  style="display:none; width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="rdecision" id="rdecision"  >
                               <option disabled selected> select grade</option> <option value="1" >1</option>
                               <option value="2">2</option>
                               <option value="3">3</option>
@@ -748,7 +748,7 @@
                         <td><b>Coordination ability</td>
                         <td>
 
-                         <select  class="form-control" required style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="coordination" id="coordination"  >
+                         <select  class="form-control"  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="coordination" id="coordination"  >
                               <option disabled selected> <?php if(isset($set)) echo $coordination; else echo "select grade";?></option> 
                                 <option value="1" >1</option>
                                 <option value="2">2</option>
@@ -765,7 +765,7 @@
                         </td>
                         <td>
 
-                         <select  class="form-control rev-officer" required style="display:none; width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="rcoordination" id="rcoordination"  >
+                         <select  class="form-control rev-officer"  style="display:none; width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="rcoordination" id="rcoordination"  >
                               <option disabled selected> select grade</option> 
                                 <option value="1" >1</option>
                                 <option value="2">2</option>
@@ -787,7 +787,7 @@
                         <td><b>Ability to motivate,develop and appraise subordinates</td>
                                      <td>
 
-                          <select  class="form-control" required style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="subordinates" id="subordinates"  >
+                          <select  class="form-control"  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="subordinates" id="subordinates"  >
                               <option disabled selected> <?php if(isset($set)) echo $subordinates; else echo "select grade";?></option>  <option value="1" >1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -804,7 +804,7 @@
 
                          <td>
 
-                          <select  class="form-control rev-officer" required style="display:none; width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="rsubordinates" id="rsubordinates"  >
+                          <select  class="form-control rev-officer"  style="display:none; width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="rsubordinates" id="rsubordinates"  >
                               <option disabled selected> select grade</option>  <option value="1" >1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -825,7 +825,7 @@
                         <td><b>Initiative and resourcefulness in handling/anticipating problems and unforeseen situations</td>
                         <td>
 
-                          <select  class="form-control" required style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="handlingproblems" id="handlingproblems"  >
+                          <select  class="form-control"  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="handlingproblems" id="handlingproblems"  >
                               <option disabled selected> <?php if(isset($set)) echo $handlingproblems; else echo "select grade";?></option> 
                                <option value="1" >1</option>
                                 <option value="2">2</option>
@@ -842,7 +842,7 @@
                         </td>
                         <td>
 
-                          <select  class="form-control rev-officer" required style="display:none; width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="rhandlingproblems" id="rhandlingproblems"  >
+                          <select  class="form-control rev-officer"  style="display:none; width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="rhandlingproblems" id="rhandlingproblems"  >
                               <option disabled selected> select grade</option> 
                                <option value="1" >1</option>
                             <option value="2">2</option>
@@ -863,7 +863,7 @@
                         <td><b>Quality of inspection</td>
                                      <td>
 
-                         <select  class="form-control" required style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="inspection" id="inspection"  >
+                         <select  class="form-control"  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="inspection" id="inspection"  >
                               <option disabled selected> <?php if(isset($set)) echo $inspection; else echo "select grade";?></option> 
                               <option value="1" >1</option>
                           <option value="2">2</option>
@@ -881,7 +881,7 @@
 
                         <td>
 
-                         <select  class="form-control rev-officer" required style="display:none; width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="inspection" id="inspection"  >
+                         <select  class="form-control rev-officer"  style="display:none; width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="inspection" id="inspection"  >
                               <option disabled selected> select grade </option> 
                               <option value="1" >1</option>
                           <option value="2">2</option>
@@ -903,7 +903,7 @@
                         <td><b>Financial propriety</td>
                                      <td>
 
-                         <select  class="form-control" required style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="financialpropriety" id="financialpropriety"  >
+                         <select  class="form-control"  style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="financialpropriety" id="financialpropriety"  >
                               <option disabled selected> <?php if(isset($set)) echo $financialpropriety; else echo "select grade";?></option> 
                                <option value="1" >1</option>
                           <option value="2">2</option>
@@ -921,7 +921,7 @@
 
                           <td>
 
-                         <select  class="form-control rev-officer" required style="display:none; width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="financialpropriety" id="financialpropriety"  >
+                         <select  class="form-control rev-officer"  style="display:none; width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="financialpropriety" id="financialpropriety"  >
                               <option disabled selected> select grade </option> 
                                <option value="1" >1</option>
                           <option value="2">2</option>
@@ -942,7 +942,7 @@
                         <td><b>Overall Grading on 'Functional Competency'</td>
                                      <td>
 
-                         <input type="number"  readonly  class="form-control" required  <?php if(isset($set)): ?> value=<?=(int)$overall_functionalcompetency;?> <?php endif;?> style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="overall_functionalcompetency" id="overall_functionalcompetency">
+                         <input type="number"  readonly  class="form-control"   <?php if(isset($set)): ?> value=<?=(int)$overall_functionalcompetency;?> <?php endif;?> style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="overall_functionalcompetency" id="overall_functionalcompetency">
                           
                         </td>
 
@@ -974,13 +974,13 @@
               <textarea class="form-control" name="health"></textarea>
           </li>
           <li><label>Integrity</label>
-              <textarea rows=6 required class="form-control"></textarea>
+              <textarea rows=6  class="form-control"></textarea>
           </li>
           <li>
-              <label>Pen Picture by Reporting Officer (in about 100 words ) on the overall qualities of the officer including areas of strength and lesser strength, extraordinary achievements, significant failures (ref 3(A) &amp; 3 (B) of part-2) and attitude towards waeker sections</label><textarea required rows=6 class="form-control" name="reporting_officer-pen-picture"></textarea>
+              <label>Pen Picture by Reporting Officer (in about 100 words ) on the overall qualities of the officer including areas of strength and lesser strength, extraordinary achievements, significant failures (ref 3(A) &amp; 3 (B) of part-2) and attitude towards waeker sections</label><textarea  rows=6 class="form-control" name="reporting_officer_pen_picture"></textarea>
           </li>
           <li><label>Overall numerical grading on the basis of weightage given in sectionA, B and C in part-3 of the Report</label>
-          <input type="number" readonly id="overall_numerical-grading" name="overall_numerical-grading">
+          <input type="number" readonly id="overall_numerical_grading" name="overall_numerical_grading">
           </li>
          </div>
       </div>
@@ -1095,7 +1095,7 @@
       sum3=parseInt($("#Knowledgeofrules").val())+parseInt($("#strategic").val())+parseInt($("#decision").val())+ parseInt($("#coordination").val())+parseInt($("#subordinates").val())+parseInt($("#handlingproblems").val())+parseInt($("#inspection").val())+parseInt($("#financialpropriety").val())
       $("#overall_functionalcompetency").val(sum3/8);
       overall_grading=sum1/10 + sum2/30 + 3*sum3/80;
-      $("#overall_numerical-grading").val(overall_grading);
+      $("#overall_numerical_grading").val(overall_grading);
       $('button[type="submit"]').prop("disabled",true);
       var id=$("#officer-id :selected").val();
       $.ajax({
