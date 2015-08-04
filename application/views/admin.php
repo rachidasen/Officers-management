@@ -15,20 +15,20 @@
             </tr>   
          </thead>
           <tbody>
-              <?php for(i=0;i<rows;i++){
-                    echo"<tr>
-                            <td>$s_no</td>
-                            <td>$officer</td>
-                            <td>$password</td>
-                        </tr>";
-                } ?>
+             <!--  <?php //for(i=0;i<rows;i++){
+                    // //echo"<tr>
+                    //         <td>$s_no</td>
+                    //         <td>$officer</td>
+                    //         <td>$password</td>
+                    //     </tr>";
+               // } ?> -->
               <tr></tr>
           </tbody>
         
         </table>
     </main>
     
-    <
+    
     
 
 </div>
