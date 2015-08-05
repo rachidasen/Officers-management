@@ -1,27 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title><?=$title?></title>
-    <!--eta name="viewport" content="width=device-width, initial-scale=1.0"-->
-    <link rel="stylesheet" href="<?= base_url();?>/assets/css/bootstrap.css" />
-    <link href="<?=base_url()?>assets/css/bootstrap-theme.min.css" rel="stylesheet"/>
-    <link href="<?=base_url()?>assets/css/styles.css" rel="stylesheet"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
+    <title>DASHGUM - FREE Bootstrap Admin Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="<?="asset/css/bootstrap.css"?>" rel="stylesheet">
+    <!--external css-->
+    <link href="<?="asset/font-awesome/css/font-awesome.css"?>" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="<?="asset/css/zabuto_calendar.css"?>">
+    <link rel="stylesheet" type="text/css" href="<?="asset/js/gritter/css/jquery.gritter.css"?>" />
+    <link rel="stylesheet" type="text/css" href="<?="asset/lineicons/style.css"?>">    
+    
+    <!-- Custom styles for this template -->
+    <link href="<?="asset/css/style.css"?>" rel="stylesheet">
+    <link href="<?="asset/css/style-responsive.css"?>" rel="stylesheet">
+
+    <script src="<?="asset/js/chart-master/Chart.js"?>"></script>
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
   </head>
-<body>
-	<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			<p class="text-center">WELCOME TO DSW</p>
-			<div class="row">
-				<div class="col-md-3">
 
-          <ul>
-						<li> DSW</li>
-						<li> GRIEVANCES </li>
-						<li> SCHOLARSHIPS </li>
-						<li>  Activities </li>
-						<li>  FACILITIES </li>
-					</ul>
-				</div>
-				<div class="col-md-9">span9</div>
+<body>

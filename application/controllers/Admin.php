@@ -13,8 +13,8 @@ class Admin extends CI_Controller {
 
 	public function index(){
 		$d=$this->d;
-		$this->load->view('template',$d);
-		echo "hello";
+		$this->load->view('template1',$d);
+		//echo "hello";
 	}
 }
 
