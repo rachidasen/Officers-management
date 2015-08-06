@@ -20,8 +20,27 @@
       //return $q;
 
     }
-    public function insert_officer($data){
+     public function del2($data)
+    {
+      $q=$this->db->delete('officers',array('officer_id' => $data['id'] ));
+      $this->db->delete('reporting_officer',array('reporting-officer-id' => $data['id'] ));
+      $this->db->delete('reportingofficers_part3',array('reporting-officer-id' =>$data['v']));
       
+      $this->db->delete('reviewing_officer',array('reporting-officer-id' =>$data['id']));
+      //return $q;
+
+    }
+     public function del3($data)
+    {
+      $q=$this->db->delete('officers',array('officer_id' => $data['id'] ));
+      $this->db->delete('reviewingofficers',array('id' => $data['id'] ));
+      
+      $this->db->delete('reviewing_officer',array('review_officer-id' =>$data['id']));
+      //return $q;
+
+    }
+    public function insert_officer($data){
+
       $this->db->insert('officers',$data);
     }
   }

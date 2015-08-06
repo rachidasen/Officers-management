@@ -44,15 +44,53 @@
               <tbody>
               <?php for($i=0;$i<count($detail3);$i++):?>
                 <tr>
-                  <td><?=$detail3[$i]['id'];?></td>
-                  <td><?=$detail3[$i]['officer_id'];?></td>
+                  <td class="idr3"><?=$detail3[$i]['id'];?></td>
+                  <td class="ide3"><?=$detail3[$i]['officer_id'];?></td>
                     <td><button onclick='alert("<?=$detail3[$i]['password']?>")' > show</button></td>
-                  <td><?=$detail3[$i]['set'];?></td>
+                  <td><i  class=" del glyphicon glyphicon-minus"></i></td>
                 </tr>
               <?php endfor; ?>
               </tbody>
   </table> 
 <script >
+$(".del3").click(function(){
+      var id= $(this).closest('tr').find('td.ide3').html();
+      var v= $(this).closest('tr').find('td.idr3').html();
+      var v=parseInt(v);
+      console.log(id);
+     var answer = confirm ("Are you sure you want to delete from the database?");
+      if (answer)
+      {
+        var whichtr=$(this).closest("tr");
+        alert('worked'); // Alert does not work
+        whichtr.remove();
+        var tableRow = $("td").filter(function() {
+            return $(this).text() == id;
+        }).closest("tr");
+        tableRow.remove();
+
+     
+         // your ajax code
+         $.ajax({
+           type: 'POST',
+           url: '<?php echo base_url(); ?>Admin/del3', //We are going to make the request to the method "list_dropdown" in the match controller
+           data: {'id':id,'v':v}, //POST parameter to be sent with the tournament id
+           //With the ".html()" method we include the html code returned by AJAX into the matches list
+           success: function(resp) { 
+            alert('you have successfully deleted');
+            //$(".del").closest('tr').remove();
+            // $(".del").on('click', function(e) {
+                     
+            // });
+            },
+
+           error: function(resp) {
+             console.log('error');
+            console.log(arguments);
+           }
+         });
+      }
+    });
   $("#rev-officer").on('submit',function(e){
         e.preventDefault();
         $.ajax({

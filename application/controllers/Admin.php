@@ -42,6 +42,14 @@ class Admin extends CI_Controller {
 		$_POST['officer_type']='reviewing_officer';
 		$this->Admins->insert_officer($_POST);
 	}
+	public function del2(){
+		$q=$this->Admins->del2($_POST);
+		
+	}
+	public function del3(){
+		$q=$this->Admins->del3($_POST);
+		
+	}
 }
 
 
