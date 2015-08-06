@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
-      <div class="carousel slide" id="carousel-68407">
+      <div class="carousel slide" id="carousel-68407" style="margin-top:80px;">
         <ol class="carousel-indicators">
           <li class="active" data-slide-to="0" data-target="#carousel-68407">
           </li>
@@ -55,13 +55,13 @@
         <div class="tab-content">
           <div class="tab-pane active" id="panel-540166">
             <p>
-              I'm in Section 1.
+            
               <?php $this->load->view('gen-off.php');?>
             </p>
           </div>
           <div class="tab-pane" id="panel-537856">
             <p>
-              Howdy, I'm in Section 2.
+              
               <?php $this->load->view('rep-off.php');?>
 
             </p>
@@ -84,35 +84,12 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li class="active">
-              <a href="#">Link</a>
+              <a href="#">Home</a>
             </li>
             <li>
               <a href="#">Link</a>
             </li>
-            <li class="dropdown">
-               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a href="#">Action</a>
-                </li>
-                <li>
-                  <a href="#">Another action</a>
-                </li>
-                <li>
-                  <a href="#">Something else here</a>
-                </li>
-                <li class="divider">
-                </li>
-                <li>
-                  <a href="#">Separated link</a>
-                </li>
-                <li class="divider">
-                </li>
-                <li>
-                  <a href="#">One more separated link</a>
-                </li>
-              </ul>
-            </li>
+           
           </ul>
           <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
@@ -124,27 +101,9 @@
           </form>
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <a href="#">Link</a>
+              <a href="#">Logout</a>
             </li>
-            <li class="dropdown">
-               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a href="#">Action</a>
-                </li>
-                <li>
-                  <a href="#">Another action</a>
-                </li>
-                <li>
-                  <a href="#">Something else here</a>
-                </li>
-                <li class="divider">
-                </li>
-                <li>
-                  <a href="#">Separated link</a>
-                </li>
-              </ul>
-            </li>
+           
           </ul>
         </div>
         

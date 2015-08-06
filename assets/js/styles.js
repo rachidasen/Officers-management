@@ -51,11 +51,8 @@ function back(){
 $(document).ready(function(){
    if($('#yestrain').is(':checked')) { 
       $("#hidden-display").css("display",'block');  
-  }
-});
+   }
 
-
-$(document).ready(function() {
   var max_fields = 10; //maximum input boxes allowed
   var table = $("#objectives"); //Fields wrapper
   var add_button = $(".add_field"); //Add button ID

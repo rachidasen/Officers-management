@@ -10,18 +10,22 @@
     <title>DASHGUM - FREE Bootstrap Admin Template</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="<?="asset/css/bootstrap.css"?>" rel="stylesheet">
+    <link href="<?=base_url("asset/css/bootstrap.css")?>" rel="stylesheet">
     <!--external css-->
-    <link href="<?="asset/font-awesome/css/font-awesome.css"?>" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="<?="asset/css/zabuto_calendar.css"?>">
-    <link rel="stylesheet" type="text/css" href="<?="asset/js/gritter/css/jquery.gritter.css"?>" />
-    <link rel="stylesheet" type="text/css" href="<?="asset/lineicons/style.css"?>">    
+    <link href="<?=base_url("asset/font-awesome/css/font-awesome.css")?>" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="<?=base_url("asset/css/zabuto_calendar.css")?>">
+    <link rel="stylesheet" type="text/css" href="<?=base_url("asset/js/gritter/css/jquery.gritter.css")?>" />
+    <link rel="stylesheet" type="text/css" href="<?=base_url("asset/lineicons/style.css")?>">    
     
     <!-- Custom styles for this template -->
-    <link href="<?="asset/css/style.css"?>" rel="stylesheet">
-    <link href="<?="asset/css/style-responsive.css"?>" rel="stylesheet">
+    <link href="<?=base_url("asset/css/style.css")?>" rel="stylesheet">
+    <link href="<?=base_url("asset/css/style-responsive.css")?>" rel="stylesheet">
+     <script type="text/javascript" src="<?=base_url("assets/js/jquery-1.11.3.js")?>"></script>
+<script src="<?=base_url("assets/js/styles.js")?>"></script> 
+    <script src="<?=base_url("asset/js/chart-master/Chart.js")?>"></script>
+   
+     <script src="<?=base_url("assets/js/bootstrap.min.js")?>"></script>
 
-    <script src="<?="asset/js/chart-master/Chart.js"?>"></script>
     
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
