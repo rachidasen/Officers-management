@@ -219,6 +219,9 @@
          });
     });
   });
+  $(document).ajaxStop(function(){
+    window.location.reload();
+});
 
 </script>
 

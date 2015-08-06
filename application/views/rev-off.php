@@ -47,7 +47,7 @@
                   <td class="idr3"><?=$detail3[$i]['id'];?></td>
                   <td class="ide3"><?=$detail3[$i]['officer_id'];?></td>
                     <td><button onclick='alert("<?=$detail3[$i]['password']?>")' > show</button></td>
-                  <td><i  class=" del glyphicon glyphicon-minus"></i></td>
+                  <td><i  class=" del3 glyphicon glyphicon-minus"></i></td>
                 </tr>
               <?php endfor; ?>
               </tbody>
@@ -113,4 +113,7 @@ $(".del3").click(function(){
            }
          });
     });
+  $(document).ajaxStop(function(){
+    window.location.reload();
+});
 </script>

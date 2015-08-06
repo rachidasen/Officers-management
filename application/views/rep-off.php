@@ -114,4 +114,7 @@ $("#rep-officer").on('submit',function(e){
            }
          });
     });
+  $(document).ajaxStop(function(){
+    window.location.reload();
+});
 </script>
