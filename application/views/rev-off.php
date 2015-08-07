@@ -12,8 +12,8 @@
             <div class="row">
             <form id = 'rev-officer'>
              
-                enter officer-id<input type="text">
-                enter password <input type="text" onkeyup="(this.type='password')">
+                enter officer-id<input type="text" name="officer_id">
+                enter password <input type="text" onkeyup="(this.type='password')" name="password">
                 <input type='submit'>
              </form>>
             </div>
@@ -113,7 +113,5 @@ $(".del3").click(function(){
            }
          });
     });
-  $(document).ajaxStop(function(){
-    window.location.reload();
-});
+  
 </script>

@@ -12,8 +12,8 @@
             <div class="row">
             
              <form id="rep-officer">
-                enter officer-id<input type="text">
-                enter password <input type="password">
+                enter officer-id<input type="text"name="officer_id">
+                enter password <input type="password" name="password">
                 <input type='submit'>
              </form>
             </div>
@@ -52,6 +52,7 @@
                     <?php endfor; ?>
                   </tbody>
                 </table> 
+<?php if($this->session->flashdata('message')) echo $this->session->flashdata('message');?>
 
 <script>   
 $(".del2").click(function(){
@@ -114,7 +115,5 @@ $("#rep-officer").on('submit',function(e){
            }
          });
     });
-  $(document).ajaxStop(function(){
-    window.location.reload();
-});
+  
 </script>

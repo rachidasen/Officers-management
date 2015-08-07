@@ -24,10 +24,9 @@ class Admin extends CI_Controller {
 	}
 	public function del(){
 		$q=$this->Admins->del($_POST);
-		if($q)
-			return true;
-		else
-			return false;
+		
+		
+		
 	}
 
 	public function insert_gen(){
@@ -44,6 +43,7 @@ class Admin extends CI_Controller {
 	}
 	public function del2(){
 		$q=$this->Admins->del2($_POST);
+		$this->session->set_flashdata('message','<p>'.$_POST['officer_id'] . ' has been deleted from the system' .$status.'</p>');
 		
 	}
 	public function del3(){
