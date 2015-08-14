@@ -43,12 +43,18 @@ class Admin extends CI_Controller {
 	}
 	public function del2(){
 		$q=$this->Admins->del2($_POST);
-		$this->session->set_flashdata('message','<p>'.$_POST['officer_id'] . ' has been deleted from the system' .$status.'</p>');
+		// $this->session->set_flashdata('message','<p>'.$_POST['officer_id'] . ' has been deleted from the system' .$status.'</p>');
 		
 	}
 	public function del3(){
 		$q=$this->Admins->del3($_POST);
 		
+	}
+
+	public function manage(){
+		$d=$this->d;
+		$d['page']='manage.php';
+		$this->load->view('template1',$d);
 	}
 }
 
