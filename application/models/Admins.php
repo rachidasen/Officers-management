@@ -43,6 +43,13 @@
 
       $this->db->insert('officers',$data);
     }
+    public function show($table,$const,$id){
+      $q=$this->db->get_where($table,array($const => $id ));
+      if($q->num_rows()>=1)
+          return $q->result_array();
+        else
+          return false;
+    }
   }
 // $q=$this->db->get_where('officers',array('officer_type' => 'general' ));
 //     	$b=$q->result_array();

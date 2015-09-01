@@ -56,6 +56,12 @@ class Admin extends CI_Controller {
 		$d['page']='manage.php';
 		$this->load->view('template1',$d);
 	}
+	public function show(){
+		//get only things from viewing page 'id' 
+		$p=$this->Admins->show('reporting_officer','reporting-officer-id',$_POST['id']);
+		var_dump($p);
+		
+	}
 }
 
 

@@ -113,8 +113,8 @@ $(".del3").click(function(){
            }
          });
     });
-  $(document).ajaxStop(function(){
-    window.location.reload();
-});
+//   $(document).ajaxStop(function(){
+//     window.location.reload();
+// });
   
 </script>
