@@ -114,6 +114,7 @@
 <script>   
  $(".n").click(function(){
         var id= $(this).closest('tr').find('td.ide2').html();
+        $("#unique-list").children("tr").remove();
          $.ajax({
            type: 'POST',
            url: '<?php echo base_url(); ?>Admin/show', //We are going to make the request to the method "list_dropdown" in the match controller
@@ -122,7 +123,7 @@
            //With the ".html()" method we include the html code returned by AJAX into the matches list
            success: function(resp) { 
             //alert('you have successfully deleted');
-            alert(resp);
+            //alert(resp);
              for(var i=0;i<(resp.length);i++){
               //console.log(resp[i]);
              
