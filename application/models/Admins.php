@@ -50,6 +50,12 @@
         else
           return false;
     }
+
+
+    public function add_off($data){
+      $this->db->insert('reporting_officer',$data);
+      $this->db->update('officers',array('set' => 1));
+    }
   }
 // $q=$this->db->get_where('officers',array('officer_type' => 'general' ));
 //     	$b=$q->result_array();

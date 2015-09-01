@@ -56,6 +56,11 @@ class Admin extends CI_Controller {
 		$d['page']='manage.php';
 		$this->load->view('template1',$d);
 	}
+
+	public function add(){
+		//
+	}
+
 	public function show(){
 		//get only things from viewing page 'id' 
 		$q=array();
@@ -65,6 +70,11 @@ class Admin extends CI_Controller {
 		}
 		echo json_encode($q);
 		
+	}
+	public function add_off(){
+		$d['id']=$_POST['oid'];
+		$d['reporting-officer-id']=$_POST['id'];
+		$this->Admins->add_off($d);
 	}
 }
 
