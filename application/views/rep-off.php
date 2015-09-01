@@ -45,6 +45,12 @@
                   <div class="container-fluid">
                     <div class="row">
                     <ol>
+                      <?php
+
+                          $officers_list=$this->
+
+
+                      ?>
                      <?php for($i=0;$i<count($detail1);$i++):?>
                         <?php if($detail1[$i]['set']==-1):?>
                             <li class="del"><?=$detail1[$i]['officer_id'];?></li>
@@ -85,7 +91,7 @@
                         <td class="idr2"><?=$detail2[$i]['id'];?></td>
                         <td class="ide2"><?=$detail2[$i]['officer_id'];?></td>
                           <td><button onclick='alert("<?=$detail2[$i]['password']?>")' > show</button></td>
-                           <td class="rep-edit" data-toggle="modal" data-target="#rep-edit"><i class="n glyphicon glyphicon-plus">/<i  class=" del2 glyphicon glyphicon-minus"></i></td>
+                           <td class="rep-edit n" data-toggle="modal" data-target="#rep-edit"><i class="glyphicon glyphicon-plus">/<i  class="glyphicon glyphicon-minus"></i></td>
                         <td><i  class=" del2 glyphicon glyphicon-minus"></i></td>
                       </tr>
                     <?php endfor; ?>
