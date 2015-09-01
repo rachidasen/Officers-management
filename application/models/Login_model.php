@@ -258,6 +258,16 @@ class Login_model extends CI_Model
     $this->db->update('reporting_officer',array('set' => 2 ));
 
    }
+    public function status($id){
+      $b=$this->db->get_where('reporting_officer',array('id' => $id ));
+      if($b->num_rows()>=1)
+        return $b->result_array();
+      else
+        return false;
+
+
+
+     }
 }
 
 ?>

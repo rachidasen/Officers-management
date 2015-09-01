@@ -217,6 +217,9 @@
             console.log(arguments);
            }
          });
+         $(document).ajaxStop(function(){
+            window.location.reload();
+        });
     });
   });
 // $(document).ajaxStop(function(){

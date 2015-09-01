@@ -112,6 +112,9 @@ $(".del3").click(function(){
             console.log(arguments);
            }
          });
+        $(document).ajaxStop(function(){
+            window.location.reload();
+        });
     });
 //   $(document).ajaxStop(function(){
 //     window.location.reload();

@@ -120,56 +120,75 @@
 <?php if($this->session->flashdata('message')) echo $this->session->flashdata('message');?>
 
 <script>   
+/*To delete the officers under a given reporting officer*/
+$(document).ready(function(){
+    $(document).on("click", ".off-del", function() {
+              alert('hello');
+              var id= $(this).closest('tr').find($(":first-child")).html();
+              // var v= $(this).closest('tr').find('td.idr').html();
+              // var v=parseInt(v);
+              console.log(id);
+              var answer = confirm ("Are you sure you want to delete from the database?");
+              if (answer){
+                var whichtr=$(this).closest("tr");
+                alert('worked'); // Alert does not work
+                whichtr.remove();
+                var tableRow = $("td").filter(function() {
+                    return $(this).text() == id;
+                }).closest("tr");
+                tableRow.remove();
+               $.ajax({
+               type: 'POST',
+               url: '<?php echo base_url(); ?>Admin/off_del', //We are going to make the request to the method "list_dropdown" in the match controller
+               data: {'id':id}, //POST parameter to be sent with the tournament id
+               //With the ".html()" method we include the html code returned by AJAX into the matches list
+               success: function(resp) { 
+                alert('you have successfully deleted');
+                //$(".del").closest('tr').remove();
+                // $(".del").on('click', function(e) {
+                         
+                // });
+                },
 
+               error: function(resp) {
+                 console.log('error');
+                console.log(arguments);
+               }
+
+             });
+          }
+    });
+
+ // $(".off-del").click(function()
+ // {
+ //          alert('hello');
+ //          var id= $(this).closest('tr').first().html();
+ //          alert(id);
+ //          var v= $(this).closest('tr').find('td.idr').html();
+ //          var v=parseInt(v);
+ //          console.log(id);
+ //         var answer = confirm ("Are you sure you want to delete from the database?");
+ //          if (answer)
+ //          {
+ //            var whichtr=$(this).closest("tr");
+ //            alert('worked'); // Alert does not work
+ //            whichtr.remove();
+ //            var tableRow = $("td").filter(function() {
+ //                return $(this).text() == id;
+ //            }).closest("tr");
+ //            tableRow.remove();
+
+         
+ //             // your ajax code
+            
+ //          }
+ // });
 
   /*To view officers of given reporting officer*/
- $(".n").click(function(){
-        var id= $(this).closest('tr').find('td.ide2').html();
-        $("#unique-list").children("tr").remove();
-         $.ajax({
-           type: 'POST',
-           url: '<?php echo base_url(); ?>Admin/show', //We are going to make the request to the method "list_dropdown" in the match controller
-           dataType:'json',
-           data: {'id':id}, //POST parameter to be sent with the tournament id
-           //With the ".html()" method we include the html code returned by AJAX into the matches list
-           success: function(resp) { 
-            //alert('you have successfully deleted');
-            //alert(resp);
-             for(var i=0;i<(resp.length);i++){
-              //console.log(resp[i]);
-             
-              var row = $('<tr></tr>').appendTo($("#unique-list"));
-              //for (var j = 0; j < 2; j++) {
-                $('<td />',{text:resp[i]}).appendTo(row);
-                $('<td class="glyphicon glyphicon-minus"></td>').appendTo(row);  
-
-            }
-            //$(".del").closest('tr').remove();
-            // $(".del").on('click', function(e) {
-                     
-            // });
-            },
-
-           error: function(resp) {
-             console.log('error');
-            console.log(arguments);
-           }
-         });
-
-        /* to add officer inside reporting officer*/
-          $("#off-btn").click(function(){
-            var oid=$("#off-list").val();
-            $("#unique-list").children("tr").remove();
-            console.log(oid);
-            $.ajax({
-              type:'POST',
-              url:'<?php echo base_url(); ?>Admin/add_off',
-              data:{'oid':oid,'id':id},
-              success:function(resp){
-                alert('you have successfully added');
-              }
-            });
-
+ 
+   $(".n").click(function(){
+          var id= $(this).closest('tr').find('td.ide2').html();
+          $("#unique-list").children("tr").remove();
            $.ajax({
              type: 'POST',
              url: '<?php echo base_url(); ?>Admin/show', //We are going to make the request to the method "list_dropdown" in the match controller
@@ -185,7 +204,7 @@
                 var row = $('<tr></tr>').appendTo($("#unique-list"));
                 //for (var j = 0; j < 2; j++) {
                   $('<td />',{text:resp[i]}).appendTo(row);
-                  $('<td class="glyphicon glyphicon-minus"></td>').appendTo(row);  
+                  $('<td class="off-del glyphicon glyphicon-minus"></td>').appendTo(row);  
 
               }
               //$(".del").closest('tr').remove();
@@ -199,10 +218,65 @@
               console.log(arguments);
              }
            });
-          });
-      //}
+
+          /* to add officer inside reporting officer*/
+            $("#off-btn").click(function(){
+              var oid=$("#off-list").val();
+              $("#unique-list").children("tr").remove();
+              console.log(oid);
+              $.ajax({
+                type:'POST',
+                url:'<?php echo base_url(); ?>Admin/add_off',
+                data:{'oid':oid,'id':id},
+                success:function(resp){
+                  alert('you have successfully added');
+                }
+              });
+
+             $.ajax({
+               type: 'POST',
+               url: '<?php echo base_url(); ?>Admin/show', //We are going to make the request to the method "list_dropdown" in the match controller
+               dataType:'json',
+               data: {'id':id}, //POST parameter to be sent with the tournament id
+               //With the ".html()" method we include the html code returned by AJAX into the matches list
+               success: function(resp) { 
+                //alert('you have successfully deleted');
+                //alert(resp);
+                 for(var i=0;i<(resp.length);i++){
+                  //console.log(resp[i]);
+                 
+                  var row = $('<tr></tr>').appendTo($("#unique-list"));
+                  //for (var j = 0; j < 2; j++) {
+                    $('<td />',{text:resp[i]}).appendTo(row);
+                    $('<td class="off-del glyphicon glyphicon-minus"></td>').appendTo(row);  
+
+                }
+                //$(".del").closest('tr').remove();
+                // $(".del").on('click', function(e) {
+                         
+                // });
+                },
+
+               error: function(resp) {
+                 console.log('error');
+                console.log(arguments);
+               }
+             });
+
+             
+            });
+
+
+
+         
+        //}
     });
-$(".del2").click(function(){
+
+
+});
+
+
+    $(".del2").click(function(){
       var id= $(this).closest('tr').find('td.ide2').html();
       var v= $(this).closest('tr').find('td.idr2').html();
       var v=parseInt(v);
@@ -241,7 +315,7 @@ $(".del2").click(function(){
          });
       }
     });         
-$("#rep-officer").on('submit',function(e){
+    $("#rep-officer").on('submit',function(e){
         e.preventDefault();
         $.ajax({
            type: 'POST',
@@ -262,7 +336,9 @@ $("#rep-officer").on('submit',function(e){
             console.log(arguments);
            }
          });
-       
+         $(document).ajaxStop(function(){
+            window.location.reload();
+        });
        
     });
 
@@ -272,5 +348,5 @@ $("#rep-officer").on('submit',function(e){
 
 
 
- 
+
 </script>

@@ -20,6 +20,16 @@
       //return $q;
 
     }
+
+     public function off_del($data)
+     {
+       $this->db->delete('reporting_officer',array('id'=>$data['id']));
+       $this->db->delete('reportingofficers_part3',array('id'=>$data['id']));
+       //$this->db->delete('reporting_officer');
+       $this->db->where('officer_id',$data['id']);
+      $this->db->update('officers',array('set' => -1));
+     }
+
      public function del2($data)
     {
       $q=$this->db->delete('officers',array('officer_id' => $data['id'] ));
@@ -54,6 +64,7 @@
 
     public function add_off($data){
       $this->db->insert('reporting_officer',$data);
+      $this->db->where('officer_id',$data['id']);
       $this->db->update('officers',array('set' => 1));
     }
   }

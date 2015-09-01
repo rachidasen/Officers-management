@@ -28,6 +28,9 @@ class Admin extends CI_Controller {
 		
 		
 	}
+	public function off_del(){
+		$this->Admins->off_del($_POST);
+	}
 
 	public function insert_gen(){
 		$_POST['officer_type']='general_officer';
