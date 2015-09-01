@@ -44,19 +44,31 @@
                 <div class="modal-body" id="">
                   <div class="container-fluid">
                     <div class="row">
-                    <ol>
-                      <?php
+                    <!-- <ol id="unique-list"> -->
+                      <!-- need ajax call to display the officers -->
+                         <table class="table">
+                        <thead>
+                          <tr>
+                            <th>
+                              
+                              OFFICER-ID
+                            </th>
+                            
+                            <th>
+                              Delete
+                            </th>
+                          </tr>
+                        </thead>
 
-                          $officers_list=$this->
+                        <tbody id="unique-list">
+                        
+                        </tbody>
+              
+                     </table>
 
 
-                      ?>
-                     <?php for($i=0;$i<count($detail1);$i++):?>
-                        <?php if($detail1[$i]['set']==-1):?>
-                            <li class="del"><?=$detail1[$i]['officer_id'];?></li>
-                        <?php endif;?>
-                      <?php endfor;?>
-                    </ol>
+
+                    <!-- </ol> -->
                     </div>
                   </div>
                 </div>
@@ -105,11 +117,21 @@
          $.ajax({
            type: 'POST',
            url: '<?php echo base_url(); ?>Admin/show', //We are going to make the request to the method "list_dropdown" in the match controller
+           dataType:'json',
            data: {'id':id}, //POST parameter to be sent with the tournament id
            //With the ".html()" method we include the html code returned by AJAX into the matches list
            success: function(resp) { 
             //alert('you have successfully deleted');
             alert(resp);
+             for(var i=0;i<(resp.length);i++){
+              //console.log(resp[i]);
+             
+              var row = $('<tr></tr>').appendTo($("#unique-list"));
+              //for (var j = 0; j < 2; j++) {
+                $('<td />',{text:resp[i]}).appendTo(row);
+                $('<td class="glyphicon glyphicon-minus"></td>').appendTo(row);  
+
+            }
             //$(".del").closest('tr').remove();
             // $(".del").on('click', function(e) {
                      

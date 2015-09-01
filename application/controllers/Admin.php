@@ -58,8 +58,12 @@ class Admin extends CI_Controller {
 	}
 	public function show(){
 		//get only things from viewing page 'id' 
+		$q=array();
 		$p=$this->Admins->show('reporting_officer','reporting-officer-id',$_POST['id']);
-		var_dump($p);
+		for ($i=0;$i<count($p);$i++){
+			$q[$i]=$p[$i]["id"];
+		}
+		echo json_encode($q);
 		
 	}
 }
