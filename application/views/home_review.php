@@ -351,6 +351,7 @@
             $("#exit").hide();
             $(".submit-msg").hide();
             $("#b2,#b1").hide();
+            $(".hiddd").hide();
             }
         // alert(resp);
            //alert('success');

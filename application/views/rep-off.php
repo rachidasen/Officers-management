@@ -197,7 +197,9 @@ $(document).ready(function(){
              //With the ".html()" method we include the html code returned by AJAX into the matches list
              success: function(resp) { 
               //alert('you have successfully deleted');
-              //alert(resp);
+              // alert(resp);
+               if((resp.length)==1)
+                  resp.length=0;
                for(var i=0;i<(resp.length);i++){
                 //console.log(resp[i]);
                
@@ -207,6 +209,7 @@ $(document).ready(function(){
                   $('<td class="off-del glyphicon glyphicon-minus"></td>').appendTo(row);  
 
               }
+              //alert('kdsfja');
               //$(".del").closest('tr').remove();
               // $(".del").on('click', function(e) {
                        

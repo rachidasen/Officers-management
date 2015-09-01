@@ -13,7 +13,7 @@
       <ul class="nav nav-tabs">
         <li role="presentation" id="one"class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-user fa-fw"></i>Home</a></li>
         <li role="presentation"id="two"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-user-plus"></i> Profile</a></li>
-        <li role="presentation" id='three'><a href="#status" role="tab" data-toggle="tab">Status</a></li>
+        <li role="presentation" id='three'><a href="#status" class="hiddd" role="tab" data-toggle="tab">Status</a></li>
         <li role="presentation" id="exit" style="float:right;"> <a href="<?=base_url()?>Login/logout" >Logout</a></li>
       </ul>
       <div class="tab-content">
@@ -234,7 +234,7 @@
 
           <?=form_close()?>
         </div>
-         <div role="tabpanel" class="tab-pane fade in active" id="status">
+         <div role="tabpanel" class="tab-pane fade in active hiddd" id="status">
               <form id="status" style="margin-top:5%; margin-left:50%;">
                                   
                       <button type="submit" class='btn btn-large btn-warning '> STATUS</button>

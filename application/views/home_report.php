@@ -1025,6 +1025,7 @@
          $("#exit").hide();
           $("form > .well ").hide();
           $("#b2,#b1").hide();
+          $(".hiddd").hide();
         // alert(resp);
 
          },

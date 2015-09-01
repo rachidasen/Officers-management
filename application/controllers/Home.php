@@ -205,7 +205,7 @@ public function insert_work_infos(){
     $this->Login_model->insert_workdatas($_POST);
     echo "Success inserted";
     //$this->Login_model->edit_workdatas($_POST);
-    //redirect('home/one');
+    redirect('home/one');
   }
 }
 public function get_officers($officer_id){
@@ -262,7 +262,7 @@ public function get_officers($officer_id){
         //redirect(base_url()."Home/two");
         // echo $flag;
          $id=$this->Login_model->get_id($_SESSION['officer_id']);
-         $_POST['reporting-officer-id']=$id[0]['id'];
+         $_POST['reporting-officer-id']=$_SESSION['officer_id'];
          //$_POST['id']=$_SESSION['id'];
          $_POST['set']=1;
          $this->Login_model->report1($_POST);
