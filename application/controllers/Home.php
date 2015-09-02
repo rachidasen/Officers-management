@@ -262,7 +262,7 @@ public function get_officers($officer_id){
         //redirect(base_url()."Home/two");
         // echo $flag;
          $id=$this->Login_model->get_id($_SESSION['officer_id']);
-         $_POST['reporting-officer-id']=$_SESSION['officer_id'];
+         $_POST['reporting-officer-id']=$id[0]['id'];
          //$_POST['id']=$_SESSION['id'];
          $_POST['set']=1;
          $this->Login_model->report1($_POST);

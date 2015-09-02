@@ -31,6 +31,9 @@ class Admin extends CI_Controller {
 	public function off_del(){
 		$this->Admins->off_del($_POST);
 	}
+	public function rff_del(){
+		$this->Admins->rff_del($_POST);
+	}
 
 	public function insert_gen(){
 		$_POST['officer_type']='general_officer';
@@ -74,10 +77,27 @@ class Admin extends CI_Controller {
 		echo json_encode($q);
 		
 	}
+	public function show2(){
+		//get only things from viewing page 'id' 
+		//$q=array();
+		//echo $_POST['id'];
+		$p=$this->Admins->show('reviewing_officer','review_officer-id',$_POST['id']);
+		for ($i=0;$i<count($p);$i++){
+			$q[$i]=$p[$i]["reporting-officer-id"];
+		}
+		//var_dump($q);
+		echo json_encode($q);
+		
+	}
 	public function add_off(){
 		$d['id']=$_POST['oid'];
 		$d['reporting-officer-id']=$_POST['id'];
 		$this->Admins->add_off($d);
+	}
+	public function add_rff(){
+		$d['review_officer-id']=$_POST['id'];
+		$d['reporting-officer-id']=$_POST['oid'];
+		$this->Admins->add_rff($d);
 	}
 }
 

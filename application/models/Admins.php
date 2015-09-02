@@ -26,8 +26,13 @@
        $this->db->delete('reporting_officer',array('id'=>$data['id']));
        $this->db->delete('reportingofficers_part3',array('id'=>$data['id']));
        //$this->db->delete('reporting_officer');
-       $this->db->where('officer_id',$data['id']);
-      $this->db->update('officers',array('set' => -1));
+      //  $this->db->where('officer_id',$data['id']);
+      // $this->db->update('officers',array('set' => -1));
+     }
+
+     public function rff_del($data){
+      $this->db->delete('reviewing_officer',array('reporting-officer-id'=>$data['id']));
+       // $this->db->delete('reviewingofficers',array('reporting-officer-id'=>$data['id']));
      }
 
      public function del2($data)
@@ -46,6 +51,8 @@
       $this->db->delete('reviewingofficers',array('id' => $data['id'] ));
       
       $this->db->delete('reviewing_officer',array('review_officer-id' =>$data['id']));
+      // $this->db->where('officer_id',$data['id']);
+      // $this->db->update('officers',array('set' => 1));
       //return $q;
 
     }
@@ -66,6 +73,12 @@
       $this->db->insert('reporting_officer',$data);
       $this->db->where('officer_id',$data['id']);
       $this->db->update('officers',array('set' => 1));
+    }
+
+    public function add_rff($data){
+      $this->db->insert('reviewing_officer',$data);
+      // $this->db->where('officer_id',$data['id']);
+      // $this->db->update('officers',array('set' => 1));
     }
   }
 // $q=$this->db->get_where('officers',array('officer_type' => 'general' ));
