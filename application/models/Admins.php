@@ -24,7 +24,8 @@
      public function off_del($data)
      {
        $this->db->delete('reporting_officer',array('id'=>$data['id']));
-       $this->db->delete('reportingofficers_part3',array('id'=>$data['id']));
+       $this->db->delete('reviewingofficers',array('officer_id'=>$data['id']));
+       $this->db->delete('reportingofficers_part3',array('id'=>$data['n'][0]['id']));
        //$this->db->delete('reporting_officer');
         $this->db->where('officer_id',$data['id']);
        $this->db->update('officers',array('set' => -1));

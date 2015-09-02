@@ -31,7 +31,10 @@ class Admin extends CI_Controller {
 		
 	}
 	public function off_del(){
+		
+		$_POST['n']=$this->Login_model->get_id($_POST['id']);
 		$this->Admins->off_del($_POST);
+		echo($_POST['n'][0]['id']);
 	}
 	public function rff_del(){
 		$this->Admins->rff_del($_POST);

@@ -144,6 +144,7 @@ $(document).ready(function(){
                //With the ".html()" method we include the html code returned by AJAX into the matches list
                success: function(resp) { 
                 alert('you have successfully deleted');
+                alert(resp);  
                 //$(".del").closest('tr').remove();
                 // $(".del").on('click', function(e) {
                          
