@@ -200,7 +200,7 @@
 
 
 <script type="text/javascript">
-    $(document).ready(function(){
+  $(document).ready(function(){
         
       $("#myform").submit(function(e){
         var officer_id = $('#officer-id').val();
@@ -261,7 +261,7 @@
          });
       });
     
-    });
+    
 
     $(".rep").click(function(){
      var id = $('#officer-id').val();
@@ -365,9 +365,7 @@
            console.log(arguments);
           }
           });
-        });
+    });
 
-
-
- 
+  });
 </script>
