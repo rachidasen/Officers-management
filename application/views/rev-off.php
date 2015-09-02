@@ -167,8 +167,8 @@
              success: function(resp) { 
               //alert('you have successfully deleted');
                //  alert(resp);
-               if((resp.length)==1)
-                  resp.length=0;
+               // if((resp.length)==1)
+               //    resp.length=0;
                for(var i=0;i<(resp.length);i++){
                 //console.log(resp[i]);
                

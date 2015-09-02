@@ -123,7 +123,7 @@
 /*To delete the officers under a given reporting officer*/
 $(document).ready(function(){
     $(document).on("click", ".off-del", function() {
-              alert('hello');
+              //alert('hello');
               var id= $(this).closest('tr').find($(":first-child")).html();
               // var v= $(this).closest('tr').find('td.idr').html();
               // var v=parseInt(v);
@@ -198,8 +198,8 @@ $(document).ready(function(){
              success: function(resp) { 
               //alert('you have successfully deleted');
               // alert(resp);
-               if((resp.length)==1)
-                  resp.length=0;
+               // if((resp.length)==1)
+               //    resp.length=0;
                for(var i=0;i<(resp.length);i++){
                 //console.log(resp[i]);
                
@@ -235,8 +235,7 @@ $(document).ready(function(){
                   alert('you have successfully added');
                 }
               });
-
-             $.ajax({
+              $.ajax({
                type: 'POST',
                url: '<?php echo base_url(); ?>Admin/show', //We are going to make the request to the method "list_dropdown" in the match controller
                dataType:'json',
@@ -244,7 +243,9 @@ $(document).ready(function(){
                //With the ".html()" method we include the html code returned by AJAX into the matches list
                success: function(resp) { 
                 //alert('you have successfully deleted');
-                //alert(resp);
+                // alert(resp);
+                 // if((resp.length)==1)
+                 //    resp.length=0;
                  for(var i=0;i<(resp.length);i++){
                   //console.log(resp[i]);
                  
@@ -254,6 +255,7 @@ $(document).ready(function(){
                     $('<td class="off-del glyphicon glyphicon-minus"></td>').appendTo(row);  
 
                 }
+                //alert('kdsfja');
                 //$(".del").closest('tr').remove();
                 // $(".del").on('click', function(e) {
                          
@@ -264,9 +266,7 @@ $(document).ready(function(){
                  console.log('error');
                 console.log(arguments);
                }
-             });
-
-             
+              });          
             });
 
 

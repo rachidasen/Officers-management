@@ -17,7 +17,9 @@ class Admin extends CI_Controller {
 		$d['detail2']=$this->get_officer('reporting_officer');
 		$d['detail3']=$this->get_officer('reviewing_officer');
 		$this->load->view('template1',$d);
-		//echo "hello";
+		// //echo "hello";
+		// echo json_encode($d['detail1']);
+		// echo json_encode($d['detail2']);
 	}
 	public function get_officer($type){
 		return $this->Admins->getprofile($type);
