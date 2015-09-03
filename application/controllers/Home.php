@@ -343,7 +343,7 @@ public function get_officers($officer_id){
       $a=$this->Login_model->checkset($_SESSION['id'],'personal_datas');
       $b=$this->Login_model->checkset2($_SESSION['id']);
       if($a==true && $b=true){
-        $a=$this->Login_model->status($_SESSION['officer_id']);   
+        $a=$this->Login_model->status($_POST['officer_id']);   
         if($a!=false)
           echo($a[0]['set']);
         else
@@ -351,6 +351,19 @@ public function get_officers($officer_id){
       }
       else
         echo '-1';
+      }
+    public function staus(){
+   /*   $a=$this->Login_model->checkset($_SESSION['id'],'personal_datas');
+      $b=$this->Login_model->checkset2($_SESSION['id']);
+      if($a==true && $b=true){
+   */     $a=$this->Login_model->status($_POST['officer_id']);   
+        if($a!=false)
+          echo($a[0]['set']);
+        else
+          echo "5";
+   // //   }
+   //    else
+   //      echo '-1';
       }
 }
 

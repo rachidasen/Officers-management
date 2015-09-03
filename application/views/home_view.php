@@ -251,11 +251,12 @@
 <script>
 $("#status").on('submit',function(e){
   e.preventDefault();
+      var id="<?=$_SESSION['officer_id']?>";
   $.ajax({
 
          type: 'POST',
          url: '<?php echo base_url();?>Home/status', //We are going to make the request to the method "list_dropdown" in the match controller
-        // data:{'id':id}, //POST parameter to be sent with the tournament id
+         data:{'officer_id':id}, //POST parameter to be sent with the tournament id
          success: function(resp) { //When the request is successfully completed, this function will be executed
          //Activate and fill in the matches list
          alert(resp);
