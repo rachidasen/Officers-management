@@ -33,7 +33,7 @@
                     </h4>
                     <select style="margin 0 auto;" id="rff-list">
                       <?php for($i=0;$i<count($detail2);$i++):?>
-                        <?php if($detail2   [$i]['set']==-1):?>
+                        <?php if($detail2[$i]['set']==-1):?>
                             <option ><?=$detail2[$i]['officer_id'];?></option>
                         <?php endif;?>
                       <?php endfor;?>
@@ -132,6 +132,7 @@
                     return $(this).text() == id;
                 }).closest("tr");
                 tableRow.remove();
+                $('<option />',{text:id}).appendTo("#rff-list");
                $.ajax({
                type: 'POST',
                url: '<?php echo base_url(); ?>Admin/rff_del', //We are going to make the request to the method "list_dropdown" in the match controller
