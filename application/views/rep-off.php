@@ -164,11 +164,12 @@
     });
   
 
-  /*To view officers of given reporting officer*/
+  /*To view officers of given reporting offichaveer*/
  
    $(".n").click(function(){
           var id= $(this).closest('tr').find('td.ide2').html();
-          $("#unique-list").children("tr").remove();
+          
+           //initial display
            $.ajax({
              type: 'POST',
              url: '<?php echo base_url(); ?>Admin/show', //We are going to make the request to the method "list_dropdown" in the match controller
@@ -205,16 +206,17 @@
           /* to add officer inside reporting officer*/
           $('#off-btn').on("click",function(){
                   var oid=$("#off-list").val();
-                  $("#unique-list").children("tr").remove();
+                  $("#unique-list > tr").remove();
                   console.log(oid);
                   $.ajax({
                     type:'POST',
                     url:'<?php echo base_url(); ?>Admin/add_off',
                     data:{'oid':oid,'id':id},
                     success:function(resp){
+                      
                       alert('you have successfully added');
                       $("#off-list :selected").remove();
-                      $("#unique-list").children("tr").remove();
+                      
                     }
                   });
                   //for displaying the table
@@ -225,29 +227,15 @@
                    data: {'id':id}, //POST parameter to be sent with the tournament id
                    //With the ".html()" method we include the html code returned by AJAX into the matches list
                    success: function(resp) { 
-                    //alert('you have successfully deleted');
-                    // alert(resp);
-                     // if((resp.length)==1)
-                     //    resp.length=0;
+                    
                      for(var i=0;i<(resp.length);i++){
-                      //console.log(resp[i]);
-                     
+                                    
                       var row = $('<tr></tr>').appendTo($("#unique-list"));
                       //for (var j = 0; j < 2; j++) {
                         $('<td />',{text:resp[i]}).appendTo(row);
                         $('<td class="off-del glyphicon glyphicon-minus"></td>').appendTo(row);  
 
-                    }
-                    //alert('kdsfja');
-                    //$(".del").closest('tr').remove();
-                    // $(".del").on('click', function(e) {
-                             
-                    // });
-                    },
-
-                   error: function(resp) {
-                     console.log('error');
-                    console.log(arguments);
+                     }
                    }
                   });          
                });
@@ -255,6 +243,10 @@
 
   });
 
+  $(document).on('hidden.bs.modal',function(){
+     $("#unique-list > tr").remove();
+     //$("#unique-list").children("tr").remove();
+    });
 
 
 
