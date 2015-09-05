@@ -56,10 +56,12 @@
       <!-- Modal content -->
       <div class="modal-content" >
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <button type="button" class="close" data-dismiss="modal" >&times;</button>
           <h4 class="modal-title"></h4>
         </div>
-        <div class="modal-body" id="show">
+        <div class="modal-body">
+            <div class="show">
+            </div>
         </div>
       </div>
     </div>
@@ -1000,154 +1002,143 @@
 <script>
   
 
-  $(document).ready(function(){
-    //$(".rev-officer").hide();
-    if($("#officer-id").val()==="----"){ 
-      $("#myform").hide();
-      $("header").append("<div id='msg-inf'>Currently no option selected</div>")
-    }
-
-    $('#clickprofile').click(function(){
-      var officer_id = $('#officer-id').val();
-      $.ajax({
-       type: 'POST',
-         url: '<?php echo base_url(); ?>Home/ajax_view', //We are going to make the request to the method "list_dropdown" in the match controller
-          data: {'id':officer_id}, //POST parameter to be sent with the tournament id
-         success: function(resp) { //When the request is successfully completed, this function will be executed
-         //Activate and fill in the matches list
-         //With the ".html()" method we include the html code returned by AJAX into the matches list
-         if(officer_id==="----"){
-          $("#show-profile").html("<div id='no-officer'> No officer Selected </div>");
-            //alert($("#officer-id").length);
-          }
-          else
-           $("#show-profile").html(resp);
-         $("#exit").hide();
-         $("form > .well ").hide();
-         $("#b2,#b1").hide();
-         $(".hiddd").hide();
-        // alert(resp);
-
-      },
-         error: function(resp) { //When the request is successfully completed, this function will be executed
-         //Activate and fill in the matches list
-         //With the ".html()" method we include the html code returned by AJAX into the matches list
-         console.log('error');
-         console.log(arguments);
-       }
-     });
-
-});
-$('#officer-id').on('change',function(){
-  $( "div" ).find("#conf-msg").remove();
-  var officer_id = $('#officer-id').val();
+  var $newdiv1 = $( "<div id='conf-msg'class='container-fluid success' style='background-color:green;color:white; padding-right:50px; display:none;'> <center>YOUR FORM HAS BEEN SUBMITTED<a href='#part-3' data-toggle='modal' id='sss' style='float:right; color:black;' >view</a></center></div>" );
+         
+  $( "div" ).find("#detail").append( $newdiv1);
   if($("#officer-id").val()==="----"){ 
     $("#myform").hide();
     $("header").append("<div id='msg-inf'>Currently no option selected</div>")
   }
-  else{
+
+  $('#clickprofile').click(function(){
+    var officer_id = $('#officer-id').val();
     $.ajax({
      type: 'POST',
-         url: '<?php echo base_url(); ?>Home/reporting', //We are going to make the request to the method "list_dropdown" in the match controller
-          data: {'id':officer_id}, //POST parameter to be sent with the tournament id
-          success: function(resp) { //When the request is successfully completed, this function will be executed
-           $("#msg-inf").remove();
-          //alert(officer_id);
-          if(resp==0){
-            //form hasn't been submitted
-            
-            console.log("inside 0");
-            $('#msg').hide();
-            $("#detail").show();
-                 //adding after changing else adding grren pannel
-                 if($("#myform").css('display')=='none'){
-                    // $("#conf-msg").remove();
-                    console.log("form hidden");
-                    $("#myform").show();
-                    $('button[type="submit"]').prop("disabled",false);
+       url: '<?php echo base_url(); ?>Home/ajax_view', //We are going to make the request to the method "list_dropdown" in the match controller
+        data: {'id':officer_id}, //POST parameter to be sent with the tournament id
+       success: function(resp) { //When the request is successfully completed, this function will be executed
+       //Activate and fill in the matches list
+       //With the ".html()" method we include the html code returned by AJAX into the matches list
+       if(officer_id==="----"){
+        $("#show-profile").html("<div id='no-officer'> No officer Selected </div>");
+          //alert($("#officer-id").length);
+        }
+        else
+         $("#show-profile").html(resp);
+       $("#exit").hide();
+       $("form > .well ").hide();
+       $("#b2,#b1").hide();
+       $(".hiddd").hide();
+      // alert(resp);
 
+    },
+       error: function(resp) { //When the request is successfully completed, this function will be executed
+       //Activate and fill in the matches list
+       //With the ".html()" method we include the html code returned by AJAX into the matches list
+       console.log('error');
+       console.log(arguments);
+     }
+   });
 
-                  }
-                  console.log($("#myform"));
-                  console.log("form hidden");
-                  $("#myform").show();
-                }
-                else{
-          // $('select option[value="'+ officer_id + '" ]').prop('disabled',true);
-          //$("#detail").hide();
-          $('#msg').show();
-          if($("#myform").css('display')=='none') 
-            $("#conf-msg").remove();
-
-          $("#myform").hide();
-          var $newdiv1 = $( "<div id='conf-msg' class='container-fluid success' style='background-color:green;color:white; padding-right:50px;'> <center>YOUR FORM HAS BEEN SUBMITTED<a href='#part-3' data-toggle='modal' class='sss' style='float:right; color:black;'>view</a></center></div>" );
-          
-          $( "div" ).find("#detail").append( $newdiv1);
-          
-
-          }          //$('html').html(resp);
-          
-        // alert(resp);
-
-      }
-    });
-}
-});
-
-$(document).on('click',".sss",function(){
-  var id = $('#officer-id').val();
-  var page='home_report.php';
-  console.log('hello');
-  $.ajax({
-   type: 'POST',
-                   url: '<?php echo base_url();?>Home/get_reporting_officer', //We are going to make the request to the method "list_dropdown" in the match controller
-                   data:{'id':id,'page':page}, //POST parameter to be sent with the tournament id
-                   success: function(resp) { //When the request is successfully completed, this function will be executed
-                    $("#show").html(resp);
-                    
-                  },
-                  
-                });
-  $("#show").empty();
-});
-
-$('#myform').on('submit',function(e){
-      e.preventDefault(); // <------this will restrict the page refresh
-      sum1=parseInt($("#plannedwork").val())+parseInt($("#qualityoutput").val()) +parseInt($("#analytical").val()) + parseInt($("#exceptionalwork").val());
-      $("#overall_workoutput").val(sum1/4);
-      sum2=parseInt($("#attitudetowork").val())+parseInt($("#responsibility").val())+parseInt($("#discipline").val())+parseInt($("#communication").val())+parseInt($("#leadership").val())+parseInt($("#teamspirit").val())+parseInt($("#timeschedule").val())+parseInt($("#inter_personal").val())+parseInt($("#personality").val());
-      $("#overall_personalattributes").val(sum2/9);
-      sum3=parseInt($("#Knowledgeofrules").val())+parseInt($("#strategic").val())+parseInt($("#decision").val())+ parseInt($("#coordination").val())+parseInt($("#subordinates").val())+parseInt($("#handlingproblems").val())+parseInt($("#inspection").val())+parseInt($("#financialpropriety").val())
-      $("#overall_functionalcompetency").val(sum3/8);
-      overall_grading=sum1/10 + sum2/30 + 3*sum3/80;
-      $("#overall_numerical_grading").val(overall_grading);
-      $('button[type="submit"]').prop("disabled",true);
-      var id=$("#officer-id :selected").val();
+  });
+  $(document).on('change','#officer-id',function(){
+    $( "div" ).find("#conf-msg").hide();
+    var officer_id = $('#officer-id').val();
+    if($("#officer-id").val()==="----"){ 
+      $("#myform").hide();
+      $("header").append("<div id='msg-inf'>Currently no option selected</div>")
+    }
+    else{
       $.ajax({
-        type: 'POST',
-        url: "<?php echo base_url(); ?>Home/reporting_officer1",
-        data: $(this).serialize() + '&id=' + id, // $(this).serialize(); you can use this too
-        success: function(msg) {
-            // console.log(msg); 
-           //  $("").show(); 
-           alert(msg);
-           $("#myform").hide();
-           var $newdiv1 = $( "<div id='conf-msg'class='container-fluid success' style='background-color:green;color:white; padding-right:50px;'> <center>YOUR FORM HAS BEEN SUBMITTED<a href='#part-3' data-toggle='modal' class='sss' style='float:right; color:black;' >view</a></center></div>" );
-           
-           $( "div" ).find("#detail").append( $newdiv1);
-           
-              //alert(msg);
-              $("#opt2").append($("#officer-id :selected"));
+       type: 'POST',
+           url: '<?php echo base_url(); ?>Home/reporting', //We are going to make the request to the method "list_dropdown" in the match controller
+            data: {'id':officer_id}, //POST parameter to be sent with the tournament id
+            success: function(resp) { //When the request is successfully completed, this function will be executed
+             $("#msg-inf").remove();
+            //alert(officer_id);
+                if(resp==0){
+                  //form hasn't been submitted
+                  
+                  console.log("inside 0");
+                  $('#msg').hide();
+                  $("#detail").show();
+                       //adding after changing else adding grren pannel
+                       if($("#myform").css('display')=='none'){
+                          // $("#conf-msg").remove();
+                          console.log("form hidden");
+                          $("#myform").show();
+                          $('button[type="submit"]').prop("disabled",false);
+
+
+                        }
+                        
+                        //$("#myform").show();
+                      }
+                else{
+                  $('#msg').show();
+                  $("#myform").hide();
+                  $( "div" ).find("#conf-msg").show();
+                  console.log('form is submitted');
+                }          
             }
+      });
+  }
+  });
 
-          });
+  $(document).on('click',"#sss",function(){
+    $(".del").remove();
+    var id = $('#officer-id').val();
+    var page='home_report.php';
+    console.log('hello');
+    $(".show").empty();
+    $.ajax({
+                     type: 'POST',
+                     url: '<?php echo base_url();?>Home/get_reporting_officer', //We are going to make the request to the method "list_dropdown" in the match controller
+                     data:{'id':id,'page':page}, //POST parameter to be sent with the tournament id
+                     success: function(resp) { //When the request is successfully completed, this function will be executed
+                      $( ".show" ).append( "<div class='del'></div>" );
+                      $(".del").html(resp);
+                      
+                    }
+                    
+                  });
+    $(document).on('hidden.bs.modal',function(){
+      $(".del").remove();
+      //console.log('modal hidden');
+    });
+    console.log('empty');
+    
+  });
 
-    }); 
+  $('#myform').on('submit',function(e){
+        e.preventDefault(); // <------this will restrict the page refresh
+        sum1=parseInt($("#plannedwork").val())+parseInt($("#qualityoutput").val()) +parseInt($("#analytical").val()) + parseInt($("#exceptionalwork").val());
+        $("#overall_workoutput").val(sum1/4);
+        sum2=parseInt($("#attitudetowork").val())+parseInt($("#responsibility").val())+parseInt($("#discipline").val())+parseInt($("#communication").val())+parseInt($("#leadership").val())+parseInt($("#teamspirit").val())+parseInt($("#timeschedule").val())+parseInt($("#inter_personal").val())+parseInt($("#personality").val());
+        $("#overall_personalattributes").val(sum2/9);
+        sum3=parseInt($("#Knowledgeofrules").val())+parseInt($("#strategic").val())+parseInt($("#decision").val())+ parseInt($("#coordination").val())+parseInt($("#subordinates").val())+parseInt($("#handlingproblems").val())+parseInt($("#inspection").val())+parseInt($("#financialpropriety").val())
+        $("#overall_functionalcompetency").val(sum3/8);
+        overall_grading=sum1/10 + sum2/30 + 3*sum3/80;
+        $("#overall_numerical_grading").val(overall_grading);
+        $('button[type="submit"]').prop("disabled",true);
+        var id=$("#officer-id :selected").val();
+        $.ajax({
+          type: 'POST',
+          url: "<?php echo base_url(); ?>Home/reporting_officer1",
+          data: $(this).serialize() + '&id=' + id, // $(this).serialize(); you can use this too
+          success: function(msg) {
+              // console.log(msg); 
+             //  $("").show(); 
+             alert(msg);
+             $("#myform").hide();
+             $("#opt2").append($("#officer-id :selected"));
+               $( "div" ).find("#conf-msg").hide();
+              }
 
+            });
 
+  }); 
 
-
-});
 
 </script>
 

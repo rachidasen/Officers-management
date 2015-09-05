@@ -1,4 +1,4 @@
-
+F
 <div class="container-fluid">
   <div class="row">
     <div>
@@ -234,8 +234,8 @@
 
           <?=form_close()?>
         </div>
-         <div role="tabpanel" class="tab-pane fade in active hiddd" id="status">
-              <form id="status" style="margin-top:5%; margin-left:50%;">
+         <div role="tabpanel" class="tab-pane fade  hiddd" id="status">
+              <form id="stats" style="margin-top:5%; margin-left:50%;">
                                   
                       <button type="submit" class='btn btn-large btn-warning '> STATUS</button>
                       <div id='stat' style="color:black; font-weight:bold; margin-left:-5%; margin-top:-10%"> </div>
@@ -249,7 +249,7 @@
 
 
 <script>
-$("#status").on('submit',function(e){
+$("#stats").on('submit',function(e){
   e.preventDefault();
       var id="<?=$_SESSION['officer_id']?>";
   $.ajax({
@@ -264,19 +264,24 @@ $("#status").on('submit',function(e){
          //alert(resp);
          switch(resp){
           case -1: alert('You haven\'t submitted your form');
+                    $("#stat").empty();
                     $("#stat").html('You haven\'t submitted your form');
                     break;
           case 0: alert("Under processing by reporting Officer");
+                    $("#stat").empty();
                     $("#stat").html("Under processing by reporting Officer");
                     break;
           case 1: alert('Under processing by reviewing Officer');
-                    ("#stat").html("Under processing by reviewing Officer");
+                    $("#stat").empty();
+                    $("#stat").html("Under processing by reviewing Officer");
                     break;
           case 2: alert('YOUR report has been processed ');
+                  $("#stat").empty();
                   $("#stat").html('YOUR report has been processed ');
                     
                   break;
           case 5: alert('YOU haven\'t been assigned reporting officer yet ');
+                  $("#stat").empty();
                   $("#stat").html('Reporting officer not assigned ');
                     
                   break;

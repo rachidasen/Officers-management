@@ -33,7 +33,7 @@
                     </h4>
                     <select style="margin 0 auto;" id="rff-list">
                       <?php for($i=0;$i<count($detail2);$i++):?>
-                        <?php if($detail2   [$i]['set']==-1):?>
+                        <?php if($detail2[$i]['set']==-1):?>
                             <option ><?=$detail2[$i]['officer_id'];?></option>
                         <?php endif;?>
                       <?php endfor;?>
@@ -132,6 +132,7 @@
                     return $(this).text() == id;
                 }).closest("tr");
                 tableRow.remove();
+                $('<option />',{text:id}).appendTo("#rff-list");
                $.ajax({
                type: 'POST',
                url: '<?php echo base_url(); ?>Admin/rff_del', //We are going to make the request to the method "list_dropdown" in the match controller
@@ -157,7 +158,7 @@
     
    $(".rn").click(function(){
           var id= $(this).closest('tr').find('td.ide3').html();
-          $("#runique-list").children("tr").remove();
+     
            $.ajax({
              type: 'POST',
              url: '<?php echo base_url(); ?>Admin/show2', //We are going to make the request to the method "list_dropdown" in the match controller
@@ -165,10 +166,6 @@
              data: {'id':id}, //POST parameter to be sent with the tournament id
              //With the ".html()" method we include the html code returned by AJAX into the matches list
              success: function(resp) { 
-              //alert('you have successfully deleted');
-               //  alert(resp);
-               // if((resp.length)==1)
-               //    resp.length=0;
                for(var i=0;i<(resp.length);i++){
                 //console.log(resp[i]);
                
@@ -178,11 +175,6 @@
                   $('<td class="rff-del glyphicon glyphicon-minus"></td>').appendTo(row);  
 
               }
-              //alert('kdsfja');
-              //$(".del").closest('tr').remove();
-              // $(".del").on('click', function(e) {
-                       
-              // });
               },
 
              error: function(resp) {
@@ -194,7 +186,7 @@
           // /* to add officer inside reporting officer*/
             $("#rff-btn").click(function(){
               var oid=$("#rff-list").val();
-              $("#runique-list").children("tr").remove();
+               $("#runique-list > tr").remove();
               console.log(oid);
               $.ajax({
                 type:'POST',
@@ -202,6 +194,7 @@
                 data:{'oid':oid,'id':id},
                 success:function(resp){
                   alert('you have successfully added');
+                  $("#rff-list :selected").remove();
                 }
               });
 
@@ -242,6 +235,10 @@
 
          
         
+    });
+     $(document).on('hidden.bs.modal',function(){
+     $("#runique-list > tr").remove();
+     //$("#unique-list").children("tr").remove();
     });
 
 $(".del3").click(function(){
