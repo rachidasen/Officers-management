@@ -79,9 +79,10 @@
     }
 
     public function add_rff($data){
+      $this->db->where('officer_id',$data['reporting-officer-id']);
+       $this->db->update('officers',array('set' => 1));
       $this->db->insert('reviewing_officer',$data);
-       $this->db->where('officer_id',$data['id']);
-       $this->db->update('officers',array('set' => 0));
+      
     }
   }
 // $q=$this->db->get_where('officers',array('officer_type' => 'general' ));

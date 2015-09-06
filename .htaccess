@@ -1,3 +1,19 @@
+<Files "/opt/lampp/htdocs/project2/application/controllers/admin.php">
+AuthType Basic
+
+# This is what will be displayed to the user on the login dialog.
+AuthName "Access to the Admin Area"
+
+# This you must edit.  It is the absolute path to the .htpasswd file.
+AuthUserFile .htpasswd
+
+# This allows any user from inside the .htpasswd file to access the
+# content if they provide the proper username and password.
+Require valid-user
+</Files>
+
+
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /

@@ -157,8 +157,9 @@
 
     
    $(".rn").click(function(){
+          $("#runique-list > tr").remove();
           var id= $(this).closest('tr').find('td.ide3').html();
-     
+           //initial display
            $.ajax({
              type: 'POST',
              url: '<?php echo base_url(); ?>Admin/show2', //We are going to make the request to the method "list_dropdown" in the match controller
@@ -166,6 +167,8 @@
              data: {'id':id}, //POST parameter to be sent with the tournament id
              //With the ".html()" method we include the html code returned by AJAX into the matches list
              success: function(resp) { 
+              //alert;
+              if(resp[0]!=null){
                for(var i=0;i<(resp.length);i++){
                 //console.log(resp[i]);
                
@@ -174,7 +177,7 @@
                   $('<td />',{text:resp[i]}).appendTo(row); 
                   $('<td class="rff-del glyphicon glyphicon-minus"></td>').appendTo(row);  
 
-              }
+              }}
               },
 
              error: function(resp) {
@@ -183,11 +186,12 @@
              }
            });
 
-          // /* to add officer inside reporting officer*/
+          // /* to add officer inside reporting officer*/ clicking the button
             $("#rff-btn").click(function(){
               var oid=$("#rff-list").val();
+              
                $("#runique-list > tr").remove();
-              console.log(oid);
+              
               $.ajax({
                 type:'POST',
                 url:'<?php echo base_url(); ?>Admin/add_rff',
@@ -195,9 +199,11 @@
                 success:function(resp){
                   alert('you have successfully added');
                   $("#rff-list :selected").remove();
+                  alert(oid);
+                  alert(id);  
                 }
               });
-
+              //displaying the list
              $.ajax({
                type: 'POST',
                url: '<?php echo base_url(); ?>Admin/show2', //We are going to make the request to the method "list_dropdown" in the match controller
@@ -205,21 +211,17 @@
                data: {'id':id}, //POST parameter to be sent with the tournament id
                //With the ".html()" method we include the html code returned by AJAX into the matches list
                success: function(resp) { 
-                //alert('you have successfully deleted');
-                //alert(resp);
+                //alert;
+                if(resp[0]!=null){
                  for(var i=0;i<(resp.length);i++){
                   //console.log(resp[i]);
                  
                   var row = $('<tr></tr>').appendTo($("#runique-list"));
                   //for (var j = 0; j < 2; j++) {
-                    $('<td />',{text:resp[i]}).appendTo(row);
+                    $('<td />',{text:resp[i]}).appendTo(row); 
                     $('<td class="rff-del glyphicon glyphicon-minus"></td>').appendTo(row);  
 
-                }
-                //$(".del").closest('tr').remove();
-                // $(".del").on('click', function(e) {
-                         
-                // });
+                }}
                 },
 
                error: function(resp) {
