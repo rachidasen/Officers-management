@@ -1,6 +1,7 @@
 
   <div class="row">
     <script src="<?=base_url("assets/js/angular.js")?>"></script> 
+    <script src="<?=base_url("assets/js/bootstrap-datepicker.js")?>"></script>
 
     <div class="Absolute-Center is-Responsive">
       <div id="logo-container"></div>
@@ -23,7 +24,17 @@
             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
             <input class="form-control" type="password" name='password' placeholder="password"value="<?=set_value("password");?>"/>     
           </div>
-          
+          <div class="form-group ">
+          <?=form_error('year'); ?>
+          </div>
+          <div class="form-group ">
+             <select name="year" class='span-9'>
+              <?php for($i=$year-1; $i<$year+20; $i++): ?>
+                <option>APR FOR (<?php echo $i . "-" . ($i+1) ?>)</option>
+              <?php endfor; ?>
+             </select>   
+          </div>
+                    
           <div class="form-group ">
           <?=form_error('optionlist'); ?>
           </div>
@@ -41,7 +52,7 @@
             <button type="submit" class="btn btn-primary btn-block">Login</button>
           </div>
           <div class="form-group text-center">
-            <a href="#">Forgot Password</a>&nbsp;|&nbsp;<a href="#">Support</a>
+            <!--<a href="#">Forgot Password</a>&nbsp;|&nbsp;<a href="#">Support</a> -->
           </div>
         </form>        
       </div>  

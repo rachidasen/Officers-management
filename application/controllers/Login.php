@@ -6,7 +6,7 @@ class Login extends CI_Controller {
 		var $data;
 		public function __construct(){
 			parent::__construct();
-			$this->data=array('page'=>'login_view','title'=>'login');
+			$this->data=array('page'=>'login_view','title'=>'login','year'=>date('Y'));
       $this->load->model("Login_model");
 
 		}
@@ -14,6 +14,8 @@ class Login extends CI_Controller {
      {
           //get the posted values
      	$data=$this->data;
+      // $data['year'] = date('Y');
+      // echo $data['year'];
      	$this->load->view('template',$data);
                	
      }
@@ -24,18 +26,22 @@ class Login extends CI_Controller {
      		
      		$this->form_validation->set_rules('username','Officer_id','required|callback_verifyUser');
      		$this->form_validation->set_rules('password' ,'Password','required|callback_verifyPass');
-               //$this->form_validation->set_rules('optionlist','')
-            $this->form_validation->set_rules('optionlist', 'OFFICER SELECTED', 'required|callback_greaterthan');
+        $this->form_validation->set_rules('optionlist','OptionList','required');
+        $this->form_validation->set_rules('optionlist', 'OFFICER SELECTED', 'required|callback_greaterthan');
+        // $this->form_validation->set_rules('year', 'year SELECTED', 'required');
 
                    //                          );
                //$this->form_validation->set_rules('optionlist','Select Options','required|greater_than[0]');
-              	if($this->form_validation->run()==false){
+          if($this->form_validation->run()==false){
      			$this->load->view('template',$data);
      		}
      		else{
-                     $data['id']=$this->Login_model->get_id('officer_id');
+                     // $data['id']=$this->Login_model->get_id('officer_id');
+                     // $data['year']=
                      $this->session->set_userdata('officer_id',$_POST['username']);
                      $this->session->set_userdata('officer_type',$_POST['optionlist']);
+                     $this->session->set_userdata('year',$_POST['year']);
+
                     echo "success";
                     $choice=$this->input->post('optionlist');
                     switch($choice){

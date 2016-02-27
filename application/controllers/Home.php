@@ -36,7 +36,7 @@ class Home extends CI_Controller{
            $_SESSION['id']=$id[0][0]['id'];
           if(!empty($id[1])){
             //this imply form has been submitted
-              echo "variable set is set";
+              // echo "variable set is set";
               $data['set']=$id[1];
               $data['value']=$id[2][0];
              
@@ -50,7 +50,7 @@ class Home extends CI_Controller{
           
         //$this->load->helper('form');
             $data['page']=$this->display($data['page']);
-            echo "hello";
+            // echo "hello";
             $this->load->view('template',$data);
           } else
             redirect(base_url()."Login");
@@ -337,7 +337,7 @@ public function get_officers($officer_id){
       $this->Login_model->insert_report($_POST);
       
       //echo $d;
-      echo 'hello';
+      // echo 'hello';
     }
     public function status(){
       $a=$this->Login_model->checkset($_SESSION['id'],'personal_datas');
