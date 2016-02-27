@@ -35,7 +35,8 @@
                             $response_no='checked';
                     ?>
                   <div class="well submit-msg" style="background-color:green;color:white;margin-top:12px">
-                      YOU HAVE SUCCESSFULLY SUBMITTED THE FORM
+                      <u>YOU HAVE SUCCESSFULLY SUBMITTED THE FORM</u>
+                      <span style="color:black"> PROCEED TO THE NEXT PAGE <button type="button" class="btn btn-info" data-color="info" onClick="javascript:next()"data-target="#profile" tabindex="2">NEXT</button></span>
                   </div>
                 <?php else:?>
                   <?php 
@@ -53,30 +54,30 @@
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 form-group">
                       <label for="last_name">LAST NAME</label>
-                      <input type="text" name="lname" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2"<?php if(isset($set)): ?> disabled <?php endif;?>>
+                      <input type="text" name="lname" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2"<?php if(isset($set)): ?> disabled value=<?=$value['lname']?><?php endif;?>>
                       
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-xs-6 form-group">
                       <label for="dob">Date of birth</label>
-                      <input name="dob" id="dob" class="form-control input-lg" placeholder="Date of birth" tabindex="3" type="text" onfocus="(this.type='date')"<?php if(isset($set)): ?> disabled <?php endif;?>>
+                      <input name="dob" class="form-control input-lg datepicker" placeholder="Date of birth" tabindex="3" type="text" <?php if(isset($set)): ?> disabled value=<?=$value['dob']?><?php endif;?>>
                     </div>
                     
                     <div class="col-xs-6 form-group">
                       <label for="quali">Qualification</label>
-                      <input type="text" name="qualification" id="quali" class="form-control input-lg" placeholder="Academic &amp; Technical Qualification" tabindex="4" <?php if(isset($set)): ?> disabled <?php endif;?>>
+                      <input type="text" name="qualification" id="quali" class="form-control input-lg" placeholder="Academic &amp; Technical Qualification" tabindex="4" <?php if(isset($set)): ?> disabled value=<?=$value['qualification']?><?php endif;?>>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-6 form-group">
-                      <label for="first_name">Date of continuous Appointment</label><span class="fa fa-asterisk"></span>
-                      <input type="text" name="date_presentgrade" id="first_name" class="form-control input-lg" placeholder="Date of continuous Appointment" tabindex="1"  onfocus="this.type='date'" <?php if(isset($set)): ?> disabled <?php endif;?>>
+                      <label for="appointment">Date of continuous Appointment</label><span class="fa fa-asterisk"></span>
+                      <input type="text" name="date_presentgrade" id="appointment" class="form-control input-lg datepicker" placeholder="Date of continuous Appointment" tabindex="5"  <?php if(isset($set)): ?> disabled value=<?=$value['date_presentgrade']?><?php endif;?>>
                       
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 form-group">
-                      <label for="last_name">GRADE</label>
-                      <input type="text" name="grade" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2"<?php if(isset($set)): ?> disabled <?php endif;?>>
+                      <label for="grade">GRADE</label>
+                      <input type="text" name="grade" id="grade" class="form-control input-lg" placeholder="GRADE" tabindex="6"<?php if(isset($set)): ?> disabled value=<?=$value['grade']?> <?php endif;?>>
                       
                     </div>
                   </div>
@@ -84,32 +85,40 @@
                     <div class="col-xs-6 col-sm-6 col-md-6">
                       <div class="form-group">
                         <label>Present Post</label>
-                        <input type="text" name="present_post" id="post" class="form-control input-lg" placeholder="Post" tabindex="5"<?php if(isset($set)): ?> disabled <?php endif;?>>
+                        <select required <?php if(isset($set)): ?> disabled <?php endif;?> name="present_post" id="post" class="form-control input-lg" tabindex="7">
+                          <option value="DG">DG</option>
+                          <option value="ADG">ADG</option>
+                          <option value="CE">CE</option>
+                          <option value="SE">SE</option>
+                          <option value="EE">EE</option>
+                          <option value="AEE">AEE</option>
+                        </select>
+                                                
                       </div>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6">
                       <div class="form-group">
-                        <label>Date of Appointment thereto</label>
-                        <input type="text" name="date_presentpost" id="" class="form-control input-lg" placeholder="Date of Appointment" tabindex="6" onfocus="(this.type='date')"<?php if(isset($set)): ?> disabled <?php endif;?>>
+                        <label for="appoint">Date of Appointment thereto</label>
+                        <input type="text" name="date_presentpost" id="appoint" class="form-control input-lg datepicker" placeholder="Date of Appointment" tabindex="8"<?php if(isset($set)): ?> disabled value=<?=$value['date_presentpost']?> <?php endif;?>>
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label>Period of Absence from duty(on training leave etc.) during the year</label>
-                    <input name="period_absence" id="dob" class="form-control input-lg" placeholder="Period of Absence from duty" tabindex="7" type="text" onfocus="(this.type='date')"<?php if(isset($set)): ?> disabled <?php endif;?>>
+                    <label for="abs">Period of Absence from duty(on training leave etc.) during the year</label>
+                    <input name="period_absence" id="abs" class="form-control input-lg" placeholder="Period of Absence from duty(Duration)" tabindex="9" type="text" <?php if(isset($set)): ?> disabled value=<?=$value['period_absence']?> <?php endif;?>>
                   </div>
 
                   <div class="row container fomr-group" id="training">UNDERGONE TRAINING
-                    <label class="radio-inline" for="yestrain"><input type="radio" id="yestrain" name="" tabindex="7" onclick="javascript:yesorno(this,5);" value="1"<?php if(isset($set)): ?> disabled <?=$response_yes;?> <?php endif;?>>yes</label>
-                    <label class="radio-inline" for="inputtrain"><input type="radio" value="0" id="notrain" name=""onclick="javascript:yesorno(this,5);"value="0" tabindex="8"<?php if(isset($set)): ?> disabled <?=$response_no;?><?php endif;?>>no</label>
-                    <input style="display:none;" type="text-area" id="hidden-display" class="form-control" name="training" placeholder="specify the training"<?php if(isset($set)): ?> disabled value=<?=$value['training']?><?php else: ?> checked <?php endif;?>>
+                    <label class="radio-inline" for="yestrain"><input type="radio" id="yestrain" name="" tabindex="10" onclick="javascript:yesorno(this,5);" value="1"<?php if(isset($set)): ?> disabled <?=$response_yes;?> <?php endif;?>>yes</label>
+                    <label class="radio-inline" for="inputtrain"><input type="radio" value="0" id="notrain" name=""onclick="javascript:yesorno(this,5);"value="0" tabindex="10"<?php if(isset($set)): ?> disabled <?=$response_no;?><?php endif;?>>no</label>
+                    <input style="display:none;" type="text-area" id="hidden-display" class="form-control input-lg" name="training" placeholder="specify the training"<?php if(isset($set)): ?> disabled value=<?=$value['training']?><?php else: ?> checked <?php endif;?>>
                   </div>
                   <div class="row">
                     <div class="col-xs-3 col-sm-3 col-md-3">
-                      <span class="button-checkbox">
+                      <!--span class="button-checkbox">
                         <button type="button" class="btn" data-color="info" onClick="javascript:next()"data-target="#profile" tabindex="9">NEXT</button>
                         
-                      </span>
+                      </span-->
                     </div>
                     
                   </div>
@@ -118,7 +127,7 @@
                 
 
                 <div class="row container">
-                <button id="b1" type="submit" value="Submit" class="btn btn-primary btn-inline btn-lg" tabindex="7" <?php if(isset($set)) : ?>disabled<?php endif;?>>SUBMIT</button></div>
+                <button id="b1" type="submit" value="Submit" class="btn btn-primary btn-inline btn-lg" tabindex="11" <?php if(isset($set)) : ?>disabled<?php endif;?>>SUBMIT</button></div>
               <?=form_close()?>
             </div>
           </div>
@@ -148,7 +157,8 @@
                             $response_no='checked';
                     ?>
                   <div class="well submit-msg" style="background-color:green;color:white;margin-top:12px">
-                      YOU HAVE SUCCESSFULLY SUBMITTED THE FORM
+                      YOU HAVE SUCCESSFULLY SUBMITTED YOUR INFO
+                      
                       <!--pre><?//=print_r($value2);?></pre>
                       -->
                       <?=$counter;?>
@@ -248,6 +258,12 @@
 
 
 <script>
+$(document).ready(function() {
+    $( ".datepicker" ).datepicker({
+      changeMonth: true,
+      changeYear: true
+    });
+  });
 $("#stats").on('submit',function(e){
   e.preventDefault();
       var id="<?=$_SESSION['officer_id']?>";

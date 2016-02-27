@@ -1,6 +1,7 @@
 
 //The working version
 
+
 function yesorno(elt,i){
   change=elt.parentNode.parentNode.childNodes;
   console.log(i);
