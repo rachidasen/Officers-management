@@ -240,7 +240,7 @@ public function get_officers($officer_id){
 
           if(!empty($id[1])){
             //this imply form has been submitted
-              echo "variable set is  is set";
+              // echo "variable set is  is set";
               $data['set']=1;
               $data['value']=$id[2][0];
              

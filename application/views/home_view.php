@@ -1,4 +1,4 @@
-<div class="container-fluid">
+  <div class="container-fluid">
   <div class="row">
     <div>
             <h1><strong><center><i class="fa fa-xing fa-3x"></i>OFFICER</center></strong></h1>
@@ -11,7 +11,7 @@
     <div class="row">
       <ul class="nav nav-tabs">
         <li role="presentation" id="one"class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-user fa-fw"></i>Home</a></li>
-        <li role="presentation"id="two"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-user-plus"></i> Profile</a></li>
+        <li role="presentation"id="two"><a href="#profile" aria-controls="profile" role="tab"><i class="fa fa-user-plus" ></i> Profile</a></li>
         <li role="presentation" id='three'><a href="#status" class="hiddd" role="tab" data-toggle="tab">Status</a></li>
         <li role="presentation" id="exit" style="float:right;"> <a href="<?=base_url()?>Login/logout" >Logout</a></li>
       </ul>
@@ -36,7 +36,7 @@
                     ?>
                   <div class="well submit-msg" style="background-color:green;color:white;margin-top:12px">
                       <u>YOU HAVE SUCCESSFULLY SUBMITTED THE FORM</u>
-                      <span style="color:black"> PROCEED TO THE NEXT PAGE <button type="button" class="btn btn-info" data-color="info" onClick="javascript:next()"data-target="#profile" tabindex="2">NEXT</button></span>
+                      <span name="enter" style="color:black"> PROCEED TO THE NEXT PAGE <button type="button" class="btn btn-info" data-color="info" onClick="javascript:next()"data-target="#profile" tabindex="2">NEXT</button></span>
                   </div>
                 <?php else:?>
                   <?php 
@@ -49,7 +49,7 @@
                   <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-6 form-group">
                       <label for="first_name">FIRST NAME</label><span class="fa fa-asterisk"></span>
-                      <input type="text" name="fname" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1"  <?php if(isset($set)): ?> disabled value=<?=$value['fname']?> <?php endif;?>>
+                      <input type="text" name="fname" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1" required <?php if(isset($set)): ?> disabled value=<?=$value['fname']?> <?php endif;?>>
                       
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 form-group">
@@ -61,23 +61,23 @@
                   <div class="row">
                     <div class="col-xs-6 form-group">
                       <label for="dob">Date of birth</label>
-                      <input name="dob" class="form-control input-lg datepicker" placeholder="Date of birth" tabindex="3" type="text" <?php if(isset($set)): ?> disabled value=<?=$value['dob']?><?php endif;?>>
+                      <input name="dob" class="form-control input-lg datepicker" placeholder="Date of birth" tabindex="3" type="text" required<?php if(isset($set)): ?> disabled value=<?=$value['dob']?><?php endif;?>>
                     </div>
                     
                     <div class="col-xs-6 form-group">
                       <label for="quali">Qualification</label>
-                      <input type="text" name="qualification" id="quali" class="form-control input-lg" placeholder="Academic &amp; Technical Qualification" tabindex="4" <?php if(isset($set)): ?> disabled value=<?=$value['qualification']?><?php endif;?>>
+                      <input type="text" name="qualification" id="quali" class="form-control input-lg" placeholder="Academic  &amp; Technical Qualification" required tabindex="4" <?php if(isset($set)): ?> disabled value=<?=$value['qualification']?>  <?php endif;?>>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-6 form-group">
                       <label for="appointment">Date of continuous Appointment</label><span class="fa fa-asterisk"></span>
-                      <input type="text" name="date_presentgrade" id="appointment" class="form-control input-lg datepicker" placeholder="Date of continuous Appointment" tabindex="5"  <?php if(isset($set)): ?> disabled value=<?=$value['date_presentgrade']?><?php endif;?>>
+                      <input type="text" name="date_presentgrade" id="appointment" class="form-control input-lg datepicker" required placeholder="Date of continuous Appointment" tabindex="5"  <?php if(isset($set)): ?> disabled value=<?=$value['date_presentgrade']?><?php endif;?>>
                       
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 form-group">
                       <label for="grade">GRADE</label>
-                      <input type="text" name="grade" id="grade" class="form-control input-lg" placeholder="GRADE" tabindex="6"<?php if(isset($set)): ?> disabled value=<?=$value['grade']?> <?php endif;?>>
+                      <input type="text" name="grade" id="grade"  class="form-control input-lg" placeholder="GRADE" tabindex="6"<?php if(isset($set)): ?> disabled value=<?=$value['grade']?> <?php endif;?>>
                       
                     </div>
                   </div>
@@ -99,13 +99,13 @@
                     <div class="col-xs-6 col-sm-6 col-md-6">
                       <div class="form-group">
                         <label for="appoint">Date of Appointment thereto</label>
-                        <input type="text" name="date_presentpost" id="appoint" class="form-control input-lg datepicker" placeholder="Date of Appointment" tabindex="8"<?php if(isset($set)): ?> disabled value=<?=$value['date_presentpost']?> <?php endif;?>>
+                        <input type="text" name="date_presentpost" id="appoint" class="form-control input-lg datepicker" required placeholder="Date of Appointment" tabindex="8"<?php if(isset($set)): ?> disabled value=<?=$value['date_presentpost']?> <?php endif;?>>
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="abs">Period of Absence from duty(on training leave etc.) during the year</label>
-                    <input name="period_absence" id="abs" class="form-control input-lg" placeholder="Period of Absence from duty(Duration)" tabindex="9" type="text" <?php if(isset($set)): ?> disabled value=<?=$value['period_absence']?> <?php endif;?>>
+                    <input name="period_absence" id="abs" class="form-control input-lg" placeholder="Period of Absence from duty(Duration)" required tabindex="9" type="text" <?php if(isset($set)): ?> disabled  value=<?=$value['period_absence']?> <?php endif;?>>
                   </div>
 
                   <div class="row container fomr-group" id="training">UNDERGONE TRAINING
@@ -138,7 +138,7 @@
           <div  style="margin-top:15px;"><h2>To be filled in by the Officer reported upon</h2> </div>
           <hr class="colorgraph">
           
-            <?=form_open(base_url()."Home/insert_work_infos/");?>
+            <?=form_open(base_url()."Home/insert_work_infos/","id=\"work_info\"");?>
               <?php if(isset($set2)):?>
                     <?php 
                       for($i=0,$counter=0;$i<10;$i++){
@@ -170,7 +170,7 @@
                 <li>
                   <div class="panel panel-warning">
                     <div class="panel-heading">  Breif Description of duties</div>
-                    <textarea name="description"class=" form-control" rows="5"<?php if(isset($set2)) echo "disabled"; ?>><?php if(isset($set2)) echo htmlspecialchars($value2['description']); ?></textarea>
+                    <textarea name="description"class=" form-control" rows="5" required<?php if(isset($set2)) echo "disabled"; ?>><?php if(isset($set2)) echo htmlspecialchars($value2['description']); ?></textarea>
                   </div>
                 </li>
                 <!-- 1st item -->
@@ -191,8 +191,8 @@
                       
                       <?php for($i=0;$i<=$counter;$i++): ?>
                         <tr>
-                          <td><input class="stop col-md-4 col -sm- 3 col-xs-3 form-control" type="text" name="target[]" id="target[]"  <?php if(isset($set2)):?>disabled value=<?=$value2["target$i"];?><?php endif;?>></td>
-                          <td><input class="stop col-md-7 col-sm-8 col-xs-8 form-control" type="text" name="achievement[]" id="achievement[]" <?php if(isset($set2)):?>disabled value=<?=$value2["achievement$i"];?><?php endif;?>></td>
+                          <td><input class="stop col-md-4 col -sm- 3 col-xs-3 form-control" type="text" name="target[]" id="target[]" required <?php if(isset($set2)):?>disabled value=<?=$value2["target$i"];?><?php endif;?>></td>
+                          <td><input class="stop col-md-7 col-sm-8 col-xs-8 form-control" type="text" name="achievement[]" id="achievement[]" required <?php if(isset($set2)):?>disabled value=<?=$value2["achievement$i"];?><?php endif;?>></td>
                           <td><i class="fa fa-plus-square fa-2x add_field"></i></td>
                         </tr>
                       <?php endfor; ?>
@@ -206,7 +206,7 @@
                   <ol type="A">
                     <li>
                       <label class="control-label">
-                        Please state briefly, the shortfalls with reference to the targets/objectives/goals referred to in <a href="#">ITEM 2</a>.Please specify the constraints, if any, in achieving the targets.    <textarea class="form-control" name="shortfalls" rows="5" <?php if(isset($set2)) echo "disabled"; ?>><?php if(isset($set2)) echo htmlspecialchars($value2['shortfalls']); ?></textarea>
+                        Please state briefly, the shortfalls with reference to the targets/objectives/goals referred to in <a href="#">ITEM 2</a>.Please specify the constraints, if any, in achieving the targets.    <textarea class="form-control" name="shortfalls" rows="5" required <?php if(isset($set2)) echo "disabled"; ?>><?php if(isset($set2)) echo htmlspecialchars($value2['shortfalls']); ?></textarea>
                       </label>
                     </li>
                     <li>
@@ -244,12 +244,17 @@
           <?=form_close()?>
         </div>
          <div role="tabpanel" class="tab-pane fade  hiddd" id="status">
-              <form id="stats" style="margin-top:5%; margin-left:50%;">
-                                  
-                      <button type="submit" class='btn btn-large btn-warning '> STATUS</button>
-                      <div id='stat' style="color:black; font-weight:bold; margin-left:-5%; margin-top:-10%"> </div>
-               
+              <form id="stats" style="margin-top:5%; margin-left:40%;">
+                      
+                      <div>            
+                        <button type="button" style="margin-right:3%"onclick="javascript:back2(); " data-toggle="tab" class="glyphicon glyphicon-arrow-left" data-target="#profile">BACK</button>
+                         <button type="submit" class='btn btn-large btn-warning '> STATUS</button>
+                         
+                      </div>
+                      <div id='stat' style="color:black; font-weight:bold; margin-left:-3%; margin-top:-8%"> </div>
+                      
               </form>
+
          </div>
       </div>
     </div>
@@ -263,7 +268,17 @@ $(document).ready(function() {
       changeMonth: true,
       changeYear: true
     });
+    // $("#two").children().attr("data-toggle");
+
   });
+$('#personal').on('submit',function(e){
+  alert("Once Submitted Can't Be Proceed");
+  return confirm("Are you sure you want to Submit the form?");
+});
+$('#work_info').on('submit',function(e){
+  alert("Once Submitted Can't Be Proceed");
+  return confirm("Are you sure you want to Submit the form?");
+});
 $("#stats").on('submit',function(e){
   e.preventDefault();
       var id="<?=$_SESSION['officer_id']?>";
@@ -274,7 +289,7 @@ $("#stats").on('submit',function(e){
          data:{'officer_id':id}, //POST parameter to be sent with the tournament id
          success: function(resp) { //When the request is successfully completed, this function will be executed
          //Activate and fill in the matches list
-         alert(resp);
+         // alert(resp);
          resp=parseInt(resp);
          //alert(resp);
          switch(resp){

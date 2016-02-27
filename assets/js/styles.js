@@ -42,13 +42,18 @@ function next(){
   document.getElementById("one").className='';
   document.getElementById("two").className="active";
 	document.getElementsByClassName("btn")[0]. setAttribute("data-toggle",'tab');
+  document.getElementById("two").childNodes[0].setAttribute("data-toggle",'tab');
 }
 function back(){
     document.getElementById("two").className='';
   document.getElementById("one").className="active";
     
 }
-
+function back2(){
+    document.getElementById("two").className='active';
+  document.getElementById("three").className='';
+    
+}
 $(document).ready(function(){
    if($('#yestrain').is(':checked')) { 
       $("#hidden-display").css("display",'block');  

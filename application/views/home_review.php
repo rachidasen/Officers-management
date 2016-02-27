@@ -283,6 +283,8 @@ $(".rep").click(function(){
             //alert('success');
             console.log('success');  
             console.log(resp);
+
+          // $("#two > a").attr("data-toggle","tab");
           }
           //$("#show").html(resp);
         },
@@ -384,7 +386,9 @@ $('#clickprofile').click(function(){
            $(".submit-msg").hide();
            $("#b2,#b1").hide();
            $(".hiddd").hide();
+           $("#two > a").attr("data-toggle","tab");
          }
+
         // alert(resp);
            //alert('success');
            console.log('success');  
