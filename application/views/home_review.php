@@ -122,6 +122,19 @@
         </div>
       </div>
     </div>
+    <div class="modal modal-wide fade" id="part-4" >
+      <div class="modal-dialog" style="min-width:60%">
+        <!-- Modal content -->
+        <div class="modal-content" >
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title"></h4>
+          </div>
+          <div class="modal-body" id="showgen">
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="container">   
@@ -136,20 +149,20 @@
         </li>
         <br>
         <li>
-          <div style="position:relative; padding-right:50px;">Do you agree with the assessment made by the <em><strong><a href="#part-3   " data-toggle="modal" style="color:black;">reporting officer</a></strong></em> with respect to the work output and the various attributes in  <a href="#part-3" style="color:green;" data-toggle="modal" class="rep" title="Reporting_officer-report">PART-3</a>&amp; <a href="#" class="rep">Part-4</a> <b>?</b> Do you agree with the assessment of reporting officer in respect to extraordinary achievements/ significant failures of the officer reported upon? (Ref. <a href="#" class="rep">Part-3(A) (iv) </a>and <a href="#" class="rep">Part-4(5)</a> 
-            <div class="report" data-toggle="modal" data-target="#part-3" class="reporting-officer rep">         VIEW
+          <div style="position:relative; padding-right:50px;">Do you agree with the assessment made by the <em><strong><a href="#part-3   " data-toggle="modal" style="color:black;">reporting officer</a></strong></em> with respect to the work output and the various attributes in  <a href="#part-3" style="color:green;" data-toggle="modal" class="rep" title="Reporting_officer-report">PART-3</a>&amp; <a href="#part-4" data-toggle="modal" class="repgen" title="PART-4">Part-4</a> <b>?</b> Do you agree with the assessment of reporting officer in respect to extraordinary achievements/ significant failures of the officer reported upon? (Ref. <a href="#part-3" class="rep" data-toggle="modal">Part-3(A) (iv) </a>and <a href="#part-4" class="repgen" data-toggle="modal">Part-4(5)</a> 
+            <!--div class="report" data-toggle="modal" data-target="#part-3" class="reporting-officer rep">         VIEW
               REPORTING-OFFICER
               REPORTT
-            </div>
+            </div-->
 
           </div>
           <small>(In case you do not agree with any of the numerical assessments of attributes please record your assessments on the column provided for you in that section and initial your entries)
           </small>
           <br>
-          <input type="radio" name="agree" id="yes" required value=0 hidden onclick="yesorno(this,7)">
+          <input type="radio" name="agree" id="yes" value=0 hidden onclick="yesorno(this,7)">
           <label for="yes" class="switch switch--on">Yes</label>
 
-          <input type="radio" name="agree" id="no" value=1 hidden required onclick="yesorno(this,7)">
+          <input type="radio" name="agree" id="no" value=1 hidden onclick="yesorno(this,7)">
           <label for="no" class="switch switch--off">No</label>
 
 
@@ -157,7 +170,7 @@
         <li style="display:none;">
           <div class="form-group" >
             <label for="disagree">In case of disagreement,please specify the reasons,Is there anything you wish to modify or add</label>
-            <textarea rows=5 class="form-control disagree" required name="rdisagreement_detail" >  </textarea>
+            <textarea rows=5 class="form-control disagree" name="rdisagreement_detail" >  </textarea>
           </div>
         </li>
 
@@ -296,6 +309,36 @@ $(".rep").click(function(){
        }
      });
 });
+$(".repgen").click(function(){
+ var id = $('#officer-id').val();
+ var page='home_report2.php';
+ $.ajax({
+   type: 'POST',
+         url: '<?php echo base_url();?>Home/get_reporting_officer', //We are going to make the request to the method "list_dropdown" in the match controller
+         data:{'id':id,'page':page}, //POST parameter to be sent with the tournament id
+         success: function(resp) { //When the request is successfully completed, this function will be executed
+         //Activate and fill in the matches list
+         if(id==="----")
+          $("#show-profile").html("<div id='no-officer'> No officer Selected </div>");
+        else{
+         $("#showgen").html(resp);
+         $(".rem").remove();
+            //alert('success');
+            console.log('success');  
+            console.log(resp);
+
+          // $("#two > a").attr("data-toggle","tab");
+          }
+          //$("#show").html(resp);
+        },
+         error: function(resp) { //When the request is successfully completed, this function will be executed
+         //Activate and fill in the matches list
+         //With the ".html()" method we include the html code returned by AJAX into the matches list
+         console.log('error');
+         console.log(arguments);
+       }
+     });
+});
 $("#officer-id").change(function(){
    var id=$("#officer-id").val();
    $("#fill").hide();
@@ -331,6 +374,9 @@ $("#officer-id").change(function(){
     
   }
 });
+$("#yes").click(function(){
+  $("#put-report").remove();
+})
 $("#no").click(function(){
  var id = $('#officer-id').val();
  var page='rep.php';

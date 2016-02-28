@@ -1,4 +1,12 @@
+<style>
+body {
+  background: -webkit-linear-gradient(to bottom, rgba(119, 89, 131, 0.89) 50%, rgba(100, 33, 33, 0.97)) !important;
+  background: -moz-linear-gradient(to bottom, rgba(119, 89, 131, 0.89) 50%, rgba(100, 33, 33, 0.97)) !important;
+  background: -ms-linear-gradient(to bottom, rgba(119, 89, 131, 0.89) 50%, rgba(100, 33, 33, 0.97)) !important;
+  background: -o-linear-gradient(to bottom, rgba(119, 89, 131, 0.89) 50%, rgba(100, 33, 33, 0.97)) !important;
 
+}
+</style>
   <div class="row">
     <script src="<?=base_url("assets/js/angular.js")?>"></script> 
     <script src="<?=base_url("assets/js/bootstrap-datepicker.js")?>"></script>

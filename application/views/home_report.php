@@ -77,7 +77,7 @@
 
 <div class="container-fluid" id= "detail">
  <?php $attributes = array('id' => 'myform'); ?>
- <?=form_open(base_url()."Home/reporting_officer/", $attributes);?>
+  <?=form_open(base_url()."Home/reporting_officer/", $attributes);?>
  <div class="panel panel-info">
    <div class="panel-heading" data-target="#part3"id="part-3head" data-toggle="collapse">
     <h3 class="panel-title">
@@ -974,14 +974,16 @@
       <textarea class="form-control" name="training"></textarea>
     </li>
     <li>
+      <label>Integrity</label>
+      <textarea class="form-control" name="integrity"></textarea>
+    </li>
+    <li>
       <label>State of health</label>
       <textarea class="form-control" name="health"></textarea>
     </li>
-    <li><label>Integrity</label>
-      <textarea rows=6  class="form-control"></textarea>
-    </li>
+    
     <li>
-      <label>Pen Picture by Reporting Officer (in about 100 words ) on the overall qualities of the officer including areas of strength and lesser strength, extraordinary achievements, significant failures (ref 3(A) &amp; 3 (B) of part-2) and attitude towards waeker sections</label><textarea  rows=6 class="form-control" name="reporting_officer_pen_picture"></textarea>
+      <label>Pen Picture by Reporting Officer (in about 100 words ) on the overall qualities of the officer including areas of strength and lesser strength, extraordinary achievements, significant failures (ref 3(A) &amp; 3 (B) of part-2) and attitude towards waeker sections</label><textarea  rows=6 class="form-control" name="reporting_officer_penpicture"></textarea>
     </li>
     <li><label>Overall numerical grading on the basis of weightage given in sectionA, B and C in part-3 of the Report</label>
       <input type="number" readonly id="overall_numerical_grading" name="overall_numerical_grading"<?php if(isset($set)): ?> value=<?=(int)$overall_numerical_grading;?> <?php endif;?>>
@@ -1048,6 +1050,7 @@
     var officer_id = $('#officer-id').val();
     if($("#officer-id").val()==="----"){ 
       $("#myform").hide();
+      $("#msg").show();
       $("header").append("<div id='msg-inf'>Currently no option selected</div>")
     }
     else{
@@ -1059,7 +1062,7 @@
              $("#msg-inf").remove();
             //alert(officer_id);
                 if(resp==0){
-                  //form hasn't been submitted
+                  //form hasn'tYo been submitted
                   
                   console.log("inside 0");
                   $('#msg').hide();
@@ -1113,8 +1116,8 @@
   });
 
   $('#myform').on('submit',function(e){
-        alert("Once Submitted Can't Be Proceed");
-        if(!confirm("Are you sure you want to proceed?"))
+        alert("Once Submitted Can't Be EDITED");
+        if(confirm("Are you sure you want to proceed?"))
         {
           e.preventDefault(); // <------this will restrict the page refresh
           sum1=parseInt($("#plannedwork").val())+parseInt($("#qualityoutput").val()) +parseInt($("#analytical").val()) + parseInt($("#exceptionalwork").val());

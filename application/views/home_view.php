@@ -170,7 +170,7 @@
                 <li>
                   <div class="panel panel-warning">
                     <div class="panel-heading">  Breif Description of duties</div>
-                    <textarea name="description"class=" form-control" rows="5" required<?php if(isset($set2)) echo "disabled"; ?>><?php if(isset($set2)) echo htmlspecialchars($value2['description']); ?></textarea>
+                    <textarea name="description"class=" form-control" rows="5" required <?php if(isset($set2)) echo "disabled"; ?>><?php if(isset($set2)) echo htmlspecialchars($value2['description']); ?></textarea>
                   </div>
                 </li>
                 <!-- 1st item -->
