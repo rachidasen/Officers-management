@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 01, 2015 at 07:58 PM
+-- Generation Time: Feb 29, 2016 at 12:43 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.5.24
 
@@ -32,21 +32,30 @@ CREATE TABLE IF NOT EXISTS `officers` (
   `officer_id` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `officer_type` enum('general_officer','reporting_officer','reviewing_officer') NOT NULL,
-  `cadre` varchar(255) DEFAULT NULL,
+  `cadre` varchar(255) NOT NULL,
   `yearreport` year(4) NOT NULL,
   `set` int(11) NOT NULL DEFAULT '-1'
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `officers`
 --
 
 INSERT INTO `officers` (`name`, `id`, `officer_id`, `password`, `officer_type`, `cadre`, `yearreport`, `set`) VALUES
-('', 27, 'ab1', 'ab1', 'general_officer', '', 0000, 1),
-('', 28, 'ab2', 'ab2', 'general_officer', '', 0000, 1),
-('', 29, 'ab3', 'ab3', 'general_officer', '', 0000, 1),
-('', 30, 'rep1', 'rep1', 'reporting_officer', NULL, 0000, -1),
-('', 31, 'rev1', 'rev1', 'reviewing_officer', NULL, 0000, -1);
+('', 1, 'rev1', 'v1re', 'reviewing_officer', '', 0000, -1),
+('ab1', 2, 'ab1', 'b1ab1', 'general_officer', '', 0000, 1),
+('', 3, 'ab2', 'ab2', 'general_officer', '', 0000, -1),
+('', 4, 'ab3', 'ab3', 'general_officer', '', 0000, 1),
+('', 5, 'ab4', 'ab4', 'general_officer', '', 0000, -1),
+('', 6, 'ab5', 'ab5', 'general_officer', '', 0000, 1),
+('', 7, 'ab6', 'ab6', 'general_officer', '', 0000, 1),
+('', 8, 'ab7', 'ab7', 'general_officer', '', 0000, 1),
+('', 9, 'rep1', 'rep1', 'reporting_officer', '', 0000, 1),
+('', 10, 'rep2', 'rep2', 'reporting_officer', '', 0000, 1),
+('', 11, 'rep3', 'rep3', 'reporting_officer', '', 0000, -1),
+('', 12, 'rev2', 'rev2', 'reviewing_officer', '', 0000, -1),
+('tpo1', 13, 'tpo1', 'tpo1', 'general_officer', '', 2015, 1),
+('', 15, '1', '1', 'general_officer', '', 0000, -1);
 
 -- --------------------------------------------------------
 
@@ -58,13 +67,13 @@ CREATE TABLE IF NOT EXISTS `personal_datas` (
   `id` int(11) NOT NULL,
   `fname` varchar(255) NOT NULL,
   `lname` varchar(255) NOT NULL,
-  `dob` date NOT NULL,
+  `dob` char(11) NOT NULL,
   `qualification` varchar(255) NOT NULL,
-  `date_presentgrade` date NOT NULL,
+  `date_presentgrade` char(11) NOT NULL,
   `grade` varchar(255) NOT NULL,
   `present_post` varchar(255) NOT NULL,
-  `date_presentpost` date NOT NULL,
-  `period_absence` date NOT NULL,
+  `date_presentpost` char(11) NOT NULL,
+  `period_absence` varchar(255) NOT NULL,
   `training` text NOT NULL,
   `set` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -74,7 +83,12 @@ CREATE TABLE IF NOT EXISTS `personal_datas` (
 --
 
 INSERT INTO `personal_datas` (`id`, `fname`, `lname`, `dob`, `qualification`, `date_presentgrade`, `grade`, `present_post`, `date_presentpost`, `period_absence`, `training`, `set`) VALUES
-(27, 'hello', 'ksafdjkl', '0000-00-00', 'fdsaf', '0000-00-00', 'fsda', 'saf', '0000-00-00', '0000-00-00', 'faasdf', 1);
+(2, 'Raghib', 'Ahsan', '06/12/2010', 'hello', '02/05/2016', 'teacher', 'CE', '02/24/2016', '3 Months', 'klfjsda', 1),
+(3, 'abtwo', '', '0000-00-00', '', '0000-00-00', '', '', '0000-00-00', '0000-00-00', '', 1),
+(4, 'absix', '', '02/12/2016', 'fadsjk', '02/09/2016', '', 'DG', '02/17/2016', 'adskfj', '', 1),
+(5, 'ab', '', '0000-00-00', '', '0000-00-00', '', '', '0000-00-00', '0000-00-00', '', 1),
+(7, 'absix', '', '0000-00-00', '', '0000-00-00', '', '', '0000-00-00', '0000-00-00', '', 1),
+(15, 'Raghib', '', '02/10/2016', 'B-TECH', '02/04/2016', '', 'DG', '02/10/2016', '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -84,7 +98,7 @@ INSERT INTO `personal_datas` (`id`, `fname`, `lname`, `dob`, `qualification`, `d
 
 CREATE TABLE IF NOT EXISTS `reportingofficers_part3` (
   `reporting-officer-id` int(11) NOT NULL,
-  `id` varchar(255) NOT NULL,
+  `id` int(11) NOT NULL,
   `plannedwork` int(11) NOT NULL,
   `qualityoutput` int(11) NOT NULL,
   `analytical` int(11) NOT NULL,
@@ -112,10 +126,22 @@ CREATE TABLE IF NOT EXISTS `reportingofficers_part3` (
   `public_relation` mediumtext NOT NULL,
   `training` mediumtext NOT NULL,
   `health` mediumtext NOT NULL,
-  `reporting_officer-pen-picture` longtext NOT NULL,
-  `overall_numerical-grading` int(1) NOT NULL,
+  `integrity` text NOT NULL,
+  `reporting_officer_penpicture` longtext NOT NULL,
+  `overall_numerical_grading` int(1) NOT NULL,
   `set` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `reportingofficers_part3`
+--
+
+INSERT INTO `reportingofficers_part3` (`reporting-officer-id`, `id`, `plannedwork`, `qualityoutput`, `analytical`, `exceptionalwork`, `overall_workoutput`, `attitudetowork`, `responsibility`, `discipline`, `communication`, `leadership`, `teamspirit`, `timeschedule`, `inter_personal`, `personality`, `overall_personalattributes`, `Knowledgeofrules`, `strategic`, `decision`, `coordination`, `subordinates`, `handlingproblems`, `inspection`, `financialpropriety`, `overall_functionalcompetency`, `public_relation`, `training`, `health`, `integrity`, `reporting_officer_penpicture`, `overall_numerical_grading`, `set`) VALUES
+(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '7', '', 0, 0),
+(9, 2, 2, 3, 2, 7, 4, 5, 6, 3, 1, 4, 7, 8, 8, 8, 6, 8, 8, 8, 8, 8, 8, 8, 8, 8, '8', '8', '88', '', '8', 5, 1),
+(8, 8, 8, 88, 8, 8, 8, 8, 8, 8, 8, 88, 8, 8, 8, 8, 8, 88, 8, 8, 8, 88, 8, 8, 8, 8, '8', '8', '8', '', '88', 8, 8),
+(8, 23, 8, 8, 88, 8, 8, 8, 8, 8, 8, 88, 8, 8, 8, 8, 8, 88, 8, 8, 8, 88, 8, 8, 8, 8, '8', '8', '8', '', '88', 8, 8),
+(35, 37, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 0, 7, 7, 3, 7, 7, 0, 7, 7, 7, 7, 7, 4, '7', '4', '7', '77', '7', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -134,9 +160,12 @@ CREATE TABLE IF NOT EXISTS `reporting_officer` (
 --
 
 INSERT INTO `reporting_officer` (`id`, `reporting-officer-id`, `set`) VALUES
-('ab1', 'rep1', 0),
-('ab2', 'rep1', 0),
-('ab3', 'rep1', 0);
+('ab1', 'rep1', 2),
+('ab3', 'rep2', 0),
+('ab5', 'rep3', 0),
+('ab6', 'rep1', 0),
+('ab7', 'rep2', 0),
+('tpo1', 'rep1', 0);
 
 -- --------------------------------------------------------
 
@@ -182,8 +211,7 @@ CREATE TABLE IF NOT EXISTS `reviewingofficers` (
 --
 
 INSERT INTO `reviewingofficers` (`review_id`, `officer_id`, `LOS`, `agree`, `rdisagreement_detail`, `rpen_pic`, `rplannedwork`, `rqualityoutput`, `ranalytical`, `rexceptionalwork`, `overall_workoutput`, `rattitudetowork`, `rresponsibility`, `rdiscipline`, `rcommunication`, `rleadership`, `rteamspirit`, `rtimeschedule`, `rinter_personal`, `rpersonality`, `overall_personalattributes`, `rKnowledgeofrules`, `rstrategic`, `rdecision`, `rcoordination`, `rsubordinates`, `rhandlingproblems`, `rinspection`, `rfinancialpropriety`, `overall_functionalcompetency`) VALUES
-('rev1', 'ab1', 34214, 1, '  df', '8', 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8),
-('rev1', 'ab2', 23, 1, '  fsdfsd', 'saffsd', 8, 0, 8, 8, 1, 8, 8, 8, 8, 8, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 4);
+('rev1', 'ab1', 10, 1, '  ', 'st', 2, 2, 2, 4, 4, 2, 2, 3, 3, 3, 3, 8, 3, 2, 6, 1, 2, 3, 7, 4, 2, 1, 2, 8);
 
 -- --------------------------------------------------------
 
@@ -202,7 +230,8 @@ CREATE TABLE IF NOT EXISTS `reviewing_officer` (
 --
 
 INSERT INTO `reviewing_officer` (`review_officer-id`, `reporting-officer-id`, `set`) VALUES
-('rev1', 'rep5', 0);
+('rev1', 'rep1', 0),
+('rev1', 'rep2', 0);
 
 -- --------------------------------------------------------
 
@@ -238,6 +267,15 @@ CREATE TABLE IF NOT EXISTS `work_infos` (
   `date_of_filling` date NOT NULL,
   `set2` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `work_infos`
+--
+
+INSERT INTO `work_infos` (`id`, `description`, `target0`, `target1`, `target2`, `target3`, `target4`, `target5`, `target6`, `target7`, `target8`, `target9`, `achievement0`, `achievement1`, `achievement2`, `achievement3`, `achievement4`, `achievement5`, `achievement6`, `achievement7`, `achievement8`, `achievement9`, `shortfalls`, `higher_achievement`, `date_of_filling`, `set2`) VALUES
+(2, 'A', 'a', 'a', '', '', '', '', '', '', '', '', 'a', 'a', '', '', '', '', '', '', '', '', 'a', '', '0000-00-00', 1),
+(4, 'jfdlkj', 'klajsdflk', '', '', '', '', '', '', '', '', '', 'lfkdsajlfk', '', '', '', '', '', '', '', '', '', 'jdskalfj', 'ksdfjlk', '0000-00-00', 1),
+(15, 'gkhkj', 'jhgjhgjk', '', '', '', '', '', '', '', '', '', 'fjfkjfj', '', '', '', '', '', '', '', '', '', 'ghjgjjkf', 'hglhglk', '0000-00-00', 1);
 
 --
 -- Indexes for dumped tables
@@ -305,7 +343,7 @@ ALTER TABLE `work_infos`
 -- AUTO_INCREMENT for table `officers`
 --
 ALTER TABLE `officers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
