@@ -143,7 +143,7 @@ public function insert_personal(){
                'label' => 'Name',
                'rules' => 'alpha',
             )
-      );
+      );  
 
       $this->form_validation->set_rules($config);
       //$this->form_validation->set_rules('description','Description','alpha_dash|alpha_numeric_spaces');
@@ -154,6 +154,8 @@ public function insert_personal(){
       }
       else{
         echo "your form has been sent";
+        unset($_POST['choice']);
+        // var_dump($_POST);
          $this->Login_model->insert_personaldatas($_POST);
         echo "your response has been recorded";
          redirect('home/one');

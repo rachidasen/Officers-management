@@ -11,7 +11,7 @@
    <link rel="stylesheet" href="<?= base_url("assets/css/font-awesome.min.css");?>" / > 
     <script type="text/javascript" src="<?=base_url("assets/js/jquery-1.11.3.js")?>"></script>
     <script src="<?=base_url("assets/js/bootstrap.min.js")?>"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="<?=base_url("assets/js/jquery-ui.js")?>"></script>
   
 
       <!--  <script src="<?=base_url("assets/js/angular.js")?>"></script> -->

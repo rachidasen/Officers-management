@@ -61,7 +61,7 @@
                   <div class="row">
                     <div class="col-xs-6 form-group">
                       <label for="dob">Date of birth</label>
-                      <input name="dob" class="form-control input-lg datepicker" placeholder="Date of birth" tabindex="3" type="text" required<?php if(isset($set)): ?> disabled value=<?=$value['dob']?><?php endif;?>>
+                      <input name="dob" class="form-control input-lg datepicker" placeholder="DOB (DD/MM/YYYY)" tabindex="3" type="text" required<?php if(isset($set)): ?> disabled value=<?=$value['dob']?><?php endif;?>>
                     </div>
                     
                     <div class="col-xs-6 form-group">
@@ -72,7 +72,7 @@
                   <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-6 form-group">
                       <label for="appointment">Date of continuous Appointment</label><span class="fa fa-asterisk"></span>
-                      <input type="text" name="date_presentgrade" id="appointment" class="form-control input-lg datepicker" required placeholder="Date of continuous Appointment" tabindex="5"  <?php if(isset($set)): ?> disabled value=<?=$value['date_presentgrade']?><?php endif;?>>
+                      <input type="text" name="date_presentgrade" id="appointment" class="form-control input-lg datepicker" required placeholder="Date of continuous Appointment(DD/MM/YYYY)" tabindex="5"  <?php if(isset($set)): ?> disabled value=<?=$value['date_presentgrade']?><?php endif;?>>
                       
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 form-group">
@@ -109,8 +109,8 @@
                   </div>
 
                   <div class="row container fomr-group" id="training">UNDERGONE TRAINING
-                    <label class="radio-inline" for="yestrain"><input type="radio" id="yestrain" name="" tabindex="10" onclick="javascript:yesorno(this,5);" value="1"<?php if(isset($set)): ?> disabled <?=$response_yes;?> <?php endif;?>>yes</label>
-                    <label class="radio-inline" for="inputtrain"><input type="radio" value="0" id="notrain" name=""onclick="javascript:yesorno(this,5);"value="0" tabindex="10"<?php if(isset($set)): ?> disabled <?=$response_no;?><?php endif;?>>no</label>
+                    <label class="radio-inline" for="yestrain"><input type="radio" id="yestrain" name="choice" tabindex="10" onclick="javascript:yesorno(this,5);" value="1"<?php if(isset($set)): ?> disabled <?=$response_yes;?> <?php endif;?>>yes</label>
+                    <label class="radio-inline" for="inputtrain"><input type="radio" value="0" id="notrain" name="choice"onclick="javascript:yesorno(this,5);"value="0" tabindex="10"<?php if(isset($set)): ?> disabled <?=$response_no;?><?php endif;?>>no</label>
                     <input style="display:none;" type="text-area" id="hidden-display" class="form-control input-lg" name="training" placeholder="specify the training"<?php if(isset($set)): ?> disabled value=<?=$value['training']?><?php else: ?> checked <?php endif;?>>
                   </div>
                   <div class="row">
@@ -227,7 +227,7 @@
                   </div>
 
                   <div class="form-group" style="display:none">
-                    <input type="text" style="width:150px;" class="form-control input-group" <?php if(isset($set2)): ?> disabled value=<?=$value2['date_of_filling'];?><?php endif;?> placeholder=" Date of filling" style="float:right"  onfocus="(this.type='date')" name="date_of_filling" id="date_of_filling">
+                    <input type="text" style="width:150px;" class="form-control input-group datepicker" <?php if(isset($set2)): ?> disabled value=<?=$value2['date_of_filling'];?><?php endif;?> placeholder=" Date of filling" style="float:right"  name="date_of_filling" id="date_of_filling">
                   </div>
 
                 </li>
@@ -247,7 +247,7 @@
               <form id="stats" style="margin-top:5%; margin-left:40%;">
                       
                       <div>            
-                        <button type="button" style="margin-right:3%"onclick="javascript:back2(); " data-toggle="tab" class="glyphicon glyphicon-arrow-left" data-target="#profile">BACK</button>
+                        
                          <button type="submit" class='btn btn-large btn-warning '> STATUS</button>
                          
                       </div>
@@ -267,6 +267,7 @@ $(document).ready(function() {
     $( ".datepicker" ).datepicker({
       changeMonth: true,
       changeYear: true
+      //yearRange: "c-30:+0"
     });
     // $("#two").children().attr("data-toggle");
 
