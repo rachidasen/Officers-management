@@ -72,7 +72,8 @@
                   <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-6 form-group">
                       <label for="appointment">Date of continuous Appointment</label><span class="fa fa-asterisk"></span>
-                      <input type="text" name="date_presentgrade" id="appointment" class="form-control input-lg datepicker" required placeholder="Date of continuous Appointment(MM/DD/YYYY)" tabindex="5"  <?php if(isset($set)): ?> disabled value=<?=$value['date_presentgrade']?><?php endif;?>>
+                      <input type="text" name="date_presentgrade" id="appointment" class="form-control input-lg datepicker" required placeholder="Date of continuous Appointment(
+                      )" tabindex="5"  <?php if(isset($set)): ?> disabled value=<?=$value['date_presentgrade']?><?php endif;?>>
                       
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 form-group">
@@ -86,6 +87,7 @@
                       <div class="form-group">
                         <label>Present Post</label>
                         <select required <?php if(isset($set)): ?> disabled <?php endif;?> name="present_post" id="post" class="form-control input-lg" tabindex="7">
+                          <option disabled selected> <?php if(isset($set)) echo $value['present_post']; else echo "select post";?></option> 
                           <option value="DG">DG</option>
                           <option value="ADG">ADG</option>
                           <option value="CE">CE</option>
@@ -111,7 +113,8 @@
                   <div class="row container fomr-group" id="training">UNDERGONE TRAINING
                     <label class="radio-inline" for="yestrain"><input type="radio" id="yestrain" name="choice" tabindex="10" onclick="javascript:yesorno(this,5);" value="1"<?php if(isset($set)): ?> disabled <?=$response_yes;?> <?php endif;?>>yes</label>
                     <label class="radio-inline" for="inputtrain"><input type="radio" value="0" id="notrain" name="choice"onclick="javascript:yesorno(this,5);"value="0" tabindex="10"<?php if(isset($set)): ?> disabled <?=$response_no;?><?php endif;?>>no</label>
-                    <input style="display:none;" type="text" id="hidden-display" class="form-control input-lg" name="training" placeholder="specify the training"<?php if(isset($set)): ?> disabled value="<?=$value['training']?>"<?php else: ?> checked <?php endif;?>>
+                    <div>
+                    <input style="display:none;" type="text" id="hidden-display" class="form-control input-lg" name="training" placeholder="specify the training"<?php if(isset($set)): ?> disabled value="<?=$value['training']?>"<?php else: ?> checked <?php endif;?>></div>
                   </div>
                   <div class="row">
                     <div class="col-xs-3 col-sm-3 col-md-3">
