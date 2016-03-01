@@ -237,10 +237,10 @@
           },
           error:function(xhr,thrownError){
             console.log(arguments);
-            alert(xhr.status);
-            alert(xhr.responseText);
-            alert(thrownError);
-            alert('error');
+            // alert(xhr.status);
+            // alert(xhr.responseText);
+            // alert(thrownError);
+            // alert('error');
             
           }
         })
@@ -269,7 +269,7 @@
 
         },
         error:function(error){
-          alert(error.responseText);
+          // alert(error.responseText);
           alert('error');
           console.log(arguments);
         }

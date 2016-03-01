@@ -105,13 +105,13 @@
                   </div>
                   <div class="form-group">
                     <label for="abs">Period of Absence from duty(on training leave etc.) during the year</label>
-                    <input name="period_absence" id="abs" class="form-control input-lg" placeholder="Period of Absence from duty(Duration)" required tabindex="9" type="text" <?php if(isset($set)): ?> disabled  value=<?=$value['period_absence']?> <?php endif;?>>
+                    <input name="period_absence" id="abs" class="form-control input-lg" placeholder="Period of Absence from duty(Duration)" tabindex="9" type="text" <?php if(isset($set)): ?> disabled  value="<?=$value['period_absence']?>" <?php endif;?>>
                   </div>
 
                   <div class="row container fomr-group" id="training">UNDERGONE TRAINING
                     <label class="radio-inline" for="yestrain"><input type="radio" id="yestrain" name="choice" tabindex="10" onclick="javascript:yesorno(this,5);" value="1"<?php if(isset($set)): ?> disabled <?=$response_yes;?> <?php endif;?>>yes</label>
                     <label class="radio-inline" for="inputtrain"><input type="radio" value="0" id="notrain" name="choice"onclick="javascript:yesorno(this,5);"value="0" tabindex="10"<?php if(isset($set)): ?> disabled <?=$response_no;?><?php endif;?>>no</label>
-                    <input style="display:none;" type="text-area" id="hidden-display" class="form-control input-lg" name="training" placeholder="specify the training"<?php if(isset($set)): ?> disabled value=<?=$value['training']?><?php else: ?> checked <?php endif;?>>
+                    <input style="display:none;" type="text" id="hidden-display" class="form-control input-lg" name="training" placeholder="specify the training"<?php if(isset($set)): ?> disabled value="<?=$value['training']?>"<?php else: ?> checked <?php endif;?>>
                   </div>
                   <div class="row">
                     <div class="col-xs-3 col-sm-3 col-md-3">
@@ -266,8 +266,9 @@
 $(document).ready(function() {
     $( ".datepicker" ).datepicker({
       changeMonth: true,
-      changeYear: true
-      //yearRange: "c-30:+0"
+      changeYear: true,
+      // yearRange: '1950:2013',
+      yearRange: "c-70:c+10"
     });
     // $("#two").children().attr("data-toggle");
 

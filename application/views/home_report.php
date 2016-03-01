@@ -252,7 +252,7 @@
       <td><b>Overall grading on work output</td>
       <td>
 
-        <input  type="number" readonly class="form-control"  <?php if(isset($set)): ?> value=<?=(int)$overall_workoutput;?> <?php endif;?>style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="overall_workoutput" id="overall_workoutput" >
+        <input  type="number" readonly class="form-control score"  <?php if(isset($set)): ?> value=<?=(int)$overall_workoutput;?> <?php endif;?>style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="overall_workoutput" id="overall_workoutput" >
         
 
 
@@ -614,7 +614,7 @@
       <td><b>Overall Grading on 'Personal Attributes'</td>
       <td>
 
-        <input  type="number" id="overall_personalattributes"  readonly name="overall_personalattributes" <?php if(isset($set)): ?> value=<?=$overall_personalattributes;?> <?php endif;?> class="form-control"   style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;">
+        <input  type="number" id="overall_personalattributes"  readonly name="overall_personalattributes" <?php if(isset($set)): ?> value=<?=$overall_personalattributes;?> <?php endif;?> class="form-control score"   style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;">
         
       </td>
     </tr>
@@ -946,7 +946,7 @@
   <td><b>Overall Grading on 'Functional Competency'</td>
   <td>
 
-   <input type="number"  readonly  class="form-control"   <?php if(isset($set)): ?> value=<?=(int)$overall_functionalcompetency;?> <?php endif;?> style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="overall_functionalcompetency" id="overall_functionalcompetency">
+   <input type="number"  readonly  class="form-control score"   <?php if(isset($set)): ?> value=<?=(int)$overall_functionalcompetency;?> <?php endif;?> style="width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="overall_functionalcompetency" id="overall_functionalcompetency">
    
  </td>
 
@@ -968,25 +968,25 @@
   <div class="panel-body" id="part-4">
     <li>
       <label>Relations with public (wherever applicable)</label>
-      <textarea class="form-control" name="public_relation"></textarea>
+      <textarea class="form-control" name="public_relation" <?php if(isset($set)) echo "disabled"; ?>><?php if(isset($set)) echo htmlspecialchars($public_relation); ?></textarea>
     </li>
     <li><label>Training</label>
-      <textarea class="form-control" name="training"></textarea>
+      <textarea class="form-control" name="training" <?php if(isset($set)) echo "disabled"; ?>><?php if(isset($set)) echo htmlspecialchars($training); ?></textarea>
     </li>
     <li>
       <label>Integrity</label>
-      <textarea class="form-control" name="integrity"></textarea>
+      <textarea class="form-control" name="integrity" <?php if(isset($set)) echo "disabled"; ?>><?php if(isset($set)) echo htmlspecialchars($integrity); ?></textarea>
     </li>
     <li>
       <label>State of health</label>
-      <textarea class="form-control" name="health"></textarea>
+      <textarea class="form-control" name="health" <?php if(isset($set)) echo "disabled"; ?>><?php if(isset($set)) echo htmlspecialchars($health); ?></textarea>
     </li>
     
     <li>
-      <label>Pen Picture by Reporting Officer (in about 100 words ) on the overall qualities of the officer including areas of strength and lesser strength, extraordinary achievements, significant failures (ref 3(A) &amp; 3 (B) of part-2) and attitude towards waeker sections</label><textarea  rows=6 class="form-control" name="reporting_officer_penpicture"></textarea>
+      <label>Pen Picture by Reporting Officer (in about 100 words ) on the overall qualities of the officer including areas of strength and lesser strength, extraordinary achievements, significant failures (ref 3(A) &amp; 3 (B) of part-2) and attitude towards waeker sections</label><textarea  rows=6 class="form-control" name="reporting_officer_penpicture" <?php if(isset($set)) echo "disabled"; ?>><?php if(isset($set)) echo htmlspecialchars($reporting_officer_penpicture); ?></textarea>
     </li>
     <li><label>Overall numerical grading on the basis of weightage given in sectionA, B and C in part-3 of the Report</label>
-      <input type="number" readonly id="overall_numerical_grading" name="overall_numerical_grading"<?php if(isset($set)): ?> value=<?=(int)$overall_numerical_grading;?> <?php endif;?>>
+      <input type="number" readonly class="orm-control score" id="overall_numerical_grading" name="overall_numerical_grading"<?php if(isset($set)): ?> value=<?=(int)$overall_numerical_grading;?> <?php endif;?>>
     </li>
   </div>
 </div>
@@ -1019,14 +1019,17 @@
        url: '<?php echo base_url(); ?>Home/ajax_view', //We are going to make the request to the method "list_dropdown" in the match controller
         data: {'id':officer_id}, //POST parameter to be sent with the tournament id
        success: function(resp) { //When the request is successfully completed, this function will be executed
+
        //Activate and fill in the matches list
        //With the ".html()" method we include the html code returned by AJAX into the matches list
        if(officer_id==="----"){
         $("#show-profile").html("<div id='no-officer'> No officer Selected </div>");
+
           //alert($("#officer-id").length);
         }
         else
        $("#show-profile").html(resp);
+       $("#hidden-display").show();
        $("#exit").hide();
        $("#two > a").attr("data-toggle","tab");
        // $("#two").children().setAttr("data-toggle");
@@ -1114,6 +1117,21 @@
     console.log('empty');
     
   });
+  $('.score').on('click',function(e){
+     //console.log('hello');
+  sum1=parseInt($("#plannedwork").val())+parseInt($("#qualityoutput").val()) +parseInt($("#analytical").val()) + parseInt($("#exceptionalwork").val());
+  $("#overall_workoutput").val(sum1/4);
+  sum2=parseInt($("#attitudetowork").val())+parseInt($("#responsibility").val())+parseInt($("#discipline").val())+parseInt($("#communication").val())+parseInt($("#leadership").val())+parseInt($("#teamspirit").val())+parseInt($("#timeschedule").val())+parseInt($("#inter_personal").val())+parseInt($("#personality").val());
+  $("#overall_personalattributes").val(sum2/9);
+  sum3=parseInt($("#Knowledgeofrules").val())+parseInt($("#strategic").val())+parseInt($("#decision").val())+ parseInt($("#coordination").val())+parseInt($("#subordinates").val())+parseInt($("#handlingproblems").val())+parseInt($("#inspection").val())+parseInt($("#financialpropriety").val())
+  $("#overall_functionalcompetency").val(sum3/8);
+  overall_grading=sum1/10 + sum2/30 + 3*sum3/80;
+  $("#overall_numerical_grading").val(overall_grading);
+  // console.log(sum1)
+  // console.log(sum2)
+  // console.log(sum3)
+      
+  });
 
   $('#myform').on('submit',function(e){
         alert("Once Submitted Can't Be EDITED");
@@ -1137,7 +1155,7 @@
             success: function(msg) {
                 // console.log(msg); 
                //  $("").show(); 
-               alert(msg);
+               // alert(msg);
                $("#myform").hide();
                $("#opt2").append($("#officer-id :selected"));
                  $( "div" ).find("#conf-msg").hide();
