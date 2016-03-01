@@ -258,14 +258,14 @@
          dataType:'json',
           data: {'id':reporting_id}, //POST parameter to be sent with the tournament id
          success: function(resp) { //When the request is successfully completed, this function will be executed
-          alert(resp.checked);
+          // alert(resp.checked);
           console.log(resp['checked']);
           for(var i=0;i<(resp['unchecked'].length);i++){
             $('<option />', {value:resp['unchecked'][i], text:resp['unchecked'][i]}).appendTo($("#pt1"));
           }
           for(i=0;i<(resp['checked'].length);i++)
             $('<option />', {value:resp['checked'][i], text: resp['checked'][i]}).appendTo($("#pt2"));
-          alert(resp);
+          // alert(resp);
 
         },
         error:function(error){
@@ -351,7 +351,7 @@ $("#officer-id").change(function(){
      url: '<?php echo base_url();?>Home/staus', //We are going to make the request to the method "list_dropdown" in the match controller
      
      success: function(resp) { //When the request is successfully completed, this function will be executed
-      alert(resp);
+      // alert(resp);
       resp=parseInt(resp);
      //  break;)
       //alert(resp);

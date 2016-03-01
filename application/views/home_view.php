@@ -61,7 +61,7 @@
                   <div class="row">
                     <div class="col-xs-6 form-group">
                       <label for="dob">Date of birth</label>
-                      <input name="dob" class="form-control input-lg datepicker" placeholder="DOB (DD/MM/YYYY)" tabindex="3" type="text" required<?php if(isset($set)): ?> disabled value=<?=$value['dob']?><?php endif;?>>
+                      <input name="dob" class="form-control input-lg datepicker" placeholder="DOB (MM/DD/YYYY)" tabindex="3" type="text" required<?php if(isset($set)): ?> disabled value=<?=$value['dob']?><?php endif;?>>
                     </div>
                     
                     <div class="col-xs-6 form-group">
@@ -72,7 +72,7 @@
                   <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-6 form-group">
                       <label for="appointment">Date of continuous Appointment</label><span class="fa fa-asterisk"></span>
-                      <input type="text" name="date_presentgrade" id="appointment" class="form-control input-lg datepicker" required placeholder="Date of continuous Appointment(DD/MM/YYYY)" tabindex="5"  <?php if(isset($set)): ?> disabled value=<?=$value['date_presentgrade']?><?php endif;?>>
+                      <input type="text" name="date_presentgrade" id="appointment" class="form-control input-lg datepicker" required placeholder="Date of continuous Appointment(MM/DD/YYYY)" tabindex="5"  <?php if(isset($set)): ?> disabled value=<?=$value['date_presentgrade']?><?php endif;?>>
                       
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 form-group">
@@ -206,12 +206,12 @@
                   <ol type="A">
                     <li>
                       <label class="control-label">
-                        Please state briefly, the shortfalls with reference to the targets/objectives/goals referred to in <a href="#">ITEM 2</a>.Please specify the constraints, if any, in achieving the targets.    <textarea class="form-control" name="shortfalls" rows="5" required <?php if(isset($set2)) echo "disabled"; ?>><?php if(isset($set2)) echo htmlspecialchars($value2['shortfalls']); ?></textarea>
-                      </label>
+                        Please state briefly, the shortfalls with reference to the targets/objectives/goals referred to in <a href="#">ITEM 2</a>.Please specify the constraints, if any, in achieving the targets.  </label><div>  <textarea class="form-control" name="shortfalls" rows="5" required <?php if(isset($set2)) echo "disabled"; ?>><?php if(isset($set2)) echo htmlspecialchars($value2['shortfalls']); ?></textarea></div>
+                      
                     </li>
                     <li>
                       <label class="control-label">
-                        Please also indicate items in which there have been significantly higher achievements and your contribution thereto <textarea class="form-control" name="higher_achievement" rows="5"<?php if(isset($set2)) echo "disabled"; ?>><?php if(isset($set2)) echo htmlspecialchars($value2['higher_achievement']); ?></textarea>
+                        Please also indicate items in which there have been significantly higher achievements and your contribution thereto<div> <textarea class="form-control" name="higher_achievement" rows="5"<?php if(isset($set2)) echo "disabled"; ?>><?php if(isset($set2)) echo htmlspecialchars($value2['higher_achievement']); ?></textarea></div>
                       </label>
                     </li>
                   </ol>

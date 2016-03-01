@@ -60,7 +60,22 @@
           <h4 class="modal-title"></h4>
         </div>
         <div class="modal-body">
-            <div class="show">
+            <div id="show">
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal modal-wide fade" id="print" >
+    <div class="modal-dialog" style="min-width:60%">
+      <!-- Modal content -->
+      <div class="modal-content" >
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" >&times;</button>
+          <h4 class="modal-title"></h4>
+        </div>
+        <div class="modal-body">
+            <div id="show_repo">
             </div>
         </div>
       </div>
@@ -121,7 +136,7 @@
             <option value="9">9</option>
             <option value="10">10</option>
           </select>
-        </td>	
+          </td>	
         <td>
          <select  class="form-control rev-officer"  style="display:none;  width: 100%; height: 100%; border: none; color:#999 ;font-style: italic; font-size: 13px;" name="rplannedwork" id="rplannedwork"  >
           <option disabled selected>select grade</option> 
@@ -135,8 +150,8 @@
           <option value="8">8</option>
           <option value="9">9</option>
           <option value="10">10</option>
-        </select>
-      </td> 
+          </select>
+          </td> 
     </tr>
 
     <tr>
@@ -967,26 +982,26 @@
   
   <div class="panel-body" id="part-4">
     <li>
-      <label>Relations with public (wherever applicable)</label>
-      <textarea class="form-control" name="public_relation" <?php if(isset($set)) echo "disabled"; ?>><?php if(isset($set)) echo htmlspecialchars($public_relation); ?></textarea>
+      <label>Relations with public (wherever applicable)</label><div>
+      <textarea class="form-control" name="public_relation" <?php if(isset($set)) echo "disabled"; ?>><?php if(isset($set)) echo htmlspecialchars($public_relation); ?></textarea></div>
     </li>
-    <li><label>Training</label>
-      <textarea class="form-control" name="training" <?php if(isset($set)) echo "disabled"; ?>><?php if(isset($set)) echo htmlspecialchars($training); ?></textarea>
-    </li>
-    <li>
-      <label>Integrity</label>
-      <textarea class="form-control" name="integrity" <?php if(isset($set)) echo "disabled"; ?>><?php if(isset($set)) echo htmlspecialchars($integrity); ?></textarea>
+    <li><label>Training</label><div>
+      <textarea class="form-control" name="training" <?php if(isset($set)) echo "disabled"; ?>><?php if(isset($set)) echo htmlspecialchars($training); ?></textarea></div>
     </li>
     <li>
-      <label>State of health</label>
-      <textarea class="form-control" name="health" <?php if(isset($set)) echo "disabled"; ?>><?php if(isset($set)) echo htmlspecialchars($health); ?></textarea>
+      <label>Integrity</label><div>
+      <textarea class="form-control" name="integrity" <?php if(isset($set)) echo "disabled"; ?>><?php if(isset($set)) echo htmlspecialchars($integrity); ?></textarea></div>
+    </li>
+    <li>
+      <label>State of health</label><div>
+      <textarea class="form-control" name="health" <?php if(isset($set)) echo "disabled"; ?>><?php if(isset($set)) echo htmlspecialchars($health); ?></textarea></div>
     </li>
     
     <li>
-      <label>Pen Picture by Reporting Officer (in about 100 words ) on the overall qualities of the officer including areas of strength and lesser strength, extraordinary achievements, significant failures (ref 3(A) &amp; 3 (B) of part-2) and attitude towards waeker sections</label><textarea  rows=6 class="form-control" name="reporting_officer_penpicture" <?php if(isset($set)) echo "disabled"; ?>><?php if(isset($set)) echo htmlspecialchars($reporting_officer_penpicture); ?></textarea>
+      <label>Pen Picture by Reporting Officer (in about 100 words ) on the overall qualities of the officer including areas of strength and lesser strength, extraordinary achievements, significant failures (ref 3(A) &amp; 3 (B) of part-2) and attitude towards waeker sections</label><div><textarea  rows=6 class="form-control" name="reporting_officer_penpicture" <?php if(isset($set)) echo "disabled"; ?>><?php if(isset($set)) echo htmlspecialchars($reporting_officer_penpicture); ?></textarea></div>
     </li>
-    <li><label>Overall numerical grading on the basis of weightage given in sectionA, B and C in part-3 of the Report</label>
-      <input type="number" readonly class="orm-control score" id="overall_numerical_grading" name="overall_numerical_grading"<?php if(isset($set)): ?> value=<?=(int)$overall_numerical_grading;?> <?php endif;?>>
+    <li><label>Overall numerical grading on the basis of weightage given in sectionA, B and C in part-3 of the Report</label><div>
+      <input type="number" readonly class="orm-control score" id="overall_numerical_grading" name="overall_numerical_grading"<?php if(isset($set)): ?> value=<?=(int)$overall_numerical_grading;?> <?php endif;?>></div>
     </li>
   </div>
 </div>
@@ -1004,7 +1019,7 @@
 <script>
   
 
-  var $newdiv1 = $( "<div id='conf-msg'class='container-fluid success' style='background-color:green;color:white; padding-right:50px; display:none;'> <center>YOUR FORM HAS BEEN SUBMITTED<a href='#part-3' data-toggle='modal' id='sss' style='float:right; color:black;' >view</a></center></div>" );
+  var $newdiv1 = $( "<div id='conf-msg'class='container-fluid success' style='background-color:green;color:white; padding-right:50px; display:none;'> <center>YOUR FORM HAS BEEN SUBMITTED<a href='#print' data-toggle='modal'  id='print_repo' style='color:black;'  ><strong>PRINT</strong></a><a href='#part-3' data-toggle='modal' id='sss' style='float:right; color:black;' >view</a></center></div>" );
          
   $( "div" ).find("#detail").append( $newdiv1);
   if($("#officer-id").val()==="----"){ 
@@ -1067,7 +1082,7 @@
                 if(resp==0){
                   //form hasn'tYo been submitted
                   
-                  console.log("inside 0");
+                  // console.log("inside 0");
                   $('#msg').hide();
                   $("#detail").show();
                        //adding after changing else adding grren pannel
@@ -1098,13 +1113,13 @@
     var id = $('#officer-id').val();
     var page='home_report.php';
     console.log('hello');
-    $(".show").empty();
+    $("#show").empty();
     $.ajax({
                      type: 'POST',
                      url: '<?php echo base_url();?>Home/get_reporting_officer', //We are going to make the request to the method "list_dropdown" in the match controller
                      data:{'id':id,'page':page}, //POST parameter to be sent with the tournament id
                      success: function(resp) { //When the request is successfully completed, this function will be executed
-                      $( ".show" ).append( "<div class='del'></div>" );
+                      $( "#show" ).append( "<div class='del'></div>" );
                       $(".del").html(resp);
                       
                     }
@@ -1112,6 +1127,8 @@
                   });
     $(document).on('hidden.bs.modal',function(){
       $(".del").remove();
+      $("#show").html("");
+      location.reload(true); 
       //console.log('modal hidden');
     });
     console.log('empty');
@@ -1166,8 +1183,43 @@
         else
           return false;
   }); 
+$('#print_repo').on('click',function(e){
+  var code1;
+  var code;
+  var code2;
+  var officer_id = $('#officer-id').val();
+      $.ajax({
+       type: 'POST',
+         url: '<?php echo base_url(); ?>Home/ajax_view', 
+          data: {'id':officer_id}, 
+         success: function(resp) { 
+          t="<head>"+$("head").html()+"</head>";
+          a=$(resp).find("#personal").html();
+          b=$(resp).find("#work_info").html();
+          code1=a+b;
+        },
+        async: false
 
 
+    });
+   var id = $('#officer-id').val();
+  var page='home_report.php';
+
+  $.ajax({
+     type: 'POST',
+     url: '<?php echo base_url();?>Home/get_reporting_officer', 
+     data:{'id':id,'page':page}, 
+     success: function(resp) { 
+      // $( ".show" ).append( "<div class='del'></div>" );
+      code2=x=$(resp).find("#myform").html();
+          
+    },
+    async: false
+  });
+  code1=code1+code2;
+  code1="<!DOCTYPE html><html>"+t+" <body>"+code1+"</body></html>";
+  console.log(code1);
+});
 </script>
 
 
